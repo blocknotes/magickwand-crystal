@@ -110,4 +110,24 @@ describe Magickwand do
     LibMagick.magickGetImageHeight( wand2 ).should eq ( h )
     LibMagick.destroyMagickWand wand2
   end
+
+  it "should combine 2 images" do
+    tmp = tmp_img + ".jpg"
+    File.delete tmp rescue nil
+    wand2 = LibMagick.newMagickWand
+    LibMagick.magickReadImage wand, test_jpg
+    LibMagick.magickReadImage wand2, test_png2
+    w = LibMagick.magickGetImageWidth wand
+    h = LibMagick.magickGetImageHeight wand
+    LibMagick.magickCompositeImage wand, wand2, LibMagick::CompositeOperator::OverCompositeOp, 100, 100
+    LibMagick.magickWriteImage wand, tmp
+    LibMagick.destroyMagickWand( wand2 )
+    # Read the new image
+    wand3 = LibMagick.newMagickWand
+    LibMagick.magickReadImage( wand3, tmp ).should be_true
+    String.new( LibMagick.magickGetImageFormat( wand3 ) ).should eq "JPEG"
+    LibMagick.magickGetImageWidth(  wand3 ).should eq ( w )
+    LibMagick.magickGetImageHeight( wand3 ).should eq ( h )
+    LibMagick.destroyMagickWand wand3
+  end
 end
