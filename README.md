@@ -39,14 +39,14 @@ LibMagick.destroyMagickWand( wand ) # lib deinit
 LibMagick.magickWandTerminus        # lib deinit
 ```
 
-Scale image:
+Scale and convert image:
 
 ```ruby
 require "magickwand-crystal"
 # ... lib init ...
 LibMagick.magickReadImage( wand, "test.png" )
 LibMagick.magickScaleImage wand, 320, 240
-LibMagick.magickWriteImage wand, "test2.png"
+LibMagick.magickWriteImage wand, "test2.jpg"
 # ... lib deinit ...
 ```
 
