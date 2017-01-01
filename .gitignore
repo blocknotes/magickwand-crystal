@@ -10,5 +10,6 @@
 /examples/lib
 /examples/*.jpg
 /examples/*.png
+/spec/tmp.png
 
 /_misc
