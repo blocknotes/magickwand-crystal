@@ -3,11 +3,11 @@
 # Author:      Mat
 # Description: Get info from an image
 # ---------------------------------------------------------------------------- #
-require "magickwand-crystal"
+require "../magickwand-crystal"
 
 LibMagick.magickWandGenesis
 wand = LibMagick.newMagickWand
-if LibMagick.magickReadImage( wand, "test.png" )
+if LibMagick.magickReadImage( wand, "../spec/test1.png" )
   # char* functions
   STDOUT << "- MagickGetImageFilename: " << String.new( LibMagick.magickGetImageFilename( wand ) ) << "\n"
   STDOUT << "- MagickGetImageFormat: " << String.new( LibMagick.magickGetImageFormat( wand ) ) << "\n"
