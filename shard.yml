@@ -1,0 +1,9 @@
+name: magickwand-crystal
+version: 0.1.0
+
+authors:
+  - Mattia Roccoberton <mat@blocknot.es>
+
+crystal: 0.20.3
+
+license: MIT

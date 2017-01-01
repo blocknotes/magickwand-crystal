@@ -1,0 +1,5 @@
+language: crystal
+
+before_install:
+  - sudo apt-get install libmagickwand-dev -y
+  - sudo ldconfig
