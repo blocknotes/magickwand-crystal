@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------- #
 # Example:     composite
 # Author:      Mat
-# Description: Add 2 image
+# Description: Combine 2 images
 # ---------------------------------------------------------------------------- #
 require "../magickwand-crystal"
 

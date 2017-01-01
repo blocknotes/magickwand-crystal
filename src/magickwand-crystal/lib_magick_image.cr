@@ -624,9 +624,9 @@ lib LibMagick
 
   # unsigned char* functions
   fun magickGetImageBlob
-    = MagickGetImageBlob( wand : MagickWand*, s : LibC::SizeT ): LibC::UChar*
+    = MagickGetImageBlob( wand : MagickWand*, s : LibC::SizeT* ): LibC::UChar*
   fun magickGetImagesBlob
-    = MagickGetImagesBlob( wand : MagickWand*, s : LibC::SizeT ): LibC::UChar*
+    = MagickGetImagesBlob( wand : MagickWand*, s : LibC::SizeT* ): LibC::UChar*
 
   fun magickGetImageVirtualPixelMethod
     = MagickGetImageVirtualPixelMethod( wand : MagickWand* ): VirtualPixelMethod

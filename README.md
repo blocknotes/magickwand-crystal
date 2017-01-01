@@ -52,7 +52,7 @@ LibMagick.magickWriteImage wand, "test2.jpg"
 
 ## More examples
 
-See [examples](https://github.com/blocknotes/magickwand-crystal/tree/master/examples) folder.
+See [examples](https://github.com/blocknotes/magickwand-crystal/tree/master/examples) folder. There is also an example to generate an image on the fly with Kemal.
 
 ## Notes
 
