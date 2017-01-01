@@ -2,9 +2,11 @@
 
 [![Build Status](https://travis-ci.org/blocknotes/magickwand-crystal.svg)](https://travis-ci.org/blocknotes/magickwand-crystal)
 
+---
+
 Crystal C bindings for MagickWand library, an interface to use the ImageMagick image processing libraries - see [www.imagemagick.org](https://www.imagemagick.org/script/magick-wand.php)
 
-**NOTE**: actually only a part of the MagickCore and MagickWand are Mapped
+**NOTE**: actually only a part of the MagickCore and MagickWand are mapped, it's a quite large library
 
 ## Requirements
 
@@ -43,7 +45,7 @@ Scale image:
 require "magickwand-crystal"
 # ... lib init ...
 LibMagick.magickReadImage( wand, "test.png" )
-LibMagick.magickScaleImage wand, 320, 340
+LibMagick.magickScaleImage wand, 320, 240
 LibMagick.magickWriteImage wand, "test2.png"
 # ... lib deinit ...
 ```
@@ -54,10 +56,10 @@ See [examples](https://github.com/blocknotes/magickwand-crystal/tree/master/exam
 
 ## Notes
 
-This is the Crystal Magic Wand! :)
+This is the Crystal Magic Wand ! :)
 
 Sounds funny but I hope you find it a useful piece of software.
 
 ## Contributors
 
-- [Mattia Roccoberton](http://blocknot.es) - creator, maintainer
+- [Mattia Roccoberton](http://blocknot.es) - creator, maintainer, Crystal fan :)
