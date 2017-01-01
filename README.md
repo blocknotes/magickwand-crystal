@@ -32,11 +32,11 @@ require "magickwand-crystal"
 LibMagick.magickWandGenesis    # lib init
 wand = LibMagick.newMagickWand # lib init
 if LibMagick.magickReadImage( wand, "test.png" )
-  puts LibMagick.magickGetImageWidth( wand )
-  puts LibMagick.magickGetImageHeight( wand )
+  puts LibMagick.magickGetImageWidth wand
+  puts LibMagick.magickGetImageHeight wand
 end
-LibMagick.destroyMagickWand( wand ) # lib deinit
-LibMagick.magickWandTerminus        # lib deinit
+LibMagick.destroyMagickWand wand  # lib deinit
+LibMagick.magickWandTerminus      # lib deinit
 ```
 
 Scale and convert image:
@@ -44,7 +44,7 @@ Scale and convert image:
 ```ruby
 require "magickwand-crystal"
 # ... lib init ...
-LibMagick.magickReadImage( wand, "test.png" )
+LibMagick.magickReadImage wand, "test.png"
 LibMagick.magickScaleImage wand, 320, 240
 LibMagick.magickWriteImage wand, "test2.jpg"
 # ... lib deinit ...
