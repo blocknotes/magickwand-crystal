@@ -109,7 +109,7 @@ lib LibMagick
   fun pixelSetBlueQuantum
     = PixelSetBlueQuantum( wand : PixelWand*, quantum : Quantum* ): Void
   fun pixelSetColorFromWand
-    = PixelSetColorFromWand( wand : PixelWand*, wand : PixelWand* ): Void
+    = PixelSetColorFromWand( wand : PixelWand*, wand2 : PixelWand* ): Void
   fun pixelSetColorCount
     = PixelSetColorCount( wand : PixelWand*, s : LibC::SizeT ): Void
   fun pixelSetCyan

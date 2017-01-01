@@ -630,6 +630,15 @@ lib LibMagick
     LeftBottomOrientation
   end
 
+  enum PaintMethod
+    UndefinedMethod
+    PointMethod
+    ReplaceMethod
+    FloodfillMethod
+    FillToBorderMethod
+    ResetMethod
+  end
+
   enum PathMode
     DefaultPathMode,
     AbsolutePathMode,
