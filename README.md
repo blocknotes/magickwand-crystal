@@ -2,8 +2,6 @@
 
 [![Build Status](https://travis-ci.org/blocknotes/magickwand-crystal.svg)](https://travis-ci.org/blocknotes/magickwand-crystal)
 
----
-
 Crystal C bindings for MagickWand library, an interface to use the ImageMagick image processing libraries - see [www.imagemagick.org](https://www.imagemagick.org/script/magick-wand.php)
 
 **NOTE**: actually only a part of the MagickCore and MagickWand are Mapped
@@ -29,19 +27,36 @@ Get image info:
 
 ```ruby
 require "magickwand-crystal"
-LibMagick.magickWandGenesis
-wand = LibMagick.newMagickWand
+LibMagick.magickWandGenesis    # lib init
+wand = LibMagick.newMagickWand # lib init
 if LibMagick.magickReadImage( wand, "test.png" )
   puts LibMagick.magickGetImageWidth( wand )
   puts LibMagick.magickGetImageHeight( wand )
 end
-LibMagick.destroyMagickWand( wand )
-LibMagick.magickWandTerminus
+LibMagick.destroyMagickWand( wand ) # lib deinit
+LibMagick.magickWandTerminus        # lib deinit
+```
+
+Scale image:
+
+```ruby
+require "magickwand-crystal"
+# ... lib init ...
+LibMagick.magickReadImage( wand, "test.png" )
+LibMagick.magickScaleImage wand, 320, 340
+LibMagick.magickWriteImage wand, "test2.png"
+# ... lib deinit ...
 ```
 
 ## More examples
 
 See [examples](https://github.com/blocknotes/magickwand-crystal/tree/master/examples) folder.
+
+## Notes
+
+This is the Crystal Magic Wand! :)
+
+Sounds funny but I hope you find it a useful piece of software.
 
 ## Contributors
 
