@@ -17,5 +17,5 @@ if LibMagick.magickReadImage( wand, "../spec/test2.jpg" )
   LibMagick.magickSetImageCompressionQuality wand, 80
   LibMagick.magickWriteImage wand, "test2b.jpg"
 end
-LibMagick.destroyMagickWand( wand )
+LibMagick.destroyMagickWand wand
 LibMagick.magickWandTerminus

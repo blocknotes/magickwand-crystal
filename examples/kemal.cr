@@ -20,7 +20,7 @@ get "/" do |env|
   LibMagick.destroyMagickWand wand
   LibMagick.magickWandTerminus
   io = IO::Memory.new
-  io.write( slice )
+  io.write slice
   io.to_s
 end
 

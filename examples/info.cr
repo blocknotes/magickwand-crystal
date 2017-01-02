@@ -33,5 +33,5 @@ if LibMagick.magickReadImage( wand, "../spec/test1.png" )
   # misc functions
   STDOUT << "- GetImageChannelStatistics: " << LibMagick.magickGetImageChannelStatistics( wand ).value << "\n"
 end
-LibMagick.destroyMagickWand( wand )
+LibMagick.destroyMagickWand wand
 LibMagick.magickWandTerminus

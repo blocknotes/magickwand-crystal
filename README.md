@@ -54,6 +54,11 @@ LibMagick.magickWriteImage wand, "test2.jpg"
 
 See [examples](https://github.com/blocknotes/magickwand-crystal/tree/master/examples) folder. There is also an example to generate an image on the fly with Kemal.
 
+## Documentation
+
+- [MagickWand C Documentation](https://www.imagemagick.org/api/MagickWand/index.html)
+- [MagickWand Examples in C](http://members.shaw.ca/el.supremo/MagickWand/)
+
 ## Notes
 
 This is the Crystal Magic Wand ! :)
