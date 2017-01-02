@@ -56,6 +56,10 @@ See [examples](https://github.com/blocknotes/magickwand-crystal/tree/master/exam
 
 ## Documentation
 
+The functions mapped have the same names of the MagickWand C library but with the first letter in lowercase.
+
+Example: `MagickWandGenesis` => `LibMagick.magickWandGenesis`
+
 - [MagickWand C Documentation](https://www.imagemagick.org/api/MagickWand/index.html)
 - [MagickWand Examples in C](http://members.shaw.ca/el.supremo/MagickWand/)
 
