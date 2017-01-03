@@ -26,7 +26,7 @@ LibMagick.pixelSetColor p_wand, "green"
 LibMagick.drawSetStrokeColor d_wand, p_wand
 LibMagick.drawLine d_wand, 20, 20, 100, 400
 LibMagick.magickDrawImage m_wand, d_wand
-LibMagick.magickWriteImage m_wand, "test.jpg"
+LibMagick.magickWriteImage m_wand, "shapes.jpg"
 
 LibMagick.destroyDrawingWand d_wand
 LibMagick.destroyPixelWand p_wand

@@ -15,7 +15,7 @@ if LibMagick.magickReadImage( wand, "../spec/test2.jpg" )
   ## or simply scale with:
   # LibMagick.magickScaleImage wand, w / 2, h / 2
   LibMagick.magickSetImageCompressionQuality wand, 80
-  LibMagick.magickWriteImage wand, "test2b.jpg"
+  LibMagick.magickWriteImage wand, "resize.jpg"
 end
 LibMagick.destroyMagickWand wand
 LibMagick.magickWandTerminus
