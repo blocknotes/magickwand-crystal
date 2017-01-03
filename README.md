@@ -35,7 +35,7 @@ LibMagick.destroyMagickWand wand  # lib deinit
 LibMagick.magickWandTerminus      # lib deinit
 ```
 
-Scale and convert image:
+Scale image and save in Jpeg format:
 
 ```ruby
 require "magickwand-crystal"
@@ -43,6 +43,17 @@ require "magickwand-crystal"
 LibMagick.magickReadImage wand, "test.png"
 LibMagick.magickScaleImage wand, 320, 240
 LibMagick.magickWriteImage wand, "test2.jpg"
+# ... lib deinit ...
+```
+
+Convert to grayscale:
+
+```ruby
+require "magickwand-crystal"
+# ... lib init ...
+LibMagick.magickReadImage wand, "test.jpg"
+LibMagick.magickTransformImageColorspace wand, LibMagick::ColorspaceType::GRAYColorspace
+LibMagick.magickWriteImage wand, "grayscale.jpg"
 # ... lib deinit ...
 ```
 

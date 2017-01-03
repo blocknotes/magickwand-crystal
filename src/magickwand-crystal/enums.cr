@@ -62,41 +62,41 @@ lib LibMagick
   end
 
   enum ColorspaceType
-    UndefinedColorspacem
-    RGBColorspacem            # Linear RGB colorspace
-    GRAYColorspacem           # greyscale (linear) image (faked 1 channel)
-    TransparentColorspacem
-    OHTAColorspacem
-    LabColorspacem
-    XYZColorspacem
-    YCbCrColorspacem
-    YCCColorspacem
-    YIQColorspacem
-    YPbPrColorspacem
-    YUVColorspacem
-    CMYKColorspacem           # negated linear RGB with black separated
-    SRGBColorspacem           # Default: non-linear sRGB colorspace
-    HSBColorspacem
-    HSLColorspacem
-    HWBColorspacem
-    Rec601LumaColorspacem
-    Rec601YCbCrColorspacem
-    Rec709LumaColorspacem
-    Rec709YCbCrColorspacem
-    LogColorspacem
-    CMYColorspacem            # negated linear RGB colorspace
-    LuvColorspacem
-    HCLColorspacem
-    LCHColorspacem            # alias for LCHuv
-    LMSColorspacem
-    LCHabColorspacem          # Cylindrical (Polar) Lab
-    LCHuvColorspacem          # Cylindrical (Polar) Luv
-    ScRGBColorspacem
-    HSIColorspacem
-    HSVColorspacem            # alias for HSB
-    HCLpColorspacem
-    YDbDrColorspacem
-    XyYColorspace
+    UndefinedColorspace
+    RGBColorspace            # Linear RGB colorspace
+    GRAYColorspace           # greyscale (linear) image (faked 1 channel)
+    TransparentColorspace
+    OHTAColorspace
+    LabColorspace
+    XYZColorspace
+    YCbCrColorspace
+    YCCColorspace
+    YIQColorspace
+    YPbPrColorspace
+    YUVColorspace
+    CMYKColorspace           # negated linear RGB with black separated
+    SRGBColorspace           # Default: non-linear sRGB colorspace
+    HSBColorspace
+    HSLColorspace
+    HWBColorspace
+    Rec601LumaColorspace
+    Rec601YCbCrColorspace
+    Rec709LumaColorspace
+    Rec709YCbCrColorspace
+    LogColorspace
+    CMYColorspace            # negated linear RGB colorspace
+    LuvColorspace
+    HCLColorspace
+    LCHColorspace            # alias for LCHuv
+    LMSColorspace
+    LCHabColorspace          # Cylindrical (Polar) Lab
+    LCHuvColorspace          # Cylindrical (Polar) Luv
+    ScRGBColorspace
+    HSIColorspace
+    HSVColorspace            # alias for HSB
+    HCLpColorspace
+    YDbDrColorspace
+    XyYColorspac
   end
 
   enum CompositeOperator
