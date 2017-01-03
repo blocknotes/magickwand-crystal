@@ -1,12 +1,8 @@
-# magickwand for Crystal
-
-[![Build Status](https://travis-ci.org/blocknotes/magickwand-crystal.svg)](https://travis-ci.org/blocknotes/magickwand-crystal)
-
----
+# MagickWand for Crystal [![Build Status](https://travis-ci.org/blocknotes/magickwand-crystal.svg)](https://travis-ci.org/blocknotes/magickwand-crystal)
 
 Crystal C bindings for MagickWand library, an interface to use the ImageMagick image processing libraries - see [www.imagemagick.org](https://www.imagemagick.org/script/magick-wand.php)
 
-**NOTE**: actually only a part of the MagickCore and MagickWand are mapped, it's a quite large library
+**NOTE**: actually not all functions are mapped, it's a quite large library - if you something something specific that is missing feel free to contact me
 
 ## Requirements
 
@@ -65,7 +61,7 @@ Example: `MagickWandGenesis` => `LibMagick.magickWandGenesis`
 
 ## Notes
 
-This is the Crystal Magic Wand ! :)
+The Crystal Magic Wand ! :)
 
 Sounds funny but I hope you find it a useful piece of software.
 

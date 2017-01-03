@@ -1,6 +1,7 @@
 lib LibMagick
   MaxTextExtent = 4096
   MagickPathExtent = 4096
+  QuantumRange = 65535.0 # 255.0
 
   type MagickMutexType = LibC::SizeT
   type MagickOffsetType = LibC::SSizeT
