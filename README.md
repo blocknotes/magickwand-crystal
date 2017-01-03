@@ -2,7 +2,7 @@
 
 Crystal C bindings for MagickWand library, an interface to use the ImageMagick image processing libraries - see [www.imagemagick.org](https://www.imagemagick.org/script/magick-wand.php)
 
-**NOTE**: actually not all functions are mapped, it's a quite large library - if you something something specific that is missing feel free to contact me
+**NOTE**: actually not all functions are mapped, it's a quite large library - if you find something missing [contact me](http://www.blocknot.es/me)
 
 ## Requirements
 
