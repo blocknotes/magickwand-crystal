@@ -553,23 +553,21 @@ lib LibMagick
   fun magickCompareImages
     = MagickCompareImages( wand1 : MagickWand*, wand2 : MagickWand*, metricType : MetricType, dp : LibC::Double* ): MagickWand*
   fun magickCompareImageLayers
-    = MagickCompareImageLayers( wand : MagickWand*, imageLayerMethod : ImageLayerMethod ): MagickWand*
+    = MagickCompareImageLayers( wand : MagickWand*, layerMethod : LayerMethod ): MagickWand*
   fun magickDeconstructImages
     = MagickDeconstructImages( wand : MagickWand* ): MagickWand*
   fun magickEvaluateImages
     = MagickEvaluateImages( wand : MagickWand*, magickEvaluateOperator : MagickEvaluateOperator ): MagickWand*
   fun magickFxImage
     = MagickFxImage( wand : MagickWand*, cp : LibC::Char* ): MagickWand*
-  fun magickFxImageChannel
-    = MagickFxImageChannel( wand : MagickWand*, channelType : ChannelType, cp : LibC::Char* ): MagickWand*
   fun magickGetImage
     = MagickGetImage( wand : MagickWand* ): MagickWand*
-  fun magickGetImageClipMask
-    = MagickGetImageClipMask( wand : MagickWand* ): MagickWand*
+  fun magickGetImageMask
+    = MagickGetImageMask( wand : MagickWand*, pixelMask : PixelMask ): MagickWand*
   fun magickGetImageRegion
     = MagickGetImageRegion( wand : MagickWand*, s1 : LibC::SizeT, s2 : LibC::SizeT, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT ): MagickWand*
   fun magickMergeImageLayers
-    = MagickMergeImageLayers( wand : MagickWand*, imageLayerMethod : ImageLayerMethod ): MagickWand*
+    = MagickMergeImageLayers( wand : MagickWand*, layerMethod : LayerMethod ): MagickWand*
   fun magickMorphImages
     = MagickMorphImages( wand : MagickWand*, s : LibC::SizeT ): MagickWand*
   fun magickMontageImage
@@ -579,7 +577,7 @@ lib LibMagick
   fun magickPreviewImages
     = MagickPreviewImages( wand : MagickWand*, previewType : PreviewType ): MagickWand*
   fun magickSimilarityImage
-    = MagickSimilarityImage( wand1 : MagickWand*, wand2 : MagickWand*, rectangleInfo : RectangleInfo*, dp : LibC::Double* ): MagickWand*
+    = MagickSimilarityImage( wand1 : MagickWand*, wand2 : MagickWand*, metricType : MetricType, d : LibC::Double, rectangleInfo : RectangleInfo*, dp : LibC::Double* ): MagickWand*
   fun magickSmushImages
     = MagickSmushImages( wand : MagickWand*, b : Bool, ss : LibC::SSizeT ): MagickWand*
   fun magickSteganoImage
@@ -588,15 +586,16 @@ lib LibMagick
     = MagickStereoImage( wand1 : MagickWand*, wand2 : MagickWand* ): MagickWand*
   fun magickTextureImage
     = MagickTextureImage( wand1 : MagickWand*, wand2 : MagickWand* ): MagickWand*
-  fun magickTransformImage
-    = MagickTransformImage( wand : MagickWand*, cp1 : LibC::Char*, cp2 : LibC::Char* ): MagickWand*
 
   fun magickGetImageOrientation
     = MagickGetImageOrientation( wand : MagickWand* ): OrientationType
+
   fun magickGetImageHistogram
-    = MagickGetImageHistogram( wand : MagickWand*, s : LibC::SizeT ): LibStd::FilePtr**
+    = MagickGetImageHistogram( wand : MagickWand*, sp : LibC::SizeT* ): PixelWand**
+
   fun magickGetImageRenderingIntent
     = MagickGetImageRenderingIntent( wand : MagickWand* ): RenderingIntent
+
   fun magickGetImageUnits
     = MagickGetImageUnits( wand : MagickWand* ): ResolutionType
 
@@ -607,8 +606,6 @@ lib LibMagick
     = MagickGetImageCompressionQuality( wand : MagickWand* ): LibC::SizeT
   fun magickGetImageDelay
     = MagickGetImageDelay( wand : MagickWand* ): LibC::SizeT
-  fun magickGetImageChannelDepth
-    = MagickGetImageChannelDepth( wand : MagickWand*, channelType : ChannelType ): LibC::SizeT
   fun magickGetImageDepth
     = MagickGetImageDepth( wand : MagickWand* ): LibC::SizeT
   fun magickGetImageHeight
@@ -626,9 +623,9 @@ lib LibMagick
 
   # unsigned char* functions
   fun magickGetImageBlob
-    = MagickGetImageBlob( wand : MagickWand*, s : LibC::SizeT* ): LibC::UChar*
+    = MagickGetImageBlob( wand : MagickWand*, sp : LibC::SizeT* ): LibC::UChar*
   fun magickGetImagesBlob
-    = MagickGetImagesBlob( wand : MagickWand*, s : LibC::SizeT* ): LibC::UChar*
+    = MagickGetImagesBlob( wand : MagickWand*, sp : LibC::SizeT* ): LibC::UChar*
 
   fun magickGetImageVirtualPixelMethod
     = MagickGetImageVirtualPixelMethod( wand : MagickWand* ): VirtualPixelMethod

@@ -391,26 +391,6 @@ lib LibMagick
     StaticGravity = 10
   end
 
-  enum ImageLayerMethod
-    UndefinedLayer
-    CoalesceLayer
-    CompareAnyLayer
-    CompareClearLayer
-    CompareOverlayLayer
-    DisposeLayer
-    OptimizeLayer
-    OptimizeImageLayer
-    OptimizePlusLayer
-    OptimizeTransLayer
-    RemoveDupsLayer
-    RemoveZeroLayer
-    CompositeLayer
-    MergeLayer
-    FlattenLayer
-    MosaicLayer
-    TrimBoundsLayer
-  end
-
   enum ImageType
     UndefinedType
     BilevelType
@@ -493,6 +473,26 @@ lib LibMagick
     EuclideanKernel
     UserDefinedKernel   # User Specified Kernel Array
     BinomialKernel
+  end
+
+  enum LayerMethod
+    UndefinedLayer
+    CoalesceLayer
+    CompareAnyLayer
+    CompareClearLayer
+    CompareOverlayLayer
+    DisposeLayer
+    OptimizeLayer
+    OptimizeImageLayer
+    OptimizePlusLayer
+    OptimizeTransLayer
+    RemoveDupsLayer
+    RemoveZeroLayer
+    CompositeLayer
+    MergeLayer
+    FlattenLayer
+    MosaicLayer
+    TrimBoundsLayer
   end
 
   enum LineCap
@@ -670,6 +670,12 @@ lib LibMagick
     Rec709LuminancePixelIntensityMethod
     RMSPixelIntensityMethod
     MSPixelIntensityMethod
+  end
+
+  enum PixelMask
+    UndefinedPixelMask = 0x000000,
+    ReadPixelMask = 0x000001,
+    WritePixelMask = 0x000002
   end
 
   enum PixelTrait
