@@ -98,7 +98,7 @@ describe Magickwand do
     LibMagick.pixelSetColor fc_wand, "none"
     LibMagick.pixelSetColor bc_wand, "red"
     channel = LibMagick.parseChannelOption "rgba"
-    LibMagick.magickFloodfillPaintImage wand, LibMagick::ChannelType.new( channel.to_i ), fc_wand, 20, bc_wand, 150, 150, false
+    LibMagick.magickFloodfillPaintImage( wand, LibMagick::ChannelType.new( channel.to_i ), fc_wand, 20, bc_wand, 150, 150, false ).should be_true  # check the return value: true
     LibMagick.magickWriteImage wand, tmp
     LibMagick.destroyPixelWand bc_wand
     LibMagick.destroyPixelWand fc_wand
@@ -109,10 +109,10 @@ describe Magickwand do
     LibMagick.magickGetImageWidth(  wand2 ).should eq ( w )  # check the width
     LibMagick.magickGetImageHeight( wand2 ).should eq ( h )  # check the height
     p_wand = LibMagick.newPixelWand
-    LibMagick.magickGetImagePixelColor( wand2, 10, 10, p_wand )                            # check a pixel in the border
-    String.new( LibMagick.pixelGetColorAsNormalizedString( p_wand ) ).should eq "0,0,1"    # blue
-    LibMagick.magickGetImagePixelColor( wand2, w / 2, h / 2, p_wand )                      # check the pixel in the center
-    String.new( LibMagick.pixelGetColorAsNormalizedString( p_wand ) ).should eq "0,0,0,1"  # transparent
+    LibMagick.magickGetImagePixelColor( wand2, 10, 10, p_wand )
+    String.new( LibMagick.pixelGetColorAsNormalizedString( p_wand ) ).should eq "0,0,1"    # check the pixel in the center: blue
+    LibMagick.magickGetImagePixelColor( wand2, w / 2, h / 2, p_wand )
+    String.new( LibMagick.pixelGetColorAsNormalizedString( p_wand ) ).should eq "0,0,0,1"  # check the pixel in the center: transparent
     LibMagick.destroyPixelWand p_wand
     LibMagick.destroyMagickWand wand2
   end
@@ -135,5 +135,41 @@ describe Magickwand do
     LibMagick.magickGetImageWidth(  wand3 ).should eq ( w )  # check the width
     LibMagick.magickGetImageHeight( wand3 ).should eq ( h )  # check the height
     LibMagick.destroyMagickWand wand3
+  end
+
+  it "should convert an image to grayscale" do
+    tmp = tmp_img + ".jpg"
+    File.delete tmp rescue nil
+    LibMagick.magickReadImage wand, test_jpg
+    LibMagick.magickGetImageColorspace( wand ).should eq( LibMagick::ColorspaceType::SRGBColorspace )  # check the colorspace
+    LibMagick.magickTransformImageColorspace( wand, LibMagick::ColorspaceType::GRAYColorspace ).should be_true   # check the return value: true
+    LibMagick.magickWriteImage( wand, tmp ).should be_true   # check the return value: true
+    LibMagick.magickGetImageColorspace( wand ).should eq( LibMagick::ColorspaceType::GRAYColorspace )  # check the colorspace
+  end
+
+  it "should draw a yellow rectangle on the center of an image" do
+    tmp = tmp_img + ".png"
+    tmp = "/tmp/test.png"
+    File.delete tmp rescue nil
+    p_wand = LibMagick.newPixelWand
+    d_wand = LibMagick.newDrawingWand
+    LibMagick.magickReadImage wand, test_png2
+    px = LibMagick.magickGetImageWidth( wand ) / 2
+    py = LibMagick.magickGetImageHeight( wand ) / 2
+    LibMagick.pixelSetColor p_wand, "yellow"
+    LibMagick.drawSetStrokeOpacity d_wand, 1
+    LibMagick.drawSetStrokeColor d_wand, p_wand
+    LibMagick.drawSetStrokeWidth d_wand, 4
+    LibMagick.drawSetStrokeAntialias d_wand, true
+    LibMagick.drawSetFillColor d_wand, p_wand
+    LibMagick.drawRectangle d_wand, px - 50, py - 50, px + 50, py + 50
+    LibMagick.magickGetImagePixelColor( wand, px, py, p_wand )
+    String.new( LibMagick.pixelGetColorAsNormalizedString( p_wand ) ).should eq "1,0,0"  # check the pixel in the center: red
+    LibMagick.magickDrawImage( wand, d_wand ).should be_true   # check the return value: true
+    LibMagick.magickGetImagePixelColor( wand, px, py, p_wand )
+    String.new( LibMagick.pixelGetColorAsNormalizedString( p_wand ) ).should eq "1,1,0"  # check the pixel in the center: yellow
+    LibMagick.magickWriteImage( wand, tmp ).should be_true   # check the return value: true
+    LibMagick.destroyDrawingWand d_wand
+    LibMagick.destroyPixelWand p_wand
   end
 end
