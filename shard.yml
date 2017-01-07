@@ -4,6 +4,6 @@ version: 0.1.6
 authors:
   - Mattia Roccoberton <mat@blocknot.es>
 
-crystal: 0.20.3
+crystal: 0.20.4
 
 license: MIT
