@@ -1,3 +1,5 @@
+require "./types"
+
 lib LibMagick
   # --- magick-image ----------------------------------------------------------#
   fun magickGetImageChannelFeatures

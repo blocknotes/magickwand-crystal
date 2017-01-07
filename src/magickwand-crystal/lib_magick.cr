@@ -1,3 +1,5 @@
+require "./types"
+
 @[Link("MagickWand")]
 lib LibMagick
   # --- MagickWand ------------------------------------------------------------#

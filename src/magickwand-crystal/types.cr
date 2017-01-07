@@ -1,3 +1,6 @@
+require "./enums"
+require "./lib_std"
+
 lib LibMagick
   MaxTextExtent = 4096
   MagickPathExtent = 4096

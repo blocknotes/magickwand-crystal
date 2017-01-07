@@ -1,3 +1,5 @@
+require "./types"
+
 lib LibMagick
   # --- drawing-wand --------------------------------------------------------- #
   fun drawGetTextAlignment
