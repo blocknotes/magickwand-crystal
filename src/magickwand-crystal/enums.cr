@@ -391,6 +391,26 @@ lib LibMagick
     StaticGravity = 10
   end
 
+  enum ImageLayerMethod
+    UndefinedLayer
+    CoalesceLayer
+    CompareAnyLayer
+    CompareClearLayer
+    CompareOverlayLayer
+    DisposeLayer
+    OptimizeLayer
+    OptimizeImageLayer
+    OptimizePlusLayer
+    OptimizeTransLayer
+    RemoveDupsLayer
+    RemoveZeroLayer
+    CompositeLayer
+    MergeLayer
+    FlattenLayer
+    MosaicLayer
+    TrimBoundsLayer
+  end
+
   enum ImageType
     UndefinedType
     BilevelType
@@ -473,26 +493,6 @@ lib LibMagick
     EuclideanKernel
     UserDefinedKernel   # User Specified Kernel Array
     BinomialKernel
-  end
-
-  enum LayerMethod
-    UndefinedLayer
-    CoalesceLayer
-    CompareAnyLayer
-    CompareClearLayer
-    CompareOverlayLayer
-    DisposeLayer
-    OptimizeLayer
-    OptimizeImageLayer
-    OptimizePlusLayer
-    OptimizeTransLayer
-    RemoveDupsLayer
-    RemoveZeroLayer
-    CompositeLayer
-    MergeLayer
-    FlattenLayer
-    MosaicLayer
-    TrimBoundsLayer
   end
 
   enum LineCap

@@ -113,7 +113,7 @@ lib LibMagick
   fun isOptionMember
     = IsOptionMember( pc : LibC::Char*, pc : LibC::Char* ): Bool
   fun listCommandOptions
-    = ListCommandOptions( file : LibStd::FilePtr, commandOption : CommandOption, exceptionInfo : ExceptionInfo* ): Bool
+    = ListCommandOptions( file : LibStd::File*, commandOption : CommandOption, exceptionInfo : ExceptionInfo* ): Bool
   fun setImageOption
     = SetImageOption( imageInfo : ImageInfo*, pc : LibC::Char*, pc : LibC::Char* ): Bool
 
@@ -121,8 +121,8 @@ lib LibMagick
     = GetCommandOptionFlags( commandOption : CommandOption, b : Bool, pc : LibC::Char* ): LibC::SSizeT
   fun parseChannelOption
     = ParseChannelOption( pc : LibC::Char* ): LibC::SSizeT
-  fun parsePixelChannelOption
-    = ParsePixelChannelOption( pc : LibC::Char* ): LibC::SSizeT
+  # fun parsePixelChannelOption  # REMOVED
+  #   = ParsePixelChannelOption( pc : LibC::Char* ): LibC::SSizeT
   fun parseCommandOption
     = ParseCommandOption( commandOption : CommandOption, b : Bool, pc : LibC::Char* ): LibC::SSizeT
 

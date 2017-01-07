@@ -12,6 +12,7 @@ lib LibMagick
   type MagickSizeType = LibC::SizeT
   type MagickThreadType = LibC::PidT
   type Quantum = LibC::Float
+  type IndexPacket = Quantum
 
   type MagickProgressMonitor = LibC::Char*, MagickOffsetType, MagickSizeType, Void* -> Bool
 
@@ -334,7 +335,7 @@ lib LibMagick
     client_data : Void*
     cache : Void*
     stream : StreamHandler
-    file : LibStd::FilePtr
+    file : LibStd::File*
     blob : Void*
     length : LibC::SizeT
     magick : LibC::Char[MagickPathExtent]    # image file format (file magick)
@@ -370,6 +371,19 @@ lib LibMagick
     image_pending : Bool    # this image is pending Next/Previous Iteration
     debug : Bool            # Log calls to MagickWand library
     signature : LibC::SizeT
+  end
+
+  struct MagickPixelPacket
+    storage_class : ClassType
+    colorspace : ColorspaceType
+    matte : Bool
+    fuzz : LibC::Double
+    depth : LibC::SizeT
+    red : MagickRealType
+    green : MagickRealType
+    blue : MagickRealType
+    opacity : MagickRealType
+    index : MagickRealType
   end
 
   struct PixelInfo

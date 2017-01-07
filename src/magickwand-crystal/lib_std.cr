@@ -1,6 +1,6 @@
 @[Link("c")]
 lib LibStd
-  type FilePtr = Void*
+  type File = Void
 
   # fun fopen( LibC::Char*, LibC::Char* ): File
   # fun fputs( LibC::Char*, File )

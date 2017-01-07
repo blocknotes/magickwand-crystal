@@ -62,8 +62,8 @@ lib LibMagick
   fun newDrawingWand
     = NewDrawingWand(): DrawingWand*
 
-  fun drawCloneExceptionInfo
-    = DrawCloneExceptionInfo( wand : DrawingWand* ): ExceptionInfo*
+  # fun drawCloneExceptionInfo  # REMOVED
+  #   = DrawCloneExceptionInfo( wand : DrawingWand* ): ExceptionInfo*
 
   fun drawGetExceptionType
     = DrawGetExceptionType( wand : DrawingWand* ): ExceptionType
@@ -138,8 +138,8 @@ lib LibMagick
     = ClearDrawingWand( wand : DrawingWand*  ): Void
   fun drawAffine
     = DrawAffine( wand : DrawingWand*, affineMatrix : AffineMatrix* ): Void
-  fun drawAlpha
-    = DrawAlpha( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, paintMethod : PaintMethod ): Void
+  # fun drawAlpha  # REMOVED
+  #   = DrawAlpha( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, paintMethod : PaintMethod ): Void
   fun drawAnnotation
     = DrawAnnotation( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, cp : LibC::UChar* ): Void
   fun drawArc
@@ -170,6 +170,8 @@ lib LibMagick
     = DrawGetTextUnderColor( wand1 : DrawingWand*, wand2 : PixelWand* ): Void
   fun drawLine
     = DrawLine( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double ): Void
+  fun drawMatte
+    = DrawMatte( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, paintMethod : PaintMethod ): Void
   fun drawPathClose
     = DrawPathClose( wand : DrawingWand* ): Void
   fun drawPathCurveToAbsolute
@@ -289,7 +291,7 @@ lib LibMagick
   fun drawSetTextUnderColor
     = DrawSetTextUnderColor( wand1 : DrawingWand*, wand2 : PixelWand* ): Void
   fun drawSetViewbox
-    = DrawSetViewbox( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double ): Void
+    = DrawSetViewbox( wand : DrawingWand*, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT, ss3 : LibC::SSizeT, ss4 : LibC::SSizeT ): Void
   fun drawSkewX
     = DrawSkewX( wand : DrawingWand*, d : LibC::Double ): Void
   fun drawSkewY
