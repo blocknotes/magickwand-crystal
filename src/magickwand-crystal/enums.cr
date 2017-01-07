@@ -219,7 +219,7 @@ lib LibMagick
     PreviousDispose = 3
   end
 
-  enum DistortImageMethod
+  enum DistortMethod
     UndefinedDistortion
     AffineDistortion
     AffineProjectionDistortion
@@ -415,23 +415,6 @@ lib LibMagick
     GIFInterlace
     JPEGInterlace
     PNGInterlace
-  end
-
-  enum InterpolatePixelMethod
-    UndefinedInterpolatePixel
-    AverageInterpolatePixel            # Average 4 nearest neighbours
-    BicubicInterpolatePixel            # Catmull-Rom interpolation
-    BilinearInterpolatePixel           # Triangular filter interpolation
-    FilterInterpolatePixel             # Use resize filter - (very slow)
-    IntegerInterpolatePixel            # Integer (floor) interpolation
-    MeshInterpolatePixel               # Triangular mesh interpolation
-    NearestNeighborInterpolatePixel    # Nearest neighbour only
-    SplineInterpolatePixel             # Cubic Spline (blurred) interpolation
-    Average9InterpolatePixel           # Average 9 nearest neighbours
-    Average16InterpolatePixel          # Average 16 nearest neighbours
-    BlendInterpolatePixel              # blend of nearest 1, 2 or 4 pixels
-    BackgroundInterpolatePixel         # just return background color
-    CatromInterpolatePixel             # Catmull-Rom interpolation
   end
 
   enum KernelInfoType
@@ -672,6 +655,23 @@ lib LibMagick
     MSPixelIntensityMethod
   end
 
+  enum PixelInterpolateMethod
+    UndefinedInterpolatePixel
+    AverageInterpolatePixel            # Average 4 nearest neighbours
+    BicubicInterpolatePixel            # Catmull-Rom interpolation
+    BilinearInterpolatePixel           # Triangular filter interpolation
+    FilterInterpolatePixel             # Use resize filter - (very slow)
+    IntegerInterpolatePixel            # Integer (floor) interpolation
+    MeshInterpolatePixel               # Triangular mesh interpolation
+    NearestNeighborInterpolatePixel    # Nearest neighbour only
+    SplineInterpolatePixel             # Cubic Spline (blurred) interpolation
+    Average9InterpolatePixel           # Average 9 nearest neighbours
+    Average16InterpolatePixel          # Average 16 nearest neighbours
+    BlendInterpolatePixel              # blend of nearest 1, 2 or 4 pixels
+    BackgroundInterpolatePixel         # just return background color
+    CatromInterpolatePixel             # Catmull-Rom interpolation
+  end
+
   enum PixelMask
     UndefinedPixelMask = 0x000000,
     ReadPixelMask = 0x000001,
@@ -683,11 +683,6 @@ lib LibMagick
     CopyPixelTrait = 0x000001
     UpdatePixelTrait = 0x000002
     BlendPixelTrait = 0x000004
-  end
-
-  struct PointInfo
-    x : LibC::Double
-    y : LibC::Double
   end
 
   enum PreviewType
@@ -742,14 +737,28 @@ lib LibMagick
     PixelsPerCentimeterResolution
   end
 
+  enum ResourceType
+    UndefinedResource
+    AreaResource
+    DiskResource
+    FileResource
+    HeightResource
+    MapResource
+    MemoryResource
+    ThreadResource
+    ThrottleResource
+    TimeResource
+    WidthResource
+  end
+
   enum SparseColorMethod
-    UndefinedColorInterpolate = DistortImageMethod::UndefinedDistortion
-    BarycentricColorInterpolate = DistortImageMethod::AffineDistortion
-    BilinearColorInterpolate = DistortImageMethod::BilinearReverseDistortion
-    PolynomialColorInterpolate = DistortImageMethod::PolynomialDistortion
-    ShepardsColorInterpolate = DistortImageMethod::ShepardsDistortion
+    UndefinedColorInterpolate = DistortMethod::UndefinedDistortion
+    BarycentricColorInterpolate = DistortMethod::AffineDistortion
+    BilinearColorInterpolate = DistortMethod::BilinearReverseDistortion
+    PolynomialColorInterpolate = DistortMethod::PolynomialDistortion
+    ShepardsColorInterpolate = DistortMethod::ShepardsDistortion
     # Methods unique to SparseColor().
-    VoronoiColorInterpolate = DistortImageMethod::SentinelDistortion
+    VoronoiColorInterpolate = DistortMethod::SentinelDistortion
     InverseColorInterpolate
     ManhattanColorInterpolate
   end

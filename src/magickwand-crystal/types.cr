@@ -268,7 +268,7 @@ lib LibMagick
     previous : Image*         # Image list links
     list : Image*             # Undo/Redo image processing list (for display)
     next : Image*             # Image list links
-    interpolate : InterpolatePixelMethod       # Interpolation of color for between pixel lookups
+    interpolate : PixelInterpolateMethod       # Interpolation of color for between pixel lookups
     black_point_compensation : Bool
     transparent_color : PixelPacket # color for 'transparent' color index in GIF
     mask : Image*
@@ -402,6 +402,11 @@ lib LibMagick
     count : LibC::SizeT
     debug : Bool
     signature : LibC::SizeT
+  end
+
+  struct PointInfo
+    x : LibC::Double
+    y : LibC::Double
   end
 
   struct PrimaryInfo

@@ -2,10 +2,14 @@ require "./types"
 
 lib LibMagick
   # --- magick-image ----------------------------------------------------------#
-  fun magickGetImageChannelFeatures
-    = MagickGetImageChannelFeatures( wand : MagickWand*, s : LibC::SizeT ): ChannelFeatures*
-  fun magickGetImageChannelStatistics
-    = MagickGetImageChannelStatistics( wand : MagickWand* ): ChannelStatistics*
+  fun magickGetImageFeatures
+    = MagickGetImageFeatures( wand : MagickWand*, s : LibC::SizeT ): ChannelFeatures*
+
+  fun magickSetImageChannelMask
+    = MagickSetImageChannelMask( wand : MagickWand*, channel_type : ChannelType ): ChannelType
+
+  fun magickGetImageStatistics
+    = MagickGetImageStatistics( wand : MagickWand* ): ChannelStatistics*
 
   # char* functions
   fun magickGetImageFilename
@@ -27,8 +31,8 @@ lib LibMagick
     = MagickGetImageDispose( wand : MagickWand* ): DisposeType
 
   # double functions
-  fun magickGetImageChannelDistortions
-    = MagickGetImageChannelDistortions( wand1 : MagickWand*, wand2 : MagickWand*, metricType : MetricType ): LibC::Double*
+  fun magickGetImageDistortions
+    = MagickGetImageDistortions( wand1 : MagickWand*, wand2 : MagickWand*, metricType : MetricType ): LibC::Double*
   fun magickGetImageFuzz
     = MagickGetImageFuzz( wand : MagickWand* ): LibC::Double
   fun magickGetImageGamma
@@ -38,43 +42,39 @@ lib LibMagick
 
   fun magickGetImageEndian
     = MagickGetImageEndian( wand : MagickWand* ): EndianType
+
   fun magickGetImageGravity
     = MagickGetImageGravity( wand : MagickWand* ): GravityType
-  fun magickDestroyImage
-    = MagickDestroyImage( image : Image* ): Image*
-  fun getImageFromMagickWand
-    = GetImageFromMagickWand( wand : MagickWand* ): Image*
-  fun magickGetImageType
-    = MagickGetImageType( wand : MagickWand* ): ImageType
-  fun magickGetImageInterlaceScheme
-    = MagickGetImageInterlaceScheme( wand : MagickWand* ): InterlaceType
-  fun magickGetImageInterpolateMethod
-    = MagickGetImageInterpolateMethod( wand : MagickWand* ): InterpolatePixelMethod
 
   fun magickDestroyImage
     = MagickDestroyImage( image : Image* ): Image*
   fun getImageFromMagickWand
     = GetImageFromMagickWand( wand : MagickWand* ): Image*
+
+  fun magickGetImageType
+    = MagickGetImageType( wand : MagickWand* ): ImageType
+  fun magickIdentifyImageType
+    = MagickIdentifyImageType( wand : MagickWand* ): ImageType
+
+  fun magickGetImageInterlaceScheme
+    = MagickGetImageInterlaceScheme( wand : MagickWand* ): InterlaceType
+
+  fun magickGetImageInterpolateMethod
+    = MagickGetImageInterpolateMethod( wand : MagickWand* ): PixelInterpolateMethod
 
   # Bool functions
   fun magickAdaptiveBlurImage
     = MagickAdaptiveBlurImage( wand : MagickWand*, d1 : LibC::Double, d2 : LibC::Double ): Bool
-  fun magickAdaptiveBlurImageChannel
-    = MagickAdaptiveBlurImageChannel( wand : MagickWand*, channelType : ChannelType, d1 : LibC::Double, d2 : LibC::Double ): Bool
   fun magickAdaptiveResizeImage
     = MagickAdaptiveResizeImage( wand : MagickWand*, s1 : LibC::SizeT, s2 : LibC::SizeT ): Bool
   fun magickAdaptiveSharpenImage
     = MagickAdaptiveSharpenImage( wand : MagickWand*, d1 : LibC::Double, d2 : LibC::Double ): Bool
-  fun magickAdaptiveSharpenImageChannel
-    = MagickAdaptiveSharpenImageChannel( wand : MagickWand*, channelType : ChannelType, d1 : LibC::Double,  d2 : LibC::Double ): Bool
   fun magickAdaptiveThresholdImage
-    = MagickAdaptiveThresholdImage( wand : MagickWand*, s1 : LibC::SizeT, s2 : LibC::SizeT, ss : LibC::SizeT ): Bool
+    = MagickAdaptiveThresholdImage( wand : MagickWand*, s1 : LibC::SizeT, s2 : LibC::SizeT, d : LibC::Double ): Bool
   fun magickAddImage
     = MagickAddImage( wand1 : MagickWand*, wand2 : MagickWand* ): Bool
   fun magickAddNoiseImage
-    = MagickAddNoiseImage( wand : MagickWand*, noiseType : NoiseType ): Bool
-  fun magickAddNoiseImageChannel
-    = MagickAddNoiseImageChannel( wand : MagickWand*, channelType : ChannelType, noiseType : NoiseType ): Bool
+    = MagickAddNoiseImage( wand : MagickWand*, noiseType : NoiseType, d : LibC::Double ): Bool
   fun magickAffineTransformImage
     = MagickAffineTransformImage( wand : MagickWand*, drawingWand : DrawingWand* ): Bool
   fun magickAnnotateImage
@@ -83,12 +83,8 @@ lib LibMagick
     = MagickAnimateImages( wand : MagickWand*, pc : LibC::Char* ): Bool
   fun magickAutoGammaImage
     = MagickAutoGammaImage( wand : MagickWand* ): Bool
-  fun magickAutoGammaImageChannel
-    = MagickAutoGammaImageChannel( wand : MagickWand*, channelType : ChannelType ): Bool
   fun magickAutoLevelImage
     = MagickAutoLevelImage( wand : MagickWand* ): Bool
-  fun magickAutoLevelImageChannel
-    = MagickAutoLevelImageChannel( wand : MagickWand*, channelType : ChannelType ): Bool
   fun magickAutoOrientImage
     = MagickAutoOrientImage( wand : MagickWand* ): Bool
   fun magickBlackThresholdImage
@@ -97,30 +93,22 @@ lib LibMagick
     = MagickBlueShiftImage( wand : MagickWand*, d : LibC::Double ): Bool
   fun magickBlurImage
     = MagickBlurImage( wand : MagickWand*, d1 : LibC::Double, d2 : LibC::Double ): Bool
-  fun magickBlurImageChannel
-    = MagickBlurImageChannel( wand : MagickWand*, channelType : ChannelType, d1 : LibC::Double, d2 : LibC::Double ): Bool
   fun magickBorderImage
-    = MagickBorderImage( wand : MagickWand*, pixelWand : PixelWand*, s1 : LibC::SizeT, s2 : LibC::SizeT ): Bool
+    = MagickBorderImage( wand : MagickWand*, pixelWand : PixelWand*, s1 : LibC::SizeT, s2 : LibC::SizeT, composite_operator : CompositeOperator ): Bool
   fun magickBrightnessContrastImage
     = MagickBrightnessContrastImage( wand : MagickWand*, d1 : LibC::Double, d2 : LibC::Double ): Bool
-  fun magickBrightnessContrastImageChannel
-    = MagickBrightnessContrastImageChannel( wand : MagickWand*, channelType : ChannelType, d1 : LibC::Double, d2 : LibC::Double ): Bool
   fun magickCharcoalImage
     = MagickCharcoalImage( wand : MagickWand*, d1 : LibC::Double, d2 : LibC::Double ): Bool
   fun magickChopImage
     = MagickChopImage( wand : MagickWand*, s1 : LibC::SizeT, s2 : LibC::SizeT, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT ): Bool
   fun magickClampImage
     = MagickClampImage( wand : MagickWand* ): Bool
-  fun magickClampImageChannel
-    = MagickClampImageChannel( wand : MagickWand*, channelType : ChannelType ): Bool
   fun magickClipImage
     = MagickClipImage( wand : MagickWand* ): Bool
   fun magickClipImagePath
     = MagickClipImagePath( wand : MagickWand*, pc : LibC::Char*, b : Bool ): Bool
   fun magickClutImage
-    = MagickClutImage( wand1 : MagickWand*, wand2 : MagickWand* ): Bool
-  fun magickClutImageChannel
-    = MagickClutImageChannel( wand1 : MagickWand*, channelType : ChannelType, wand2 : MagickWand* ): Bool
+    = MagickClutImage( wand1 : MagickWand*, wand2 : MagickWand*, pixel_interpolate_method : PixelInterpolateMethod ): Bool
   fun magickColorDecisionListImage
     = MagickColorDecisionListImage( wand : MagickWand*, pc : LibC::Char* ): Bool
   fun magickColorizeImage
@@ -130,9 +118,7 @@ lib LibMagick
   fun magickCommentImage
     = MagickCommentImage( wand : MagickWand*, pc : LibC::Char* ): Bool
   fun magickCompositeImage
-    = MagickCompositeImage( wand1 : MagickWand*, wand2 : MagickWand*, compositeOperator : CompositeOperator,  ss1 : LibC::SSizeT, ss2 : LibC::SSizeT ): Bool
-  fun magickCompositeImageChannel
-    = MagickCompositeImageChannel( wand1 : MagickWand*, channelType : ChannelType, wand2 : MagickWand*, compositeOperator : CompositeOperator, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT ): Bool
+    = MagickCompositeImage( wand1 : MagickWand*, wand2 : MagickWand*, compositeOperator : CompositeOperator, b : Bool, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT ): Bool
   fun magickCompositeImageGravity
     = MagickCompositeImageGravity( wand1 : MagickWand*, wand2 : MagickWand*, compositeOperator : CompositeOperator, gravityType : GravityType ): Bool
   fun magickCompositeLayers
@@ -143,12 +129,8 @@ lib LibMagick
     = MagickContrastImage( wand : MagickWand*, b : Bool ): Bool
   fun magickContrastStretchImage
     = MagickContrastStretchImage( wand : MagickWand*, d1 : LibC::Double, d2 : LibC::Double ): Bool
-  fun magickContrastStretchImageChannel
-    = MagickContrastStretchImageChannel( wand : MagickWand*, channelType : ChannelType, d1 : LibC::Double, d2 : LibC::Double ): Bool
   fun magickConvolveImage
-    = MagickConvolveImage( wand : MagickWand*, s : LibC::SizeT, dp : LibC::Double* ): Bool
-  fun magickConvolveImageChannel
-    = MagickConvolveImageChannel( wand : MagickWand*, channelType : ChannelType, s : LibC::SizeT, dp : LibC::Double* ): Bool
+    = MagickConvolveImage( wand : MagickWand*, kernel_info : KernelInfo* ): Bool
   fun magickCropImage
     = MagickCropImage( wand : MagickWand*, s1 : LibC::SizeT, s2 : LibC::SizeT, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT ): Bool
   fun magickCycleColormapImage
@@ -164,7 +146,7 @@ lib LibMagick
   fun magickDisplayImages
     = MagickDisplayImages( wand : MagickWand*, pc : LibC::Char* ): Bool
   fun magickDistortImage
-    = MagickDistortImage( wand : MagickWand*, distortImageMethod : DistortImageMethod, s : LibC::SizeT, dp : LibC::Double*, b : Bool ): Bool
+    = MagickDistortImage( wand : MagickWand*, distort_method : DistortMethod, s : LibC::SizeT, dp : LibC::Double*, b : Bool ): Bool
   fun magickDrawImage
     = MagickDrawImage( wand : MagickWand*, drawingWand : DrawingWand* ): Bool
   fun magickEdgeImage
@@ -177,48 +159,36 @@ lib LibMagick
     = MagickEnhanceImage( wand : MagickWand* ): Bool
   fun magickEqualizeImage
     = MagickEqualizeImage( wand : MagickWand* ): Bool
-  fun magickEqualizeImageChannel
-    = MagickEqualizeImageChannel( wand : MagickWand*, channelType : ChannelType ): Bool
   fun magickEvaluateImage
     = MagickEvaluateImage( wand : MagickWand*, magickEvaluateOperator : MagickEvaluateOperator, d : LibC::Double ): Bool
-  fun magickEvaluateImageChannel
-    = MagickEvaluateImageChannel( wand : MagickWand*, channelType : ChannelType, magickEvaluateOperator :  MagickEvaluateOperator, d : LibC::Double ): Bool
   fun magickExportImagePixels
     = MagickExportImagePixels( wand : MagickWand*, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT, s1 : LibC::SizeT, s2 : LibC::SizeT, pc : LibC::Char*, storageType : StorageType, ptr : Void* ): Bool
   fun magickExtentImage
     = MagickExtentImage( wand : MagickWand*, s1 : LibC::SizeT, s2 : LibC::SizeT, ss1 : LibC::SSizeT,  ss2 : LibC::SSizeT ): Bool
-  fun magickFilterImage
-    = MagickFilterImage( wand : MagickWand*, kernelInfo : KernelInfo* ): Bool
-  fun magickFilterImageChannel
-    = MagickFilterImageChannel( wand : MagickWand*, channelType : ChannelType, kernelInfo : KernelInfo* ): Bool
   fun magickFlipImage
     = MagickFlipImage( wand : MagickWand* ): Bool
   fun magickFloodfillPaintImage
-    = MagickFloodfillPaintImage( wand : MagickWand*, channelType : ChannelType, pixelWand1 : PixelWand*, d1 : LibC::Double, pixelWand2 : PixelWand*, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT, b : Bool ): Bool
+    = MagickFloodfillPaintImage( wand : MagickWand*, pixelWand1 : PixelWand*, d1 : LibC::Double, pixelWand2 : PixelWand*, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT, b : Bool ): Bool
   fun magickFlopImage
     = MagickFlopImage( wand : MagickWand* ): Bool
   fun magickForwardFourierTransformImage
     = MagickForwardFourierTransformImage( wand : MagickWand*, b : Bool ): Bool
   fun magickFrameImage
-    = MagickFrameImage( wand : MagickWand*, pixelWand : PixelWand*, s1 : LibC::SizeT, s2 : LibC::SizeT, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT ): Bool
+    = MagickFrameImage( wand : MagickWand*, pixelWand : PixelWand*, s1 : LibC::SizeT, s2 : LibC::SizeT, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT, composite_operator : CompositeOperator ): Bool
   fun magickFunctionImage
     = MagickFunctionImage( wand : MagickWand*, magickFunction : MagickFunction, s : LibC::SizeT, dp : LibC::Double* ): Bool
-  fun magickFunctionImageChannel
-    = MagickFunctionImageChannel( wand : MagickWand*, channelType : ChannelType, magickFunction : MagickFunction, s : LibC::SizeT, dp : LibC::Double* ): Bool
   fun magickGammaImage
     = MagickGammaImage( wand : MagickWand*, d : LibC::Double ): Bool
-  fun magickGammaImageChannel
-    = MagickGammaImageChannel( wand : MagickWand*, channelType : ChannelType, d : LibC::Double ): Bool
   fun magickGaussianBlurImage
     = MagickGaussianBlurImage( wand : MagickWand*, d1 : LibC::Double, d2 : LibC::Double ): Bool
-  fun magickGaussianBlurImageChannel
-    = MagickGaussianBlurImageChannel( wand : MagickWand*, channelType : ChannelType, d1 : LibC::Double, d2 : LibC::Double ): Bool
   fun magickGetImageAlphaChannel
     = MagickGetImageAlphaChannel( wand : MagickWand* ): Bool
+  fun magickGetImageAlphaColor
+    = MagickGetImageAlphaColor( wand : MagickWand*, pixel_wand : PixelWand* ): Bool
   fun magickGetImageBackgroundColor
     = MagickGetImageBackgroundColor( wand : MagickWand*, pixelWand : PixelWand* ): Bool
   fun magickGetImageBluePrimary
-    = MagickGetImageBluePrimary( wand : MagickWand*, dp1 : LibC::Double*, dp2 : LibC::Double* ): Bool
+    = MagickGetImageBluePrimary( wand : MagickWand*, dp1 : LibC::Double*, dp2 : LibC::Double*, dp3 : LibC::Double* ): Bool
   fun magickGetImageBorderColor
     = MagickGetImageBorderColor( wand : MagickWand*, pixelWand : PixelWand* ): Bool
   fun magickGetImageChannelDistortion
@@ -436,7 +406,7 @@ lib LibMagick
   fun magickSetImageInterlaceScheme
     = MagickSetImageInterlaceScheme( wand : MagickWand*, interlaceType : InterlaceType ): Bool
   fun magickSetImageInterpolateMethod
-    = MagickSetImageInterpolateMethod( wand : MagickWand*, interpolatePixelMethod : InterpolatePixelMethod ): Bool
+    = MagickSetImageInterpolateMethod( wand : MagickWand*, interpolatePixelMethod : PixelInterpolateMethod ): Bool
   fun magickSetImageIterations
     = MagickSetImageIterations( wand : MagickWand*, s : LibC::SizeT  ): Bool
   fun magickSetImageMatte
