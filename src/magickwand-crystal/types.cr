@@ -10,6 +10,7 @@ lib LibMagick
   type MagickOffsetType = LibC::SSizeT
   type MagickRealType = LibC::Float
   type MagickSizeType = LibC::SizeT
+  type MagickStatusType = LibC::UInt
   type MagickThreadType = LibC::PidT
   type Quantum = LibC::Float
   type IndexPacket = Quantum
@@ -398,6 +399,10 @@ lib LibMagick
     index : LibC::UInt
   end
 
+  type DecodeImageHandler = ImageInfo*, ExceptionInfo* -> Image*
+  type EncodeImageHandler = ImageInfo*, Image* -> Bool
+  type IsImageFormatHandler = LibC::UChar*, LibC::SizeT -> Bool
+
   struct MagickInfo
     name : LibC::Char*
     description : LibC::Char*
@@ -480,10 +485,6 @@ lib LibMagick
     red : Quantum
     green : Quantum
     blue : Quantum
-    opacity : Quantum
-    blue : Quantum
-    green : Quantum
-    red : Quantum
     opacity : Quantum
   end
 

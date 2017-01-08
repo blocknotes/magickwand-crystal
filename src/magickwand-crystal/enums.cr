@@ -622,6 +622,12 @@ lib LibMagick
     RootMeanSquareEvaluateOperator
   end
 
+  enum MagickFormatType
+    UndefinedFormatType
+    ImplicitFormatType
+    ExplicitFormatType
+  end
+
   enum MagickFunction
     UndefinedFunction
     PolynomialFunction
