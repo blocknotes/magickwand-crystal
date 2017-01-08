@@ -62,6 +62,7 @@ lib LibMagick
 
   struct ChannelStatistics
     depth : LibC::SizeT
+    area : LibC::Double
     minima : LibC::Double
     maxima : LibC::Double
     sum : LibC::Double
@@ -100,14 +101,14 @@ lib LibMagick
     geometry : LibC::Char*
     viewbox : RectangleInfo
     affine : AffineMatrix
-    gravity : GravityType
-    fill : PixelPacket
-    stroke : PixelPacket
+    fill : PixelInfo
+    stroke : PixelInfo
+    undercolor : PixelInfo
+    border_color : PixelInfo
+    fill_pattern : Image*
+    stroke_pattern : Image*
     stroke_width : LibC::Double
     gradient : GradientInfo
-    fill_pattern : Image*
-    tile : Image*
-    stroke_pattern : Image*
     stroke_antialias : Bool
     text_antialias : Bool
     fill_rule : FillRule
@@ -118,10 +119,10 @@ lib LibMagick
     decorate : DecorationType
     compose : CompositeOperator
     text : LibC::Char*
-    face : LibC::SizeT
     font : LibC::Char*
     metrics : LibC::Char*
     family : LibC::Char*
+    face : LibC::SizeT
     style : StyleType
     stretch : StretchType
     weight : LibC::SizeT
@@ -129,24 +130,23 @@ lib LibMagick
     pointsize : LibC::Double
     density : LibC::Char*
     align : AlignType
-    undercolor : PixelPacket
-    border_color : PixelPacket
+    gravity : GravityType
     server_name : LibC::Char*
     dash_pattern : LibC::Double*
     clip_mask : LibC::Char*
     bounds : SegmentInfo
     clip_units : ClipPathUnits
-    opacity : Quantum
+    alpha : Quantum
     render : Bool
     element_reference : ElementReference
-    debug : Bool
-    signature : LibC::SizeT
     kerning : LibC::Double
     interword_spacing : LibC::Double
     interline_spacing : LibC::Double
     direction : DirectionType
-    fill_opacity : LibC::Double
-    stroke_opacity : LibC::Double
+    debug : Bool
+    signature : LibC::SizeT
+    fill_alpha : LibC::Double
+    stroke_alpha : LibC::Double
   end
 
   struct DrawingWand
@@ -221,11 +221,11 @@ lib LibMagick
     number_stops : LibC::SizeT
     spread : SpreadMethod
     debug : Bool
-    signature : LibC::SizeT
     center : PointInfo
-    radius : MagickRealType
-    angle : MagickRealType
     radii : PointInfo
+    radius : LibC::Double
+    angle : LibC::Double
+    signature : LibC::SizeT
   end
 
   struct Image
@@ -407,26 +407,18 @@ lib LibMagick
     name : LibC::Char*
     description : LibC::Char*
     version : LibC::Char*
+    mime_type : LibC::Char*
     note : LibC::Char*
     module : LibC::Char*
-    image_info : ImageInfo*
     decoder : DecodeImageHandler*
     encoder : EncodeImageHandler*
+    image_info : ImageInfo*
     magick : IsImageFormatHandler*
-    client_data : Void*
-    adjoin : Bool
-    raw : Bool
-    endian_support : Bool
-    blob_support : Bool
-    seekable_stream : Bool
     format_type : MagickFormatType
-    thread_support : MagickStatusType
-    stealth : Bool
-    previous : MagickInfo*
-    next : MagickInfo*
-    signature : LibC::SizeT
-    mime_type : LibC::Char*
+    flags : MagickStatusType
     semaphore : SemaphoreInfo*
+    signature : LibC::SizeT
+    client_data : Void*
   end
 
   struct MagickWand
@@ -482,10 +474,11 @@ lib LibMagick
   end
 
   struct PixelPacket
-    red : Quantum
-    green : Quantum
-    blue : Quantum
-    opacity : Quantum
+    red : LibC::UInt
+    green : LibC::UInt
+    blue : LibC::UInt
+    alpha : LibC::UInt
+    black : LibC::UInt
   end
 
   struct PixelWand
@@ -554,9 +547,8 @@ lib LibMagick
   end
 
   struct StopInfo
-    color : MagickPixelPacket
-    offset : MagickRealType
-    # offset : MagickPixelPacket
+    color : PixelInfo
+    offset : LibC::Double
   end
 
   struct Timer

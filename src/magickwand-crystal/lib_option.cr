@@ -32,8 +32,8 @@ lib LibMagick
     = GetCommandOptionFlags( commandOption : CommandOption, b : Bool, pc : LibC::Char* ): LibC::SSizeT
   fun parseChannelOption
     = ParseChannelOption( pc : LibC::Char* ): LibC::SSizeT
-  # fun parsePixelChannelOption  # REMOVED
-  #   = ParsePixelChannelOption( pc : LibC::Char* ): LibC::SSizeT
+  fun parsePixelChannelOption
+    = ParsePixelChannelOption( pc : LibC::Char* ): LibC::SSizeT
   fun parseCommandOption
     = ParseCommandOption( commandOption : CommandOption, b : Bool, pc : LibC::Char* ): LibC::SSizeT
 
@@ -44,6 +44,6 @@ lib LibMagick
   fun resetImageOptionIterator
     = ResetImageOptionIterator( imageInfo : ImageInfo* ): Void
 
-  # fun getCommandOptionInfo  # REMOVED
-  #   = GetCommandOptionInfo( pc : LibC::Char* ): OptionInfo*
+  fun getCommandOptionInfo
+    = GetCommandOptionInfo( pc : LibC::Char* ): OptionInfo*
 end
