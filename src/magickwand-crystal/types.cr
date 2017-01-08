@@ -61,18 +61,18 @@ lib LibMagick
 
   struct ChannelStatistics
     depth : LibC::SizeT
-    minima : LibC::SizeT
-    maxima : LibC::SizeT
-    sum : LibC::SizeT
-    sum_squared : LibC::SizeT
-    sum_cubed : LibC::SizeT
-    sum_fourth_power : LibC::SizeT
-    mean : LibC::SizeT
-    variance : LibC::SizeT
-    standard_deviation : LibC::SizeT
-    kurtosis : LibC::SizeT
-    skewness : LibC::SizeT
-    entropy : LibC::SizeT
+    minima : LibC::Double
+    maxima : LibC::Double
+    sum : LibC::Double
+    sum_squared : LibC::Double
+    sum_cubed : LibC::Double
+    sum_fourth_power : LibC::Double
+    mean : LibC::Double
+    variance : LibC::Double
+    standard_deviation : LibC::Double
+    kurtosis : LibC::Double
+    skewness : LibC::Double
+    entropy : LibC::Double
   end
 
   struct ChromaticityInfo
@@ -97,55 +97,55 @@ lib LibMagick
   struct DrawInfo
     primitive : LibC::Char*
     geometry : LibC::Char*
-    viewbox : LibC::Char
-    affine : LibC::Char
-    gravity : LibC::Char
-    fill : LibC::Char
-    stroke : LibC::Char
-    stroke_width : LibC::Char
-    gradient : LibC::Char
-    fill_pattern : LibC::Char*
-    tile : LibC::Char*
-    stroke_pattern : LibC::Char*
-    stroke_antialias : LibC::Char
-    text_antialias : LibC::Char
-    fill_rule : LibC::Char
-    linecap : LibC::Char
-    linejoin : LibC::Char
-    miterlimit : LibC::Char
-    dash_offset : LibC::Char
-    decorate : LibC::Char
-    compose : LibC::Char
+    viewbox : RectangleInfo
+    affine : AffineMatrix
+    gravity : GravityType
+    fill : PixelPacket
+    stroke : PixelPacket
+    stroke_width : LibC::Double
+    gradient : GradientInfo
+    fill_pattern : Image*
+    tile : Image*
+    stroke_pattern : Image*
+    stroke_antialias : Bool
+    text_antialias : Bool
+    fill_rule : FillRule
+    linecap : LineCap
+    linejoin : LineJoin
+    miterlimit : LibC::SizeT
+    dash_offset : LibC::Double
+    decorate : DecorationType
+    compose : CompositeOperator
     text : LibC::Char*
-    face : LibC::Char
+    face : LibC::SizeT
     font : LibC::Char*
     metrics : LibC::Char*
     family : LibC::Char*
-    style : LibC::Char
-    stretch : LibC::Char
-    weight : LibC::Char
+    style : StyleType
+    stretch : StretchType
+    weight : LibC::SizeT
     encoding : LibC::Char*
-    pointsize : LibC::Char
+    pointsize : LibC::Double
     density : LibC::Char*
-    align : LibC::Char
-    undercolor : LibC::Char
-    border_color : LibC::Char
+    align : AlignType
+    undercolor : PixelPacket
+    border_color : PixelPacket
     server_name : LibC::Char*
-    dash_pattern : LibC::Char*
+    dash_pattern : LibC::Double*
     clip_mask : LibC::Char*
-    bounds : LibC::Char
-    clip_units : LibC::Char
-    opacity : LibC::Char
-    render : LibC::Char
-    element_reference : LibC::Char
-    debug : LibC::Char
-    signature : LibC::Char
-    kerning : LibC::Char
-    interword_spacing : LibC::Char
-    interline_spacing : LibC::Char
-    direction : LibC::Char
-    fill_opacity : LibC::Char
-    stroke_opacity : LibC::Char
+    bounds : SegmentInfo
+    clip_units : ClipPathUnits
+    opacity : Quantum
+    render : Bool
+    element_reference : ElementReference
+    debug : Bool
+    signature : LibC::SizeT
+    kerning : LibC::Double
+    interword_spacing : LibC::Double
+    interline_spacing : LibC::Double
+    direction : DirectionType
+    fill_opacity : LibC::Double
+    stroke_opacity : LibC::Double
   end
 
   struct DrawingWand
@@ -172,6 +172,14 @@ lib LibMagick
     destroy : Bool
     debug : Bool
     signature : LibC::SizeT
+  end
+
+  struct DoublePixelPacket
+    red : LibC::Double
+    green : LibC::Double
+    blue : LibC::Double
+    opacity : LibC::Double
+    index : LibC::Double
   end
 
   struct ElementReference
@@ -206,17 +214,17 @@ lib LibMagick
 
   struct GradientInfo
     type : GradientType
-    bounding_box : GradientType
-    gradient_vector : GradientType
-    stops : GradientType*
-    number_stops : GradientType
-    spread : GradientType
-    debug : GradientType
-    signature : GradientType
-    center : GradientType
-    radius : GradientType
-    angle : GradientType
-    radii : GradientType
+    bounding_box : RectangleInfo
+    gradient_vector : SegmentInfo
+    stops : StopInfo*
+    number_stops : LibC::SizeT
+    spread : SpreadMethod
+    debug : Bool
+    signature : LibC::SizeT
+    center : PointInfo
+    radius : MagickRealType
+    angle : MagickRealType
+    radii : PointInfo
   end
 
   struct Image
@@ -382,30 +390,38 @@ lib LibMagick
     signature : LibC::SizeT
   end
 
+  struct LongPixelPacket
+    red : LibC::UInt
+    green : LibC::UInt
+    blue : LibC::UInt
+    opacity : LibC::UInt
+    index : LibC::UInt
+  end
+
   struct MagickInfo
     name : LibC::Char*
     description : LibC::Char*
     version : LibC::Char*
     note : LibC::Char*
     module : LibC::Char*
-    image_info : LibC::Char*
-    decoder : LibC::Char*
-    encoder : LibC::Char*
-    magick : LibC::Char*
-    client_data : LibC::Char*
-    adjoin : LibC::Char
-    raw : LibC::Char
-    endian_support : LibC::Char
-    blob_support : LibC::Char
-    seekable_stream : LibC::Char
-    format_type : LibC::Char
-    thread_support : LibC::Char
-    stealth : LibC::Char
-    previous : LibC::Char*
-    next : LibC::Char*
-    signature : LibC::Char
+    image_info : ImageInfo*
+    decoder : DecodeImageHandler*
+    encoder : EncodeImageHandler*
+    magick : IsImageFormatHandler*
+    client_data : Void*
+    adjoin : Bool
+    raw : Bool
+    endian_support : Bool
+    blob_support : Bool
+    seekable_stream : Bool
+    format_type : MagickFormatType
+    thread_support : MagickStatusType
+    stealth : Bool
+    previous : MagickInfo*
+    next : MagickInfo*
+    signature : LibC::SizeT
     mime_type : LibC::Char*
-    semaphore : LibC::Char*
+    semaphore : SemaphoreInfo*
   end
 
   struct MagickWand
@@ -438,12 +454,12 @@ lib LibMagick
     y : LibC::SSizeT
   end
 
-  # struct OptionInfo  # REMOVED
-  #   mnemonic : LibC::Char*
-  #   type : LibC::SSizeT
-  #   flags : LibC::SSizeT
-  #   stealth : Bool
-  # end
+  struct OptionInfo  # NOT USED ?
+    mnemonic : LibC::Char*
+    type : LibC::SSizeT
+    flags : LibC::SSizeT
+    stealth : Bool
+  end
 
   struct PixelInfo
     storage_class : ClassType
@@ -464,6 +480,10 @@ lib LibMagick
     red : Quantum
     green : Quantum
     blue : Quantum
+    opacity : Quantum
+    blue : Quantum
+    green : Quantum
+    red : Quantum
     opacity : Quantum
   end
 
@@ -490,24 +510,32 @@ lib LibMagick
 
   struct PrimitiveInfo
     point : PointInfo
-    coordinates : PointInfo
-    primitive : PointInfo
-    method : PointInfo
-    text : PointInfo*
+    coordinates : LibC::SizeT
+    primitive : PrimitiveType
+    method : PaintMethod
+    text : LibC::Char*
   end
 
   struct ProfileInfo
     name : LibC::Char*
-    length : LibC::Char
-    info : LibC::Char*
-    signature : LibC::Char
+    length : LibC::SizeT
+    info : LibC::UChar*
+    signature : LibC::SizeT
+  end
+
+  struct QuantumPixelPacket
+    red : Quantum
+    green : Quantum
+    blue : Quantum
+    opacity : Quantum
+    index : Quantum
   end
 
   struct RectangleInfo
     width : LibC::SizeT
     height : LibC::SizeT
-    x : LibC::SizeT
-    y : LibC::SizeT
+    x : LibC::SSizeT
+    y : LibC::SSizeT
   end
 
   struct SegmentInfo
@@ -526,7 +554,8 @@ lib LibMagick
 
   struct StopInfo
     color : MagickPixelPacket
-    offset : MagickPixelPacket
+    offset : MagickRealType
+    # offset : MagickPixelPacket
   end
 
   struct Timer
@@ -544,14 +573,14 @@ lib LibMagick
 
   struct TypeMetric
     pixels_per_em : PointInfo
-    ascent : PointInfo
-    descent : PointInfo
-    width : PointInfo
-    height : PointInfo
-    max_advance : PointInfo
-    underline_position : PointInfo
-    underline_thickness : PointInfo
-    bounds : PointInfo
+    ascent : LibC::Double
+    descent : LibC::Double
+    width : LibC::Double
+    height : LibC::Double
+    max_advance : LibC::Double
+    underline_position : LibC::Double
+    underline_thickness : LibC::Double
+    bounds : SegmentInfo
     origin : PointInfo
   end
 end
