@@ -1,4 +1,4 @@
-# MagickWand for Crystal [![Build Status](https://travis-ci.org/blocknotes/magickwand-crystal.svg)](https://travis-ci.org/blocknotes/magickwand-crystal)
+# MagickWand for Crystal [![Build Status](https://travis-ci.org/blocknotes/magickwand-crystal.svg?branch=im_7.0)](https://travis-ci.org/blocknotes/magickwand-crystal)
 
 Crystal C bindings for MagickWand library, an interface to use the ImageMagick image processing libraries - see [www.imagemagick.org](https://www.imagemagick.org/script/magick-wand.php)
 
