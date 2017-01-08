@@ -61,18 +61,18 @@ lib LibMagick
 
   struct ChannelStatistics
     depth : LibC::SizeT
-    minima : LibC::Double
-    maxima : LibC::Double
-    sum : LibC::Double
-    sum_squared : LibC::Double
-    sum_cubed : LibC::Double
-    sum_fourth_power : LibC::Double
-    mean : LibC::Double
-    variance : LibC::Double
-    standard_deviation : LibC::Double
-    kurtosis : LibC::Double
-    skewness : LibC::Double
-    entropy : LibC::Double
+    minima : LibC::SizeT
+    maxima : LibC::SizeT
+    sum : LibC::SizeT
+    sum_squared : LibC::SizeT
+    sum_cubed : LibC::SizeT
+    sum_fourth_power : LibC::SizeT
+    mean : LibC::SizeT
+    variance : LibC::SizeT
+    standard_deviation : LibC::SizeT
+    kurtosis : LibC::SizeT
+    skewness : LibC::SizeT
+    entropy : LibC::SizeT
   end
 
   struct ChromaticityInfo
@@ -82,57 +82,70 @@ lib LibMagick
     white_point : PrimaryInfo
   end
 
+  struct ColorInfo
+    path : LibC::Char*
+    name : LibC::Char*
+    compliance : LibC::Char
+    color : LibC::Char
+    exempt : LibC::Char
+    stealth : LibC::Char
+    previous : LibC::Char*
+    next : LibC::Char*
+    signature : LibC::Char
+  end
+
   struct DrawInfo
     primitive : LibC::Char*
     geometry : LibC::Char*
-    viewbox : RectangleInfo
-    affine : AffineMatrix
-    fill : PixelInfo
-    stroke : PixelInfo
-    undercolor : PixelInfo
-    border_color : PixelInfo
-    fill_pattern : Image*
-    stroke_pattern : Image*
-    stroke_width : LibC::Double
-    gradient : GradientInfo
-    stroke_antialias : Bool
-    text_antialias : Bool
-    fill_rule : FillRule
-    linecap : LineCap
-    linejoin : LineJoin
-    miterlimit : LibC::SizeT
-    dash_offset : LibC::Double
-    decorate : DecorationType
-    compose : CompositeOperator
+    viewbox : LibC::Char
+    affine : LibC::Char
+    gravity : LibC::Char
+    fill : LibC::Char
+    stroke : LibC::Char
+    stroke_width : LibC::Char
+    gradient : LibC::Char
+    fill_pattern : LibC::Char*
+    tile : LibC::Char*
+    stroke_pattern : LibC::Char*
+    stroke_antialias : LibC::Char
+    text_antialias : LibC::Char
+    fill_rule : LibC::Char
+    linecap : LibC::Char
+    linejoin : LibC::Char
+    miterlimit : LibC::Char
+    dash_offset : LibC::Char
+    decorate : LibC::Char
+    compose : LibC::Char
     text : LibC::Char*
+    face : LibC::Char
     font : LibC::Char*
     metrics : LibC::Char*
     family : LibC::Char*
-    face : LibC::SizeT
-    style : StyleType
-    stretch : StretchType
-    weight : LibC::SizeT
+    style : LibC::Char
+    stretch : LibC::Char
+    weight : LibC::Char
     encoding : LibC::Char*
-    pointsize : LibC::Double
+    pointsize : LibC::Char
     density : LibC::Char*
-    align : AlignType
-    gravity : GravityType
+    align : LibC::Char
+    undercolor : LibC::Char
+    border_color : LibC::Char
     server_name : LibC::Char*
-    dash_pattern : LibC::Double
+    dash_pattern : LibC::Char*
     clip_mask : LibC::Char*
-    bounds : SegmentInfo
-    clip_units : ClipPathUnits
-    alpha : Quantum
-    render : Bool
-    element_reference : ElementReference
-    kerning : LibC::Double
-    interword_spacing : LibC::Double
-    interline_spacing : LibC::Double
-    direction : DirectionType
-    debug : Bool
-    signature : LibC::SizeT
-    fill_alpha : LibC::Double
-    stroke_alpha : LibC::Double
+    bounds : LibC::Char
+    clip_units : LibC::Char
+    opacity : LibC::Char
+    render : LibC::Char
+    element_reference : LibC::Char
+    debug : LibC::Char
+    signature : LibC::Char
+    kerning : LibC::Char
+    interword_spacing : LibC::Char
+    interline_spacing : LibC::Char
+    direction : LibC::Char
+    fill_opacity : LibC::Char
+    stroke_opacity : LibC::Char
   end
 
   struct DrawingWand
@@ -163,11 +176,11 @@ lib LibMagick
 
   struct ElementReference
     id : LibC::Char*
-    type : ReferenceType
-    gradient : GradientInfo
-    previous : ElementReference*
-    next : ElementReference*
-    signature : LibC::SizeT
+    type : LibC::Char
+    gradient : LibC::Char
+    signature : LibC::Char
+    previous : LibC::Char*
+    next : LibC::Char*
   end
 
   struct ErrorInfo
@@ -183,19 +196,27 @@ lib LibMagick
     signature : LibC::ULong
   end
 
+  struct GeometryInfo
+    rho : LibC::Double
+    sigma : LibC::Double
+    xi : LibC::Double
+    psi : LibC::Double
+    chi : LibC::Double
+  end
+
   struct GradientInfo
     type : GradientType
-    bounding_box : RectangleInfo
-    gradient_vector : SegmentInfo
-    stops : StopInfo*
-    number_stops : LibC::SizeT
-    spread : SpreadMethod
-    debug : Bool
-    center : PointInfo
-    radii : PointInfo
-    radius : LibC::Double
-    angle : LibC::Double
-    signature : LibC::SizeT
+    bounding_box : GradientType
+    gradient_vector : GradientType
+    stops : GradientType*
+    number_stops : GradientType
+    spread : GradientType
+    debug : GradientType
+    signature : GradientType
+    center : GradientType
+    radius : GradientType
+    angle : GradientType
+    radii : GradientType
   end
 
   struct Image
@@ -361,6 +382,32 @@ lib LibMagick
     signature : LibC::SizeT
   end
 
+  struct MagickInfo
+    name : LibC::Char*
+    description : LibC::Char*
+    version : LibC::Char*
+    note : LibC::Char*
+    module : LibC::Char*
+    image_info : LibC::Char*
+    decoder : LibC::Char*
+    encoder : LibC::Char*
+    magick : LibC::Char*
+    client_data : LibC::Char*
+    adjoin : LibC::Char
+    raw : LibC::Char
+    endian_support : LibC::Char
+    blob_support : LibC::Char
+    seekable_stream : LibC::Char
+    format_type : LibC::Char
+    thread_support : LibC::Char
+    stealth : LibC::Char
+    previous : LibC::Char*
+    next : LibC::Char*
+    signature : LibC::Char
+    mime_type : LibC::Char*
+    semaphore : LibC::Char*
+  end
+
   struct MagickWand
     id : LibC::SizeT
     name : LibC::Char[MagickPathExtent] # Wand name to use for MagickWand Logs
@@ -384,6 +431,11 @@ lib LibMagick
     blue : MagickRealType
     opacity : MagickRealType
     index : MagickRealType
+  end
+
+  struct OffsetInfo
+    x : LibC::SSizeT
+    y : LibC::SSizeT
   end
 
   # struct OptionInfo  # REMOVED
@@ -436,18 +488,26 @@ lib LibMagick
     z : LibC::Double
   end
 
+  struct PrimitiveInfo
+    point : PointInfo
+    coordinates : PointInfo
+    primitive : PointInfo
+    method : PointInfo
+    text : PointInfo*
+  end
+
   struct ProfileInfo
     name : LibC::Char*
-    length : LibC::SizeT
-    info : LibC::UChar*
-    signature : LibC::SizeT
+    length : LibC::Char
+    info : LibC::Char*
+    signature : LibC::Char
   end
 
   struct RectangleInfo
     width : LibC::SizeT
     height : LibC::SizeT
-    x : LibC::SSizeT
-    y : LibC::SSizeT
+    x : LibC::SizeT
+    y : LibC::SizeT
   end
 
   struct SegmentInfo
@@ -465,8 +525,8 @@ lib LibMagick
   end
 
   struct StopInfo
-    color : PixelInfo
-    offset : LibC::Double
+    color : MagickPixelPacket
+    offset : MagickPixelPacket
   end
 
   struct Timer
@@ -480,5 +540,18 @@ lib LibMagick
     elapsed : Timer
     state : TimerState
     signature : LibC::SizeT
+  end
+
+  struct TypeMetric
+    pixels_per_em : PointInfo
+    ascent : PointInfo
+    descent : PointInfo
+    width : PointInfo
+    height : PointInfo
+    max_advance : PointInfo
+    underline_position : PointInfo
+    underline_thickness : PointInfo
+    bounds : PointInfo
+    origin : PointInfo
   end
 end
