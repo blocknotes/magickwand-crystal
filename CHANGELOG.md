@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.0
+- Improved compatibilty with ImageMagick 6.9.7-2
+- Internal improvements
+
 ## 0.1.6
 - Added lib bindings: drawing wand
 - Added more examples
