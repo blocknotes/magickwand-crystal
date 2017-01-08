@@ -2,7 +2,6 @@ require "./types"
 
 @[Link("MagickWand")]
 lib LibMagick
-  # --- MagickWand ------------------------------------------------------------#
   fun magickGetException
     = MagickGetException( wand : MagickWand*, exceptionType : ExceptionType* ): LibC::Char*
   fun magickGetExceptionType

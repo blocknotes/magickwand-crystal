@@ -72,7 +72,11 @@ Example: `MagickWandGenesis` => `LibMagick.magickWandGenesis`
 
 ## Notes
 
+<<<<<<< HEAD
 Based on ImageMagick version: **7.0.4-1**
+=======
+Based on ImageMagick **6.9.7-2**
+>>>>>>> master
 
 The Crystal Magic Wand ! :)
 

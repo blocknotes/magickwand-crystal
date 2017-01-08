@@ -2,7 +2,6 @@ require "./types"
 
 @[Link("MagickWand")]
 lib LibMagick
-  # --- pixel-wand ------------------------------------------------------------#
   # char* functions
   fun pixelGetColorAsNormalizedString
     = PixelGetColorAsNormalizedString( wand : PixelWand* ): LibC::Char*
@@ -26,8 +25,8 @@ lib LibMagick
     = PixelGetGreen( wand : PixelWand* ): LibC::Double
   fun pixelGetMagenta
     = PixelGetMagenta( wand : PixelWand* ): LibC::Double
-  fun pixelGetAlpha
-    = PixelGetAlpha( wand : PixelWand* ): LibC::Double
+  fun pixelGetOpacity
+    = PixelGetOpacity( wand : PixelWand* ): LibC::Double
   fun pixelGetRed
     = PixelGetRed( wand : PixelWand* ): LibC::Double
   fun pixelGetYellow
@@ -36,18 +35,21 @@ lib LibMagick
   fun pixelGetExceptionType
     = PixelGetExceptionType( wand : PixelWand* ): ExceptionType
 
+  fun pixelGetIndex
+    = PixelGetIndex( wand : PixelWand* ): IndexPacket
+
   # bool functions
   fun isPixelWand
     = IsPixelWand( wand : PixelWand* ): Bool
   fun isPixelWandSimilar
-    = IsPixelWandSimilar( wand1 : PixelWand*, wand2 : PixelWand *, d : LibC::Double ): Bool
+    = IsPixelWandSimilar( wand1 : PixelWand*, wand2 : PixelWand*, d : LibC::Double ): Bool
   fun pixelClearException
     = PixelClearException( wand : PixelWand* ): Bool
   fun pixelSetColor
     = PixelSetColor( wand : PixelWand*, pc : LibC::Char* ): Bool
 
-  fun pixelGetPixel
-    = PixelGetPixel( wand : PixelWand* ): PixelInfo
+  # fun pixelGetPixel  # REMOVED
+  #   = PixelGetPixel( wand : PixelWand* ): PixelInfo
 
   # PixelWand* functions
   fun clonePixelWand
@@ -73,12 +75,10 @@ lib LibMagick
     = PixelGetCyanQuantum( wand : PixelWand* ): Quantum
   fun pixelGetGreenQuantum
     = PixelGetGreenQuantum( wand : PixelWand* ): Quantum
-  fun pixelGetIndex
-    = PixelGetIndex( wand : PixelWand* ): Quantum
   fun pixelGetMagentaQuantum
     = PixelGetMagentaQuantum( wand : PixelWand* ): Quantum
-  fun pixelGetAlphaQuantum
-    = PixelGetAlphaQuantum( wand : PixelWand* ): Quantum
+  fun pixelGetOpacityQuantum
+    = PixelGetOpacityQuantum( wand : PixelWand* ): Quantum
   fun pixelGetRedQuantum
     = PixelGetRedQuantum( wand : PixelWand* ): Quantum
   fun pixelGetYellowQuantum
@@ -93,23 +93,23 @@ lib LibMagick
   fun pixelGetHSL
     = PixelGetHSL( wand : PixelWand*, dp1 : LibC::Double*, dp2 : LibC::Double*, dp3 : LibC::Double* ): Void
   fun pixelGetMagickColor
-    = PixelGetMagickColor( wand : PixelWand*, pixelInfo : PixelInfo* ): Void
-  fun pixelGetQuantumPacket
-    = PixelGetQuantumPacket( wand : PixelWand*, pixelInfo : PixelInfo* ): Void
-  fun pixelGetQuantumPixel
-    = PixelGetQuantumPixel( image : Image*, wand : PixelWand*, quantum : Quantum* ): Void
+    = PixelGetMagickColor( wand : PixelWand*, magickPixelPacket : MagickPixelPacket* ): Void
+  fun pixelGetQuantumColor
+    = PixelGetQuantumColor( wand : PixelWand*, pixelPacket : PixelPacket* ): Void
+  # fun pixelGetQuantumPixel  # REMOVED
+  #   = PixelGetQuantumPixel( image : Image*, wand : PixelWand*, quantum : Quantum* ): Void
   fun pixelSetAlpha
     = PixelSetAlpha( wand : PixelWand*, d : LibC::Double ): Void
   fun pixelSetAlphaQuantum
-    = PixelSetAlphaQuantum( wand : PixelWand*, quantum : Quantum* ): Void
+    = PixelSetAlphaQuantum( wand : PixelWand*, quantum : Quantum ): Void
   fun pixelSetBlack
     = PixelSetBlack( wand : PixelWand*, d : LibC::Double ): Void
   fun pixelSetBlackQuantum
-    = PixelSetBlackQuantum( wand : PixelWand*, quantum : Quantum* ): Void
+    = PixelSetBlackQuantum( wand : PixelWand*, quantum : Quantum ): Void
   fun pixelSetBlue
     = PixelSetBlue( wand : PixelWand*, d : LibC::Double ): Void
   fun pixelSetBlueQuantum
-    = PixelSetBlueQuantum( wand : PixelWand*, quantum : Quantum* ): Void
+    = PixelSetBlueQuantum( wand : PixelWand*, quantum : Quantum ): Void
   fun pixelSetColorFromWand
     = PixelSetColorFromWand( wand : PixelWand*, wand2 : PixelWand* ): Void
   fun pixelSetColorCount
@@ -117,37 +117,37 @@ lib LibMagick
   fun pixelSetCyan
     = PixelSetCyan( wand : PixelWand*, d : LibC::Double ): Void
   fun pixelSetCyanQuantum
-    = PixelSetCyanQuantum( wand : PixelWand*, quantum : Quantum* ): Void
+    = PixelSetCyanQuantum( wand : PixelWand*, quantum : Quantum ): Void
   fun pixelSetFuzz
     = PixelSetFuzz( wand : PixelWand*, d : LibC::Double ): Void
   fun pixelSetGreen
     = PixelSetGreen( wand : PixelWand*, d : LibC::Double ): Void
   fun pixelSetGreenQuantum
-    = PixelSetGreenQuantum( wand : PixelWand*, quantum : Quantum* ): Void
+    = PixelSetGreenQuantum( wand : PixelWand*, quantum : Quantum ): Void
   fun pixelSetHSL
     = PixelSetHSL( wand : PixelWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double ): Void
   fun pixelSetIndex
-    = PixelSetIndex( wand : PixelWand*, quantum : Quantum* ): Void
+    = PixelSetIndex( wand : PixelWand*, indexPacket : IndexPacket ): Void
   fun pixelSetMagenta
     = PixelSetMagenta( wand : PixelWand*, d : LibC::Double ): Void
   fun pixelSetMagentaQuantum
-    = PixelSetMagentaQuantum( wand : PixelWand*, quantum : Quantum* ): Void
-  fun pixelSetPixelColor
-    = PixelSetPixelColor( wand : PixelWand*, pixelInfo : PixelInfo* ): Void
-  fun pixelSetAlpha
-    = PixelSetAlpha( wand : PixelWand*, d : LibC::Double ): Void
-  fun pixelSetAlphaQuantum
-    = PixelSetAlphaQuantum( wand : PixelWand*, quantum : Quantum* ): Void
-  fun pixelSetPixelColor
-    = PixelSetPixelColor( wand : PixelWand*, pixelInfo : PixelInfo* ): Void
-  fun pixelSetQuantumPixel
-    = PixelSetQuantumPixel( image : Image*, quantum : Quantum*, wand : PixelWand* ): Void
+    = PixelSetMagentaQuantum( wand : PixelWand*, quantum : Quantum ): Void
+  fun pixelSetMagickColor
+    = PixelSetMagickColor( wand : PixelWand*, magickPixelPacket : MagickPixelPacket* ): Void
+  fun pixelSetOpacity
+    = PixelSetOpacity( wand : PixelWand*, d : LibC::Double ): Void
+  fun pixelSetOpacityQuantum
+    = PixelSetOpacityQuantum( wand : PixelWand*, quantum : Quantum ): Void
+  fun pixelSetQuantumColor
+    = PixelSetQuantumColor( wand : PixelWand*, pixelPacket : PixelPacket* ): Void
+  # fun pixelSetQuantumPixel  # REMOVED
+  #   = PixelSetQuantumPixel( image : Image*, quantum : Quantum*, wand : PixelWand* ): Void
   fun pixelSetRed
     = PixelSetRed( wand : PixelWand*, d : LibC::Double ): Void
   fun pixelSetRedQuantum
-    = PixelSetRedQuantum( wand : PixelWand*, quantum : Quantum* ): Void
+    = PixelSetRedQuantum( wand : PixelWand*, quantum : Quantum ): Void
   fun pixelSetYellow
     = PixelSetYellow( wand : PixelWand*, d : LibC::Double ): Void
   fun pixelSetYellowQuantum
-    = PixelSetYellowQuantum( wand : PixelWand*, quantum : Quantum* ): Void
+    = PixelSetYellowQuantum( wand : PixelWand*, quantum : Quantum ): Void
 end

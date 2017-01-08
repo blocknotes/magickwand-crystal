@@ -141,7 +141,7 @@ describe Magickwand do
     tmp = tmp_img + ".jpg"
     File.delete tmp rescue nil
     LibMagick.magickReadImage wand, test_jpg
-    LibMagick.magickGetImageColorspace( wand ).should eq( LibMagick::ColorspaceType::SRGBColorspace )  # check the colorspace
+    LibMagick.magickGetImageColorspace( wand ).should_not eq( LibMagick::ColorspaceType::GRAYColorspace )  # check the colorspace
     LibMagick.magickTransformImageColorspace( wand, LibMagick::ColorspaceType::GRAYColorspace ).should be_true   # check the return value: true
     LibMagick.magickWriteImage( wand, tmp ).should be_true   # check the return value: true
     LibMagick.magickGetImageColorspace( wand ).should eq( LibMagick::ColorspaceType::GRAYColorspace )  # check the colorspace

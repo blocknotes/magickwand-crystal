@@ -63,8 +63,8 @@ lib LibMagick
 
   enum ColorspaceType
     UndefinedColorspace
-    RGBColorspace            # Linear RGB colorspace
-    GRAYColorspace           # greyscale (linear) image (faked 1 channel)
+    RGBColorspace             # Linear RGB colorspace
+    GRAYColorspace            # greyscale (linear) image (faked 1 channel)
     TransparentColorspace
     OHTAColorspace
     LabColorspace
@@ -74,8 +74,8 @@ lib LibMagick
     YIQColorspace
     YPbPrColorspace
     YUVColorspace
-    CMYKColorspace           # negated linear RGB with black separated
-    SRGBColorspace           # Default: non-linear sRGB colorspace
+    CMYKColorspace            # negared linear RGB with black separated
+    SRGBColorspace            # Default: non-lienar sRGB colorspace
     HSBColorspace
     HSLColorspace
     HWBColorspace
@@ -84,19 +84,96 @@ lib LibMagick
     Rec709LumaColorspace
     Rec709YCbCrColorspace
     LogColorspace
-    CMYColorspace            # negated linear RGB colorspace
+    CMYColorspace             # negated linear RGB colorspace
     LuvColorspace
     HCLColorspace
-    LCHColorspace            # alias for LCHuv
+    LCHColorspace             # alias for LCHuv
     LMSColorspace
-    LCHabColorspace          # Cylindrical (Polar) Lab
-    LCHuvColorspace          # Cylindrical (Polar) Luv
+    LCHabColorspace           # Cylindrical (Polar) Lab
+    LCHuvColorspace           # Cylindrical (Polar) Luv
     ScRGBColorspace
     HSIColorspace
-    HSVColorspace            # alias for HSB
+    HSVColorspace             # alias for HSB
     HCLpColorspace
     YDbDrColorspace
-    XyYColorspac
+  end
+
+  enum CommandOption
+    MagickUndefinedOptions = -1
+    MagickAlignOptions = 0
+    MagickAlphaOptions
+    MagickBooleanOptions
+    MagickCacheOptions
+    MagickChannelOptions
+    MagickClassOptions
+    MagickClipPathOptions
+    MagickCoderOptions
+    MagickColorOptions
+    MagickColorspaceOptions
+    MagickCommandOptions
+    MagickComposeOptions
+    MagickCompressOptions
+    MagickConfigureOptions
+    MagickDataTypeOptions
+    MagickDebugOptions
+    MagickDecorateOptions
+    MagickDelegateOptions
+    MagickDirectionOptions
+    MagickDisposeOptions
+    MagickDistortOptions
+    MagickDitherOptions
+    MagickEndianOptions
+    MagickEvaluateOptions
+    MagickFillRuleOptions
+    MagickFilterOptions
+    MagickFontOptions
+    MagickFontsOptions
+    MagickFormatOptions
+    MagickFunctionOptions
+    MagickGravityOptions
+    MagickIntentOptions
+    MagickInterlaceOptions
+    MagickInterpolateOptions
+    MagickKernelOptions
+    MagickLayerOptions
+    MagickLineCapOptions
+    MagickLineJoinOptions
+    MagickListOptions
+    MagickLocaleOptions
+    MagickLogEventOptions
+    MagickLogOptions
+    MagickMagicOptions
+    MagickMethodOptions
+    MagickMetricOptions
+    MagickMimeOptions
+    MagickModeOptions
+    MagickModuleOptions
+    MagickMorphologyOptions
+    MagickNoiseOptions
+    MagickOrientationOptions
+    MagickPixelIntensityOptions
+    MagickPolicyOptions
+    MagickPolicyDomainOptions
+    MagickPolicyRightsOptions
+    MagickPreviewOptions
+    MagickPrimitiveOptions
+    MagickQuantumFormatOptions
+    MagickResolutionOptions
+    MagickResourceOptions
+    MagickSparseColorOptions
+    MagickStatisticOptions
+    MagickStorageOptions
+    MagickStretchOptions
+    MagickStyleOptions
+    MagickThresholdOptions
+    MagickTypeOptions
+    MagickValidateOptions
+    MagickVirtualPixelOptions
+    MagickComplexOptions
+    MagickIntensityOptions
+    MagickGradientOptions
+    MagickWeightOptions
+    MagickComplianceOptions
   end
 
   enum CompositeOperator
@@ -329,9 +406,9 @@ lib LibMagick
   end
 
   enum FillRule
-    UndefinedRule,
+    UndefinedRule
     #undef EvenOddRule
-    EvenOddRule,
+    EvenOddRule
     NonZeroRule
   end
 
@@ -389,6 +466,26 @@ lib LibMagick
     SouthGravity = 8
     SouthEastGravity = 9
     StaticGravity = 10
+  end
+
+  enum ImageLayerMethod
+    UndefinedLayer
+    CoalesceLayer
+    CompareAnyLayer
+    CompareClearLayer
+    CompareOverlayLayer
+    DisposeLayer
+    OptimizeLayer
+    OptimizeImageLayer
+    OptimizePlusLayer
+    OptimizeTransLayer
+    RemoveDupsLayer
+    RemoveZeroLayer
+    CompositeLayer
+    MergeLayer
+    FlattenLayer
+    MosaicLayer
+    TrimBoundsLayer
   end
 
   enum ImageType
@@ -458,26 +555,6 @@ lib LibMagick
     BinomialKernel
   end
 
-  enum LayerMethod
-    UndefinedLayer
-    CoalesceLayer
-    CompareAnyLayer
-    CompareClearLayer
-    CompareOverlayLayer
-    DisposeLayer
-    OptimizeLayer
-    OptimizeImageLayer
-    OptimizePlusLayer
-    OptimizeTransLayer
-    RemoveDupsLayer
-    RemoveZeroLayer
-    CompositeLayer
-    MergeLayer
-    FlattenLayer
-    MosaicLayer
-    TrimBoundsLayer
-  end
-
   enum LineCap
     UndefinedCap
     ButtCap
@@ -526,6 +603,12 @@ lib LibMagick
     MedianEvaluateOperator
     SumEvaluateOperator
     RootMeanSquareEvaluateOperator
+  end
+
+  enum MagickFormatType
+    UndefinedFormatType
+    ImplicitFormatType
+    ExplicitFormatType
   end
 
   enum MagickFunction
@@ -623,8 +706,8 @@ lib LibMagick
   end
 
   enum PathMode
-    DefaultPathMode,
-    AbsolutePathMode,
+    DefaultPathMode
+    AbsolutePathMode
     RelativePathMode
   end
 
@@ -673,8 +756,8 @@ lib LibMagick
   end
 
   enum PixelMask
-    UndefinedPixelMask = 0x000000,
-    ReadPixelMask = 0x000001,
+    UndefinedPixelMask = 0x000000
+    ReadPixelMask = 0x000001
     WritePixelMask = 0x000002
   end
 
@@ -718,6 +801,25 @@ lib LibMagick
     JPEGPreview
   end
 
+  enum PrimitiveType
+    UndefinedPrimitive
+    PointPrimitive
+    LinePrimitive
+    RectanglePrimitive
+    RoundRectanglePrimitive
+    ArcPrimitive
+    EllipsePrimitive
+    CirclePrimitive
+    PolylinePrimitive
+    PolygonPrimitive
+    BezierPrimitive
+    ColorPrimitive
+    MattePrimitive
+    TextPrimitive
+    ImagePrimitive
+    PathPrimitive
+  end
+
   enum ReferenceType
     UndefinedReference
     GradientReference
@@ -732,8 +834,8 @@ lib LibMagick
   end
 
   enum ResolutionType
-    UndefinedResolution,
-    PixelsPerInchResolution,
+    UndefinedResolution
+    PixelsPerInchResolution
     PixelsPerCentimeterResolution
   end
 
@@ -825,6 +927,7 @@ lib LibMagick
   enum VirtualPixelMethod
     UndefinedVirtualPixelMethod
     BackgroundVirtualPixelMethod
+    ConstantVirtualPixelMethod  # deprecated
     DitherVirtualPixelMethod
     EdgeVirtualPixelMethod
     MirrorVirtualPixelMethod

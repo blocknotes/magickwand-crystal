@@ -124,7 +124,7 @@ lib LibMagick
   fun magickSetInterlaceScheme
     = MagickSetInterlaceScheme( wand : MagickWand*, interlaceType : InterlaceType ): Bool
   fun magickSetInterpolateMethod
-    = MagickSetInterpolateMethod( wand : MagickWand*, pixelInterpolateMethod : PixelInterpolateMethod ): Bool
+    = MagickSetInterpolateMethod( wand : MagickWand*, interpolatePixelMethod : PixelInterpolateMethod ): Bool
   fun magickSetOption
     = MagickSetOption( wand : MagickWand*, cp1 : LibC::Char*, cp2 : LibC::Char* ): Bool
   fun magickSetOrientation
