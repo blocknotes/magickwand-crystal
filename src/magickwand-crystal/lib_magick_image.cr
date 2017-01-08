@@ -1,7 +1,6 @@
 require "./types"
 
 lib LibMagick
-  # --- magick-image ----------------------------------------------------------#
   fun magickGetImageChannelFeatures
     = MagickGetImageChannelFeatures( wand : MagickWand*, s : LibC::SizeT ): ChannelFeatures*
   fun magickGetImageChannelStatistics

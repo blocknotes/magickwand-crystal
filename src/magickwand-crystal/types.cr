@@ -386,6 +386,13 @@ lib LibMagick
     index : MagickRealType
   end
 
+  # struct OptionInfo  # REMOVED
+  #   mnemonic : LibC::Char*
+  #   type : LibC::SSizeT
+  #   flags : LibC::SSizeT
+  #   stealth : Bool
+  # end
+
   struct PixelInfo
     storage_class : ClassType
     colorspace : ColorspaceType

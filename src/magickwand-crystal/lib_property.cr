@@ -1,36 +1,6 @@
 require "./types"
 
 lib LibMagick
-  enum PixelInterpolateMethod
-    UndefinedInterpolatePixel
-    AverageInterpolatePixel     # Average 4 nearest neighbours
-    Average9InterpolatePixel    # Average 9 nearest neighbours
-    Average16InterpolatePixel   # Average 16 nearest neighbours
-    BackgroundInterpolatePixel  # Just return background color
-    BilinearInterpolatePixel    # Triangular filter interpolation
-    BlendInterpolatePixel       # blend of nearest 1, 2 or 4 pixels
-    CatromInterpolatePixel      # Catmull-Rom interpolation
-    IntegerInterpolatePixel     # Integer (floor) interpolation
-    MeshInterpolatePixel        # Triangular Mesh interpolation
-    NearestInterpolatePixel     # Nearest Neighbour Only
-    SplineInterpolatePixel      # Cubic Spline (blurred) interpolation
-    # FilterInterpolatePixel   ** Use resize filter - (very slow)
-  end
-
-  enum ResourceType
-    UndefinedResource
-    AreaResource
-    DiskResource
-    FileResource
-    HeightResource
-    MapResource
-    MemoryResource
-    ThreadResource
-    ThrottleResource
-    TimeResource
-    WidthResource
-  end
-
   fun magickGetFilename
     = MagickGetFilename( wand : MagickWand* ): LibC::Char*
   fun magickGetFormat

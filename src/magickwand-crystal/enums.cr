@@ -98,6 +98,84 @@ lib LibMagick
     YDbDrColorspace
   end
 
+  enum CommandOption
+    MagickUndefinedOptions = -1
+    MagickAlignOptions = 0
+    MagickAlphaOptions
+    MagickBooleanOptions
+    MagickCacheOptions
+    MagickChannelOptions
+    MagickClassOptions
+    MagickClipPathOptions
+    MagickCoderOptions
+    MagickColorOptions
+    MagickColorspaceOptions
+    MagickCommandOptions
+    MagickComposeOptions
+    MagickCompressOptions
+    MagickConfigureOptions
+    MagickDataTypeOptions
+    MagickDebugOptions
+    MagickDecorateOptions
+    MagickDelegateOptions
+    MagickDirectionOptions
+    MagickDisposeOptions
+    MagickDistortOptions
+    MagickDitherOptions
+    MagickEndianOptions
+    MagickEvaluateOptions
+    MagickFillRuleOptions
+    MagickFilterOptions
+    MagickFontOptions
+    MagickFontsOptions
+    MagickFormatOptions
+    MagickFunctionOptions
+    MagickGravityOptions
+    MagickIntentOptions
+    MagickInterlaceOptions
+    MagickInterpolateOptions
+    MagickKernelOptions
+    MagickLayerOptions
+    MagickLineCapOptions
+    MagickLineJoinOptions
+    MagickListOptions
+    MagickLocaleOptions
+    MagickLogEventOptions
+    MagickLogOptions
+    MagickMagicOptions
+    MagickMethodOptions
+    MagickMetricOptions
+    MagickMimeOptions
+    MagickModeOptions
+    MagickModuleOptions
+    MagickMorphologyOptions
+    MagickNoiseOptions
+    MagickOrientationOptions
+    MagickPixelIntensityOptions
+    MagickPolicyOptions
+    MagickPolicyDomainOptions
+    MagickPolicyRightsOptions
+    MagickPreviewOptions
+    MagickPrimitiveOptions
+    MagickQuantumFormatOptions
+    MagickResolutionOptions
+    MagickResourceOptions
+    MagickSparseColorOptions
+    MagickStatisticOptions
+    MagickStorageOptions
+    MagickStretchOptions
+    MagickStyleOptions
+    MagickThresholdOptions
+    MagickTypeOptions
+    MagickValidateOptions
+    MagickVirtualPixelOptions
+    MagickComplexOptions
+    MagickIntensityOptions
+    MagickGradientOptions
+    MagickWeightOptions
+    MagickComplianceOptions
+  end
+
   enum CompositeOperator
     UndefinedCompositeOp
     NoCompositeOp
@@ -671,6 +749,22 @@ lib LibMagick
     MSPixelIntensityMethod
   end
 
+  # enum PixelInterpolateMethod  # REMOVED
+  #   UndefinedInterpolatePixel
+  #   AverageInterpolatePixel     # Average 4 nearest neighbours
+  #   Average9InterpolatePixel    # Average 9 nearest neighbours
+  #   Average16InterpolatePixel   # Average 16 nearest neighbours
+  #   BackgroundInterpolatePixel  # Just return background color
+  #   BilinearInterpolatePixel    # Triangular filter interpolation
+  #   BlendInterpolatePixel       # blend of nearest 1, 2 or 4 pixels
+  #   CatromInterpolatePixel      # Catmull-Rom interpolation
+  #   IntegerInterpolatePixel     # Integer (floor) interpolation
+  #   MeshInterpolatePixel        # Triangular Mesh interpolation
+  #   NearestInterpolatePixel     # Nearest Neighbour Only
+  #   SplineInterpolatePixel      # Cubic Spline (blurred) interpolation
+  #   # FilterInterpolatePixel   ** Use resize filter - (very slow)
+  # end
+
   enum PixelMask
     UndefinedPixelMask = 0x000000
     ReadPixelMask = 0x000001
@@ -753,6 +847,20 @@ lib LibMagick
     UndefinedResolution
     PixelsPerInchResolution
     PixelsPerCentimeterResolution
+  end
+
+  enum ResourceType
+    UndefinedResource
+    AreaResource
+    DiskResource
+    FileResource
+    MapResource
+    MemoryResource
+    ThreadResource
+    TimeResource
+    ThrottleResource
+    WidthResource
+    HeightResource
   end
 
   enum SparseColorMethod

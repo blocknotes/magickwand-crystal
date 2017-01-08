@@ -2,7 +2,6 @@ require "./types"
 
 @[Link("MagickWand")]
 lib LibMagick
-  # --- pixel-wand ------------------------------------------------------------#
   # char* functions
   fun pixelGetColorAsNormalizedString
     = PixelGetColorAsNormalizedString( wand : PixelWand* ): LibC::Char*
