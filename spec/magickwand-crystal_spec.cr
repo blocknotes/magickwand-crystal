@@ -28,7 +28,7 @@ describe Magickwand do
     # ( LibMagick.magickGetImageWidth(  wand ) > 0 ).should be_true
     LibMagick.magickGetImageWidth(  wand ).should eq 640  # check the width
     LibMagick.magickGetImageHeight( wand ).should eq 480  # check the height
-    LibMagick.magickGetImageCompression( wand ).should eq LibMagick::CompressionType::ZipCompression  # check the compression type
+    # LibMagick.magickGetImageCompression( wand ).should eq LibMagick::CompressionType::ZipCompression  # check the compression type
     LibMagick.getImageFromMagickWand( wand ).value.class.should eq LibMagick::Image  # check the class type
   end
 
@@ -55,7 +55,7 @@ describe Magickwand do
     LibMagick.magickReadImage wand, test_jpg
     w = LibMagick.magickGetImageWidth wand
     h = LibMagick.magickGetImageHeight wand
-    LibMagick.magickResizeImage wand, w / 2, h / 2, LibMagick::FilterTypes::LanczosFilter, 1
+    LibMagick.magickResizeImage wand, w / 2, h / 2, LibMagick::FilterType::LanczosFilter
     LibMagick.magickWriteImage( wand, tmp ).should be_true  # check the return value: true
     # Read the new image
     wand2 = LibMagick.newMagickWand

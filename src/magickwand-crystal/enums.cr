@@ -436,13 +436,13 @@ lib LibMagick
     NonZeroRule
   end
 
-  enum FilterTypes
+  enum FilterType
     UndefinedFilter
     PointFilter
     BoxFilter
     TriangleFilter
     HermiteFilter
-    HanningFilter
+    HannFilter
     HammingFilter
     BlackmanFilter
     GaussianFilter
@@ -454,7 +454,7 @@ lib LibMagick
     SincFilter
     SincFastFilter
     KaiserFilter
-    WelshFilter
+    WelchFilter
     ParzenFilter
     BohmanFilter
     BartlettFilter
@@ -468,7 +468,7 @@ lib LibMagick
     CosineFilter
     SplineFilter
     LanczosRadiusFilter
-    SentinelFilter  # a count of all the filters, not a real filter
+    SentinelFilter
   end
 
   enum GradientType

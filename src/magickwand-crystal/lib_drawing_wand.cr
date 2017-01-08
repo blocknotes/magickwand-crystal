@@ -61,8 +61,8 @@ lib LibMagick
   fun newDrawingWand
     = NewDrawingWand(): DrawingWand*
 
-  # fun drawCloneExceptionInfo  # REMOVED
-  #   = DrawCloneExceptionInfo( wand : DrawingWand* ): ExceptionInfo*
+  fun drawCloneExceptionInfo
+    = DrawCloneExceptionInfo( wand : DrawingWand* ): ExceptionInfo*
 
   fun drawGetExceptionType
     = DrawGetExceptionType( wand : DrawingWand* ): ExceptionType
@@ -137,8 +137,8 @@ lib LibMagick
     = ClearDrawingWand( wand : DrawingWand*  ): Void
   fun drawAffine
     = DrawAffine( wand : DrawingWand*, affineMatrix : AffineMatrix* ): Void
-  # fun drawAlpha  # REMOVED
-  #   = DrawAlpha( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, paintMethod : PaintMethod ): Void
+  fun drawAlpha
+    = DrawAlpha( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, paintMethod : PaintMethod ): Void
   fun drawAnnotation
     = DrawAnnotation( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, cp : LibC::UChar* ): Void
   fun drawArc
@@ -169,8 +169,8 @@ lib LibMagick
     = DrawGetTextUnderColor( wand1 : DrawingWand*, wand2 : PixelWand* ): Void
   fun drawLine
     = DrawLine( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double ): Void
-  fun drawMatte
-    = DrawMatte( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, paintMethod : PaintMethod ): Void
+  # fun drawMatte  # REMOVED
+  #   = DrawMatte( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, paintMethod : PaintMethod ): Void
   fun drawPathClose
     = DrawPathClose( wand : DrawingWand* ): Void
   fun drawPathCurveToAbsolute
@@ -189,10 +189,10 @@ lib LibMagick
     = DrawPathCurveToSmoothAbsolute( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double ): Void
   fun drawPathCurveToSmoothRelative
     = DrawPathCurveToSmoothRelative( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double ): Void
-  fun drawPathEllipticArcAbsolute
-    = DrawPathEllipticArcAbsolute( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, b1 : Bool, b2 : Bool, d4 : LibC::Double, d5 : LibC::Double ): Void
-  fun drawPathEllipticArcRelative
-    = DrawPathEllipticArcRelative( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, b1 : Bool, b2 : Bool, d4 : LibC::Double, d5 : LibC::Double ): Void
+  # fun drawPathEllipticArcAbsolute  # REMOVED
+  #   = DrawPathEllipticArcAbsolute( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, b1 : Bool, b2 : Bool, d4 : LibC::Double, d5 : LibC::Double ): Void
+  # fun drawPathEllipticArcRelative  # REMOVED
+  #   = DrawPathEllipticArcRelative( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, b1 : Bool, b2 : Bool, d4 : LibC::Double, d5 : LibC::Double ): Void
   fun drawPathFinish
     = DrawPathFinish( wand : DrawingWand* ): Void
   fun drawPathLineToAbsolute
@@ -290,7 +290,7 @@ lib LibMagick
   fun drawSetTextUnderColor
     = DrawSetTextUnderColor( wand1 : DrawingWand*, wand2 : PixelWand* ): Void
   fun drawSetViewbox
-    = DrawSetViewbox( wand : DrawingWand*, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT, ss3 : LibC::SSizeT, ss4 : LibC::SSizeT ): Void
+    = DrawSetViewbox( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double ): Void
   fun drawSkewX
     = DrawSkewX( wand : DrawingWand*, d : LibC::Double ): Void
   fun drawSkewY

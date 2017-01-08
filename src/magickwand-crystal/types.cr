@@ -261,7 +261,7 @@ lib LibMagick
     bias : LibC::Double
     blur : LibC::Double           # deprecated
     fuzz : LibC::Double           # current color fuzz attribute
-    filter : FilterTypes         # resize/distort filter to apply
+    filter : FilterType           # resize/distort filter to apply
     interlace : InterlaceType
     endian : EndianType         # raw data integer ordering on read/write
     gravity : GravityType        # Gravity attribute for positioning in image
