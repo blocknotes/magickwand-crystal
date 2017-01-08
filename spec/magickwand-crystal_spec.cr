@@ -125,7 +125,7 @@ describe Magickwand do
     LibMagick.magickReadImage wand2, test_png2
     w = LibMagick.magickGetImageWidth wand
     h = LibMagick.magickGetImageHeight wand
-    LibMagick.magickCompositeImage wand, wand2, LibMagick::CompositeOperator::OverCompositeOp, false, 100, 100
+    LibMagick.magickCompositeImage wand, wand2, LibMagick::CompositeOperator::DstOverCompositeOp, 100, 100, false
     LibMagick.magickWriteImage wand, tmp
     LibMagick.destroyMagickWand( wand2 )
     # Read the new image
