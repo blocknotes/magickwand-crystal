@@ -418,6 +418,11 @@ lib LibMagick
     signature : LibC::SizeT
   end
 
+  struct PointInfo
+    x : LibC::Double
+    y : LibC::Double
+  end
+
   struct PrimaryInfo
     x : LibC::Double
     y : LibC::Double

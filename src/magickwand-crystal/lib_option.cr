@@ -133,6 +133,6 @@ lib LibMagick
   fun resetImageOptionIterator
     = ResetImageOptionIterator( imageInfo : ImageInfo* ): Void
 
-  fun getCommandOptionInfo
-    = GetCommandOptionInfo( pc : LibC::Char* ): OptionInfo*
+  # fun getCommandOptionInfo  # REMOVED
+  #   = GetCommandOptionInfo( pc : LibC::Char* ): OptionInfo*
 end

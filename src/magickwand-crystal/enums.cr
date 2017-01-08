@@ -63,8 +63,8 @@ lib LibMagick
 
   enum ColorspaceType
     UndefinedColorspace
-    RGBColorspace            # Linear RGB colorspace
-    GRAYColorspace           # greyscale (linear) image (faked 1 channel)
+    RGBColorspace             # Linear RGB colorspace
+    GRAYColorspace            # greyscale (linear) image (faked 1 channel)
     TransparentColorspace
     OHTAColorspace
     LabColorspace
@@ -74,8 +74,8 @@ lib LibMagick
     YIQColorspace
     YPbPrColorspace
     YUVColorspace
-    CMYKColorspace           # negated linear RGB with black separated
-    SRGBColorspace           # Default: non-linear sRGB colorspace
+    CMYKColorspace            # negared linear RGB with black separated
+    SRGBColorspace            # Default: non-lienar sRGB colorspace
     HSBColorspace
     HSLColorspace
     HWBColorspace
@@ -84,19 +84,18 @@ lib LibMagick
     Rec709LumaColorspace
     Rec709YCbCrColorspace
     LogColorspace
-    CMYColorspace            # negated linear RGB colorspace
+    CMYColorspace             # negated linear RGB colorspace
     LuvColorspace
     HCLColorspace
-    LCHColorspace            # alias for LCHuv
+    LCHColorspace             # alias for LCHuv
     LMSColorspace
-    LCHabColorspace          # Cylindrical (Polar) Lab
-    LCHuvColorspace          # Cylindrical (Polar) Luv
+    LCHabColorspace           # Cylindrical (Polar) Lab
+    LCHuvColorspace           # Cylindrical (Polar) Luv
     ScRGBColorspace
     HSIColorspace
-    HSVColorspace            # alias for HSB
+    HSVColorspace             # alias for HSB
     HCLpColorspace
     YDbDrColorspace
-    XyYColorspac
   end
 
   enum CompositeOperator
@@ -329,9 +328,9 @@ lib LibMagick
   end
 
   enum FillRule
-    UndefinedRule,
+    UndefinedRule
     #undef EvenOddRule
-    EvenOddRule,
+    EvenOddRule
     NonZeroRule
   end
 
@@ -640,8 +639,8 @@ lib LibMagick
   end
 
   enum PathMode
-    DefaultPathMode,
-    AbsolutePathMode,
+    DefaultPathMode
+    AbsolutePathMode
     RelativePathMode
   end
 
@@ -673,8 +672,8 @@ lib LibMagick
   end
 
   enum PixelMask
-    UndefinedPixelMask = 0x000000,
-    ReadPixelMask = 0x000001,
+    UndefinedPixelMask = 0x000000
+    ReadPixelMask = 0x000001
     WritePixelMask = 0x000002
   end
 
@@ -683,11 +682,6 @@ lib LibMagick
     CopyPixelTrait = 0x000001
     UpdatePixelTrait = 0x000002
     BlendPixelTrait = 0x000004
-  end
-
-  struct PointInfo
-    x : LibC::Double
-    y : LibC::Double
   end
 
   enum PreviewType
@@ -723,6 +717,25 @@ lib LibMagick
     JPEGPreview
   end
 
+  enum PrimitiveType
+    UndefinedPrimitive
+    PointPrimitive
+    LinePrimitive
+    RectanglePrimitive
+    RoundRectanglePrimitive
+    ArcPrimitive
+    EllipsePrimitive
+    CirclePrimitive
+    PolylinePrimitive
+    PolygonPrimitive
+    BezierPrimitive
+    ColorPrimitive
+    MattePrimitive
+    TextPrimitive
+    ImagePrimitive
+    PathPrimitive
+  end
+
   enum ReferenceType
     UndefinedReference
     GradientReference
@@ -737,8 +750,8 @@ lib LibMagick
   end
 
   enum ResolutionType
-    UndefinedResolution,
-    PixelsPerInchResolution,
+    UndefinedResolution
+    PixelsPerInchResolution
     PixelsPerCentimeterResolution
   end
 
@@ -748,7 +761,7 @@ lib LibMagick
     BilinearColorInterpolate = DistortImageMethod::BilinearReverseDistortion
     PolynomialColorInterpolate = DistortImageMethod::PolynomialDistortion
     ShepardsColorInterpolate = DistortImageMethod::ShepardsDistortion
-    # Methods unique to SparseColor().
+    # Methods unique to SparseColor()
     VoronoiColorInterpolate = DistortImageMethod::SentinelDistortion
     InverseColorInterpolate
     ManhattanColorInterpolate
@@ -816,6 +829,7 @@ lib LibMagick
   enum VirtualPixelMethod
     UndefinedVirtualPixelMethod
     BackgroundVirtualPixelMethod
+    ConstantVirtualPixelMethod  # deprecated
     DitherVirtualPixelMethod
     EdgeVirtualPixelMethod
     MirrorVirtualPixelMethod
