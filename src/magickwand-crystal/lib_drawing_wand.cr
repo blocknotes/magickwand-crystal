@@ -189,10 +189,10 @@ lib LibMagick
     = DrawPathCurveToSmoothAbsolute( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double ): Void
   fun drawPathCurveToSmoothRelative
     = DrawPathCurveToSmoothRelative( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double ): Void
-  fun drawPathEllipticArcAbsolute
-    = DrawPathEllipticArcAbsolute( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, b1 : Bool, b2 : Bool, d4 : LibC::Double, d5 : LibC::Double ): Void
-  fun drawPathEllipticArcRelative
-    = DrawPathEllipticArcRelative( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, b1 : Bool, b2 : Bool, d4 : LibC::Double, d5 : LibC::Double ): Void
+  # fun drawPathEllipticArcAbsolute  # REMOVED
+  #   = DrawPathEllipticArcAbsolute( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, b1 : Bool, b2 : Bool, d4 : LibC::Double, d5 : LibC::Double ): Void
+  # fun drawPathEllipticArcRelative  # REMOVED
+  #   = DrawPathEllipticArcRelative( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, b1 : Bool, b2 : Bool, d4 : LibC::Double, d5 : LibC::Double ): Void
   fun drawPathFinish
     = DrawPathFinish( wand : DrawingWand* ): Void
   fun drawPathLineToAbsolute
