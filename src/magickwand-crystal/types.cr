@@ -559,6 +559,15 @@ lib LibMagick
     # offset : MagickPixelPacket
   end
 
+  struct ThresholdMap
+    map_id : LibC::Char*
+    description : LibC::Char*
+    width : LibC::SizeT
+    height : LibC::SizeT
+    divisor : LibC::SSizeT
+    levels : LibC::SSizeT*
+  end
+
   struct Timer
     start : LibC::Double
     stop : LibC::Double
