@@ -6,6 +6,7 @@ lib LibMagick
   MagickPathExtent = 4096
   QuantumRange = 65535.0 # 255.0
 
+  type CacheView = Void # TODO
   type MagickMutexType = LibC::SizeT
   type MagickOffsetType = LibC::SSizeT
   type MagickRealType = LibC::Float
@@ -14,6 +15,7 @@ lib LibMagick
   type MagickThreadType = LibC::PidT
   type Quantum = LibC::Float
   type IndexPacket = Quantum
+  type ResizeFilter = Void # TODO
 
   type MagickProgressMonitor = LibC::Char*, MagickOffsetType, MagickSizeType, Void* -> Bool
 
@@ -538,6 +540,55 @@ lib LibMagick
     x : LibC::SSizeT
     y : LibC::SSizeT
   end
+
+  struct ResampleFilter
+    view : CacheView*
+    image : Image*
+    exception : ExceptionInfo*
+    debug : Bool
+    # Information about image being resampled
+    image_area : LibC::SSizeT
+    interpolate : InterpolatePixelMethod
+    virtual_pixel : VirtualPixelMethod
+    filter : FilterTypes
+    # processing settings needed
+    limit_reached : Bool
+    do_interpolate : Bool
+    average_defined : Bool
+    average_pixel : MagickPixelPacket
+    # current ellipitical area being resampled around center point
+    a : LibC::Double
+    b : LibC::Double
+    c : LibC::Double
+    vlimit : LibC::Double
+    ulimit : LibC::Double
+    uwidth : LibC::Double
+    slope : LibC::Double
+    # Use a Direct call to the filter functions
+    filter_def : ResizeFilter*
+    f : LibC::Double
+    # the practical working support of the filter
+    support : LibC::Double
+    signature : LibC::SizeT
+  end
+
+  # struct ResizeFilter
+  #   MagickRealType
+  #     (*filter)(const MagickRealType,const ResizeFilter *),
+  #     (*window)(const MagickRealType,const ResizeFilter *),
+  #     support,        /* filter region of support - the filter support limit */
+  #     window_support, /* window support, usally equal to support (expert only) */
+  #     scale,          /* dimension scaling to fit window support (usally 1.0) */
+  #     blur,           /* x-scale (blur-sharpen) */
+  #     coefficient[7]; /* cubic coefficents for BC-cubic filters */
+
+  #   ResizeWeightingFunctionType
+  #     filterWeightingType,
+  #     windowWeightingType;
+
+  #   size_t
+  #     signature;
+  # end
 
   struct SegmentInfo
     x1 : LibC::Double
