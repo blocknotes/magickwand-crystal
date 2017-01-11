@@ -526,6 +526,16 @@ lib LibMagick
     signature : LibC::SizeT
   end
 
+  struct QuantizeInfo
+    number_colors : LibC::SizeT
+    tree_depth : LibC::SizeT
+    dither : Bool
+    colorspace : ColorspaceType
+    measure_error : Bool
+    signature : LibC::SizeT
+    dither_method : DitherMethod
+  end
+
   struct QuantumPixelPacket
     red : Quantum
     green : Quantum
