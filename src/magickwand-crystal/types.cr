@@ -97,6 +97,12 @@ lib LibMagick
     signature : LibC::Char
   end
 
+  struct ColorPacket
+    pixel : PixelPacket
+    index : IndexPacket
+    count : MagickSizeType
+  end
+
   struct DrawInfo
     primitive : LibC::Char*
     geometry : LibC::Char*
@@ -205,6 +211,15 @@ lib LibMagick
     reason : LibC::Char*
     description : LibC::Char*
     signature : LibC::ULong
+  end
+
+  struct FrameInfo
+    width : LibC::SizeT
+    height : LibC::SizeT
+    x : LibC::SSizeT
+    y : LibC::SSizeT
+    inner_bevel : LibC::SSizeT
+    outer_bevel : LibC::SSizeT
   end
 
   struct GeometryInfo
@@ -454,6 +469,26 @@ lib LibMagick
     blue : MagickRealType
     opacity : MagickRealType
     index : MagickRealType
+  end
+
+  struct MontageInfo
+    geometry : LibC::Char*
+    tile : LibC::Char*
+    title : LibC::Char*
+    frame : LibC::Char*
+    texture : LibC::Char*
+    font : LibC::Char*
+    pointsize : LibC::Double
+    border_width : LibC::SizeT
+    shadow : Bool
+    fill : PixelPacket
+    stroke : PixelPacket
+    background_color : PixelPacket
+    border_color : PixelPacket
+    matte_color : PixelPacket
+    gravity : GravityType
+    debug : LibC::Char
+    signature : LibC::SizeT
   end
 
   struct OffsetInfo

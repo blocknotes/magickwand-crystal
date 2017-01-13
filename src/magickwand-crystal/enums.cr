@@ -446,6 +446,35 @@ lib LibMagick
     SentinelFilter  # a count of all the filters, not a real filter
   end
 
+  enum GeometryFlags
+    NoValue = 0x0000
+    XValue = 0x0001
+    XiValue = 0x0001
+    YValue = 0x0002
+    PsiValue = 0x0002
+    WidthValue = 0x0004
+    RhoValue = 0x0004
+    HeightValue = 0x0008
+    SigmaValue = 0x0008
+    ChiValue = 0x0010
+    XiNegative = 0x0020
+    XNegative = 0x0020
+    PsiNegative = 0x0040
+    YNegative = 0x0040
+    ChiNegative = 0x0080
+    PercentValue = 0x1000   # '%'  percentage of something
+    AspectValue = 0x2000    # '!'  resize no-aspect - special use flag
+    NormalizeValue = 0x2000 # '!'  ScaleKernelValue() in morphology.c
+    LessValue = 0x4000      # '<'  resize smaller - special use flag
+    GreaterValue = 0x8000   # '>'  resize larger - spacial use flag
+    MinimumValue = 0x10000  # '^'  special handling needed
+    CorrelateNormalizeValue = 0x10000 # '^' see ScaleKernelValue()
+    AreaValue = 0x20000     # '@'  resize to area - special use flag
+    DecimalValue = 0x40000  # '.'  floating point numbers found
+    SeparatorValue = 0x80000  # 'x'  separator found
+    AllValues = 0x7fffffff
+  end
+
   enum GradientType
     UndefinedGradient
     LinearGradient
