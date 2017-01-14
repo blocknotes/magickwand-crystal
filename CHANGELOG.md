@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.2.4
+- Added more lib bindings
+
 ## 0.2.0
 - Improved compatibilty with ImageMagick 6.9.7-2
 - Internal improvements

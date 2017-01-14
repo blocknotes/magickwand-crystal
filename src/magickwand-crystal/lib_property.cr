@@ -116,11 +116,11 @@ lib LibMagick
   fun magickSetGravity
     = MagickSetGravity( wand : MagickWand*, gravityType : GravityType): Bool
   fun magickSetImageArtifact
-    = MagickSetImageArtifact( wand : MagickWand*, cp : LibC::Char*, cp : LibC::Char* ): Bool
+    = MagickSetImageArtifact( wand : MagickWand*, cp1 : LibC::Char*, cp2 : LibC::Char* ): Bool
   fun magickSetImageProfile
     = MagickSetImageProfile( wand : MagickWand*, cp : LibC::Char*, ptr : Void*, s : LibC::SizeT ): Bool
   fun magickSetImageProperty
-    = MagickSetImageProperty( wand : MagickWand*, cp : LibC::Char*, cp : LibC::Char* ): Bool
+    = MagickSetImageProperty( wand : MagickWand*, cp1 : LibC::Char*, cp2 : LibC::Char* ): Bool
   fun magickSetInterlaceScheme
     = MagickSetInterlaceScheme( wand : MagickWand*, interlaceType : InterlaceType ): Bool
   fun magickSetInterpolateMethod
