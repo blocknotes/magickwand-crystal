@@ -518,6 +518,19 @@ lib LibMagick
     index : MagickRealType
   end
 
+  struct PixelIterator
+    id : LibC::SizeT
+    name : LibC::Char[MagickPathExtent]
+    exception : ExceptionInfo*
+    view : CacheView*
+    region : RectangleInfo
+    active : Bool
+    y : LibC::SSizeT
+    pixel_wands : PixelWand**
+    debug : Bool
+    signature : LibC::SizeT
+  end
+
   struct PixelPacket
     red : Quantum
     green : Quantum
@@ -527,7 +540,7 @@ lib LibMagick
 
   struct PixelWand
     id : LibC::SizeT
-    name : LibC::Char[MagickPathExtent];
+    name : LibC::Char[MagickPathExtent]
     exception : ExceptionInfo*
     pixel : PixelInfo
     count : LibC::SizeT
