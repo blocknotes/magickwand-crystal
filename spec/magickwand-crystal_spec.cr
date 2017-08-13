@@ -172,4 +172,15 @@ describe Magickwand do
     LibMagick.destroyDrawingWand d_wand
     LibMagick.destroyPixelWand p_wand
   end
+
+  it "should instantiate a pixel iterator" do
+    LibMagick.magickReadImage wand, test_png2
+    pi = LibMagick.newPixelIterator wand
+    LibMagick.isPixelIterator(pi).should eq true
+
+    row = LibMagick.pixelGetNextIteratorRow pi, out number_wands
+    number_wands.should eq 840
+
+    LibMagick.destroyPixelIterator pi
+  end
 end
