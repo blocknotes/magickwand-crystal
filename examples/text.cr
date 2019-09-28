@@ -3,14 +3,14 @@
 # Author:      Mat
 # Description: Text image
 # ---------------------------------------------------------------------------- #
-require "../magickwand-crystal"
+require "../src/magickwand-crystal"
 
 LibMagick.magickWandGenesis
 m_wand = LibMagick.newMagickWand
 d_wand = LibMagick.newDrawingWand
 p_wand = LibMagick.newPixelWand
-if LibMagick.magickReadImage( m_wand, "../spec/test1.png" )
-  LibMagick.pixelSetColor p_wand,"white"
+if LibMagick.magickReadImage(m_wand, "../spec/test1.png")
+  LibMagick.pixelSetColor p_wand, "white"
   LibMagick.drawSetFillColor d_wand, p_wand
   LibMagick.drawSetFont d_wand, "Verdana-Bold-Italic"
   LibMagick.drawSetFontSize d_wand, 40

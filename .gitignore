@@ -1,16 +1,15 @@
-/doc/
-/libs/
+/docs/
 /lib/
 /bin/
 /.shards/
+*.dwarf
 
 # Libraries don't need dependency lock
-# Dependencies will be locked in application that uses them
+# Dependencies will be locked in applications that use them
 /shard.lock
-/examples/lib
-#/examples/*.jpg
-#/examples/*.png
-#/spec/tmp.jpg
-#/spec/tmp.png
 
-/_misc
+# Examples extra files
+/examples/*.html
+/examples/lib
+
+/_misc/

@@ -72,7 +72,10 @@ Example: `MagickWandGenesis` => `LibMagick.magickWandGenesis`
 
 ## Notes
 
-Based on ImageMagick **6.9.7-3** - try the branch *im_7.0* for ImageMagick *7.0.x*
+Branches with different ImageMagick version:
+
+- **im_6.9.7-3**
+- **im_7.0.4-1**
 
 The Crystal Magic Wand ! :)
 

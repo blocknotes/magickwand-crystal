@@ -1,2 +1,2 @@
 require "spec"
-require "../magickwand-crystal"
+require "../src/magickwand-crystal"

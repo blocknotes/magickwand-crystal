@@ -3,7 +3,7 @@
 # Author:      Mat
 # Description: Draw some shapes
 # ---------------------------------------------------------------------------- #
-require "../magickwand-crystal"
+require "../src/magickwand-crystal"
 
 LibMagick.magickWandGenesis
 m_wand = LibMagick.newMagickWand

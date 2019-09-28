@@ -3,7 +3,7 @@
 # Author:      Mat
 # Description: Combine 2 images
 # ---------------------------------------------------------------------------- #
-require "../magickwand-crystal"
+require "../src/magickwand-crystal"
 
 LibMagick.magickWandGenesis
 wand1 = LibMagick.newMagickWand

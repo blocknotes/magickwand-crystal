@@ -14,7 +14,7 @@ lib LibMagick
     DeactivateAlphaChannel
     ExtractAlphaChannel
     OpaqueAlphaChannel
-    ResetAlphaChannel   # deprecated
+    ResetAlphaChannel # deprecated
     SetAlphaChannel
     ShapeAlphaChannel
     TransparentAlphaChannel
@@ -26,25 +26,25 @@ lib LibMagick
 
   enum ChannelType
     UndefinedChannel
-    RedChannel = 0x0001
-    GrayChannel = 0x0001
-    CyanChannel = 0x0001
-    GreenChannel = 0x0002
-    MagentaChannel = 0x0002
-    BlueChannel = 0x0004
-    YellowChannel = 0x0004
-    AlphaChannel = 0x0008
-    OpacityChannel = 0x0008
-    MatteChannel = 0x0008
-    BlackChannel = 0x0020
-    IndexChannel = 0x0020
-    CompositeChannels = 0x002F
-    AllChannels = 0x7ffffff
-    TrueAlphaChannel = 0x0040
-    RGBChannels = 0x0080
-    GrayChannels = 0x0080
-    SyncChannels = 0x0100
-    DefaultChannels = ((AllChannels | SyncChannels) &~ OpacityChannel)
+    RedChannel        =    0x0001
+    GrayChannel       =    0x0001
+    CyanChannel       =    0x0001
+    GreenChannel      =    0x0002
+    MagentaChannel    =    0x0002
+    BlueChannel       =    0x0004
+    YellowChannel     =    0x0004
+    AlphaChannel      =    0x0008
+    OpacityChannel    =    0x0008
+    MatteChannel      =    0x0008
+    BlackChannel      =    0x0020
+    IndexChannel      =    0x0020
+    CompositeChannels =    0x002F
+    AllChannels       = 0x7ffffff
+    TrueAlphaChannel  =    0x0040
+    RGBChannels       =    0x0080
+    GrayChannels      =    0x0080
+    SyncChannels      =    0x0100
+    DefaultChannels   = ((AllChannels | SyncChannels) & ~OpacityChannel)
   end
 
   enum ClassType
@@ -62,8 +62,8 @@ lib LibMagick
 
   enum ColorspaceType
     UndefinedColorspace
-    RGBColorspace             # Linear RGB colorspace
-    GRAYColorspace            # greyscale (linear) image (faked 1 channel)
+    RGBColorspace  # Linear RGB colorspace
+    GRAYColorspace # greyscale (linear) image (faked 1 channel)
     TransparentColorspace
     OHTAColorspace
     LabColorspace
@@ -73,8 +73,8 @@ lib LibMagick
     YIQColorspace
     YPbPrColorspace
     YUVColorspace
-    CMYKColorspace            # negared linear RGB with black separated
-    SRGBColorspace            # Default: non-lienar sRGB colorspace
+    CMYKColorspace # negared linear RGB with black separated
+    SRGBColorspace # Default: non-lienar sRGB colorspace
     HSBColorspace
     HSLColorspace
     HWBColorspace
@@ -83,23 +83,23 @@ lib LibMagick
     Rec709LumaColorspace
     Rec709YCbCrColorspace
     LogColorspace
-    CMYColorspace             # negated linear RGB colorspace
+    CMYColorspace # negated linear RGB colorspace
     LuvColorspace
     HCLColorspace
-    LCHColorspace             # alias for LCHuv
+    LCHColorspace # alias for LCHuv
     LMSColorspace
-    LCHabColorspace           # Cylindrical (Polar) Lab
-    LCHuvColorspace           # Cylindrical (Polar) Luv
+    LCHabColorspace # Cylindrical (Polar) Lab
+    LCHuvColorspace # Cylindrical (Polar) Luv
     ScRGBColorspace
     HSIColorspace
-    HSVColorspace             # alias for HSB
+    HSVColorspace # alias for HSB
     HCLpColorspace
     YDbDrColorspace
   end
 
   enum CommandOption
-    MagickUndefinedOptions = -1
-    MagickAlignOptions = 0
+    MagickUndefinedOptions      = -1
+    MagickAlignOptions          =  0
     MagickAlphaOptions
     MagickBooleanOptions
     MagickCacheOptions
@@ -258,7 +258,7 @@ lib LibMagick
     FaxCompression
     Group4Compression
     JPEGCompression
-    JPEG2000Compression       # ISO/IEC std 15444-1
+    JPEG2000Compression # ISO/IEC std 15444-1
     LosslessJPEGCompression
     LZWCompression
     RLECompression
@@ -268,9 +268,9 @@ lib LibMagick
     Pxr24Compression
     B44Compression
     B44ACompression
-    LZMACompression             # Lempel-Ziv-Markov chain algorithm
-    JBIG1Compression            # ISO/IEC std 11544 / ITU-T rec T.82
-    JBIG2Compression            # ISO/IEC std 14492 / ITU-T rec T.88
+    LZMACompression  # Lempel-Ziv-Markov chain algorithm
+    JBIG1Compression # ISO/IEC std 11544 / ITU-T rec T.82
+    JBIG2Compression # ISO/IEC std 14492 / ITU-T rec T.88
   end
 
   enum DecorationType
@@ -289,10 +289,10 @@ lib LibMagick
 
   enum DisposeType
     UnrecognizedDispose
-    UndefinedDispose = 0
-    NoneDispose = 1
-    BackgroundDispose = 2
-    PreviousDispose = 3
+    UndefinedDispose    = 0
+    NoneDispose         = 1
+    BackgroundDispose   = 2
+    PreviousDispose     = 3
   end
 
   enum DistortImageMethod
@@ -303,7 +303,7 @@ lib LibMagick
     PerspectiveDistortion
     PerspectiveProjectionDistortion
     BilinearForwardDistortion
-    BilinearDistortion = BilinearForwardDistortion
+    BilinearDistortion              = BilinearForwardDistortion
     BilinearReverseDistortion
     PolynomialDistortion
     ArcDistortion
@@ -333,80 +333,80 @@ lib LibMagick
 
   enum ExceptionType
     UndefinedException
-    WarningException = 300
-    ResourceLimitWarning = 300
-    TypeWarning = 305
-    OptionWarning = 310
-    DelegateWarning = 315
-    MissingDelegateWarning = 320
-    CorruptImageWarning = 325
-    FileOpenWarning = 330
-    BlobWarning = 335
-    StreamWarning = 340
-    CacheWarning = 345
-    CoderWarning = 350
-    FilterWarning = 352
-    ModuleWarning = 355
-    DrawWarning = 360
-    ImageWarning = 365
-    WandWarning = 370
-    RandomWarning = 375
-    XServerWarning = 380
-    MonitorWarning = 385
-    RegistryWarning = 390
-    ConfigureWarning = 395
-    PolicyWarning = 399
-    ErrorException = 400
-    ResourceLimitError = 400
-    TypeError = 405
-    OptionError = 410
-    DelegateError = 415
-    MissingDelegateError = 420
-    CorruptImageError = 425
-    FileOpenError = 430
-    BlobError = 435
-    StreamError = 440
-    CacheError = 445
-    CoderError = 450
-    FilterError = 452
-    ModuleError = 455
-    DrawError = 460
-    ImageError = 465
-    WandError = 470
-    RandomError = 475
-    XServerError = 480
-    MonitorError = 485
-    RegistryError = 490
-    ConfigureError = 495
-    PolicyError = 499
-    FatalErrorException = 700
-    ResourceLimitFatalError = 700
-    TypeFatalError = 705
-    OptionFatalError = 710
-    DelegateFatalError = 715
+    WarningException          = 300
+    ResourceLimitWarning      = 300
+    TypeWarning               = 305
+    OptionWarning             = 310
+    DelegateWarning           = 315
+    MissingDelegateWarning    = 320
+    CorruptImageWarning       = 325
+    FileOpenWarning           = 330
+    BlobWarning               = 335
+    StreamWarning             = 340
+    CacheWarning              = 345
+    CoderWarning              = 350
+    FilterWarning             = 352
+    ModuleWarning             = 355
+    DrawWarning               = 360
+    ImageWarning              = 365
+    WandWarning               = 370
+    RandomWarning             = 375
+    XServerWarning            = 380
+    MonitorWarning            = 385
+    RegistryWarning           = 390
+    ConfigureWarning          = 395
+    PolicyWarning             = 399
+    ErrorException            = 400
+    ResourceLimitError        = 400
+    TypeError                 = 405
+    OptionError               = 410
+    DelegateError             = 415
+    MissingDelegateError      = 420
+    CorruptImageError         = 425
+    FileOpenError             = 430
+    BlobError                 = 435
+    StreamError               = 440
+    CacheError                = 445
+    CoderError                = 450
+    FilterError               = 452
+    ModuleError               = 455
+    DrawError                 = 460
+    ImageError                = 465
+    WandError                 = 470
+    RandomError               = 475
+    XServerError              = 480
+    MonitorError              = 485
+    RegistryError             = 490
+    ConfigureError            = 495
+    PolicyError               = 499
+    FatalErrorException       = 700
+    ResourceLimitFatalError   = 700
+    TypeFatalError            = 705
+    OptionFatalError          = 710
+    DelegateFatalError        = 715
     MissingDelegateFatalError = 720
-    CorruptImageFatalError = 725
-    FileOpenFatalError = 730
-    BlobFatalError = 735
-    StreamFatalError = 740
-    CacheFatalError = 745
-    CoderFatalError = 750
-    FilterFatalError = 752
-    ModuleFatalError = 755
-    DrawFatalError = 760
-    ImageFatalError = 765
-    WandFatalError = 770
-    RandomFatalError = 775
-    XServerFatalError = 780
-    MonitorFatalError = 785
-    RegistryFatalError = 790
-    ConfigureFatalError = 795
-    PolicyFatalError = 799
+    CorruptImageFatalError    = 725
+    FileOpenFatalError        = 730
+    BlobFatalError            = 735
+    StreamFatalError          = 740
+    CacheFatalError           = 745
+    CoderFatalError           = 750
+    FilterFatalError          = 752
+    ModuleFatalError          = 755
+    DrawFatalError            = 760
+    ImageFatalError           = 765
+    WandFatalError            = 770
+    RandomFatalError          = 775
+    XServerFatalError         = 780
+    MonitorFatalError         = 785
+    RegistryFatalError        = 790
+    ConfigureFatalError       = 795
+    PolicyFatalError          = 799
   end
 
   enum FillRule
     UndefinedRule
-    #undef EvenOddRule
+    # undef EvenOddRule
     EvenOddRule
     NonZeroRule
   end
@@ -443,36 +443,36 @@ lib LibMagick
     CosineFilter
     SplineFilter
     LanczosRadiusFilter
-    SentinelFilter  # a count of all the filters, not a real filter
+    SentinelFilter # a count of all the filters, not a real filter
   end
 
   enum GeometryFlags
-    NoValue = 0x0000
-    XValue = 0x0001
-    XiValue = 0x0001
-    YValue = 0x0002
-    PsiValue = 0x0002
-    WidthValue = 0x0004
-    RhoValue = 0x0004
-    HeightValue = 0x0008
-    SigmaValue = 0x0008
-    ChiValue = 0x0010
-    XiNegative = 0x0020
-    XNegative = 0x0020
-    PsiNegative = 0x0040
-    YNegative = 0x0040
-    ChiNegative = 0x0080
-    PercentValue = 0x1000   # '%'  percentage of something
-    AspectValue = 0x2000    # '!'  resize no-aspect - special use flag
-    NormalizeValue = 0x2000 # '!'  ScaleKernelValue() in morphology.c
-    LessValue = 0x4000      # '<'  resize smaller - special use flag
-    GreaterValue = 0x8000   # '>'  resize larger - spacial use flag
-    MinimumValue = 0x10000  # '^'  special handling needed
-    CorrelateNormalizeValue = 0x10000 # '^' see ScaleKernelValue()
-    AreaValue = 0x20000     # '@'  resize to area - special use flag
-    DecimalValue = 0x40000  # '.'  floating point numbers found
-    SeparatorValue = 0x80000  # 'x'  separator found
-    AllValues = 0x7fffffff
+    NoValue                 =     0x0000
+    XValue                  =     0x0001
+    XiValue                 =     0x0001
+    YValue                  =     0x0002
+    PsiValue                =     0x0002
+    WidthValue              =     0x0004
+    RhoValue                =     0x0004
+    HeightValue             =     0x0008
+    SigmaValue              =     0x0008
+    ChiValue                =     0x0010
+    XiNegative              =     0x0020
+    XNegative               =     0x0020
+    PsiNegative             =     0x0040
+    YNegative               =     0x0040
+    ChiNegative             =     0x0080
+    PercentValue            =     0x1000 # '%'  percentage of something
+    AspectValue             =     0x2000 # '!'  resize no-aspect - special use flag
+    NormalizeValue          =     0x2000 # '!'  ScaleKernelValue() in morphology.c
+    LessValue               =     0x4000 # '<'  resize smaller - special use flag
+    GreaterValue            =     0x8000 # '>'  resize larger - spacial use flag
+    MinimumValue            =    0x10000 # '^'  special handling needed
+    CorrelateNormalizeValue =    0x10000 # '^' see ScaleKernelValue()
+    AreaValue               =    0x20000 # '@'  resize to area - special use flag
+    DecimalValue            =    0x40000 # '.'  floating point numbers found
+    SeparatorValue          =    0x80000 # 'x'  separator found
+    AllValues               = 0x7fffffff
   end
 
   enum GradientType
@@ -483,17 +483,17 @@ lib LibMagick
 
   enum GravityType
     UndefinedGravity
-    ForgetGravity = 0
-    NorthWestGravity = 1
-    NorthGravity = 2
-    NorthEastGravity = 3
-    WestGravity = 4
-    CenterGravity = 5
-    EastGravity = 6
-    SouthWestGravity = 7
-    SouthGravity = 8
-    SouthEastGravity = 9
-    StaticGravity = 10
+    ForgetGravity    =  0
+    NorthWestGravity =  1
+    NorthGravity     =  2
+    NorthEastGravity =  3
+    WestGravity      =  4
+    CenterGravity    =  5
+    EastGravity      =  6
+    SouthWestGravity =  7
+    SouthGravity     =  8
+    SouthEastGravity =  9
+    StaticGravity    = 10
   end
 
   enum ImageLayerMethod
@@ -544,37 +544,37 @@ lib LibMagick
 
   enum InterpolatePixelMethod
     UndefinedInterpolatePixel
-    AverageInterpolatePixel            # Average 4 nearest neighbours
-    BicubicInterpolatePixel            # Catmull-Rom interpolation
-    BilinearInterpolatePixel           # Triangular filter interpolation
-    FilterInterpolatePixel             # Use resize filter - (very slow)
-    IntegerInterpolatePixel            # Integer (floor) interpolation
-    MeshInterpolatePixel               # Triangular mesh interpolation
-    NearestNeighborInterpolatePixel    # Nearest neighbour only
-    SplineInterpolatePixel             # Cubic Spline (blurred) interpolation
-    Average9InterpolatePixel           # Average 9 nearest neighbours
-    Average16InterpolatePixel          # Average 16 nearest neighbours
-    BlendInterpolatePixel              # blend of nearest 1, 2 or 4 pixels
-    BackgroundInterpolatePixel         # just return background color
-    CatromInterpolatePixel             # Catmull-Rom interpolation
+    AverageInterpolatePixel         # Average 4 nearest neighbours
+    BicubicInterpolatePixel         # Catmull-Rom interpolation
+    BilinearInterpolatePixel        # Triangular filter interpolation
+    FilterInterpolatePixel          # Use resize filter - (very slow)
+    IntegerInterpolatePixel         # Integer (floor) interpolation
+    MeshInterpolatePixel            # Triangular mesh interpolation
+    NearestNeighborInterpolatePixel # Nearest neighbour only
+    SplineInterpolatePixel          # Cubic Spline (blurred) interpolation
+    Average9InterpolatePixel        # Average 9 nearest neighbours
+    Average16InterpolatePixel       # Average 16 nearest neighbours
+    BlendInterpolatePixel           # blend of nearest 1, 2 or 4 pixels
+    BackgroundInterpolatePixel      # just return background color
+    CatromInterpolatePixel          # Catmull-Rom interpolation
   end
 
   enum KernelInfoType
-    UndefinedKernel    # equivalent to UnityKernel
-    UnityKernel        # The no-op or 'original image' kernel
-    GaussianKernel     # Convolution Kernels, Gaussian Based
+    UndefinedKernel # equivalent to UnityKernel
+    UnityKernel     # The no-op or 'original image' kernel
+    GaussianKernel  # Convolution Kernels, Gaussian Based
     DoGKernel
     LoGKernel
     BlurKernel
     CometKernel
-    LaplacianKernel    # Convolution Kernels, by Name
+    LaplacianKernel # Convolution Kernels, by Name
     SobelKernel
     FreiChenKernel
     RobertsKernel
     PrewittKernel
     CompassKernel
     KirschKernel
-    DiamondKernel      # Shape Kernels
+    DiamondKernel # Shape Kernels
     SquareKernel
     RectangleKernel
     OctagonKernel
@@ -582,7 +582,7 @@ lib LibMagick
     PlusKernel
     CrossKernel
     RingKernel
-    PeaksKernel         # Hit And Miss Kernels
+    PeaksKernel # Hit And Miss Kernels
     EdgesKernel
     CornersKernel
     DiagonalsKernel
@@ -592,11 +592,11 @@ lib LibMagick
     ConvexHullKernel
     ThinSEKernel
     SkeletonKernel
-    ChebyshevKernel    # Distance Measuring Kernels
+    ChebyshevKernel # Distance Measuring Kernels
     ManhattanKernel
     OctagonalKernel
     EuclideanKernel
-    UserDefinedKernel   # User Specified Kernel Array
+    UserDefinedKernel # User Specified Kernel Array
     BinomialKernel
   end
 
@@ -675,8 +675,8 @@ lib LibMagick
     RootMeanSquaredErrorMetric
     NormalizedCrossCorrelationErrorMetric
     FuzzErrorMetric
-    UndefinedErrorMetric = 0
-    PerceptualHashErrorMetric = 0xff
+    UndefinedErrorMetric                  =    0
+    PerceptualHashErrorMetric             = 0xff
   end
 
   enum MontageMode
@@ -688,34 +688,34 @@ lib LibMagick
 
   enum MorphologyMethod
     UndefinedMorphology
-  # Convolve / Correlate weighted sums
-    ConvolveMorphology            # Weighted Sum with reflected kernel
-    CorrelateMorphology           # Weighted Sum using a sliding window
-  # Low-level Morphology methods
-    ErodeMorphology               # Minimum Value in Neighbourhood
-    DilateMorphology              # Maximum Value in Neighbourhood
-    ErodeIntensityMorphology      # Pixel Pick using GreyScale Erode
-    DilateIntensityMorphology     # Pixel Pick using GreyScale Dialate
-    DistanceMorphology            # Add Kernel Value  take Minimum
-  # Second-level Morphology methods
-    OpenMorphology                # Dilate then Erode
-    CloseMorphology               # Erode then Dilate
-    OpenIntensityMorphology       # Pixel Pick using GreyScale Open
-    CloseIntensityMorphology      # Pixel Pick using GreyScale Close
-    SmoothMorphology              # Open then Close
-  # Difference Morphology methods
-    EdgeInMorphology              # Dilate difference from Original
-    EdgeOutMorphology             # Erode difference from Original
-    EdgeMorphology                # Dilate difference with Erode
-    TopHatMorphology              # Close difference from Original
-    BottomHatMorphology           # Open difference from Original
-  # Recursive Morphology methods
-    HitAndMissMorphology          # Foreground/Background pattern matching
-    ThinningMorphology            # Remove matching pixels from image
-    ThickenMorphology             # Add matching pixels from image
-  # Experimental Morphology methods
-    VoronoiMorphology             # distance matte channel copy nearest color
-    IterativeDistanceMorphology   # Add Kernel Value, take Minimum
+    # Convolve / Correlate weighted sums
+    ConvolveMorphology  # Weighted Sum with reflected kernel
+    CorrelateMorphology # Weighted Sum using a sliding window
+    # Low-level Morphology methods
+    ErodeMorphology           # Minimum Value in Neighbourhood
+    DilateMorphology          # Maximum Value in Neighbourhood
+    ErodeIntensityMorphology  # Pixel Pick using GreyScale Erode
+    DilateIntensityMorphology # Pixel Pick using GreyScale Dialate
+    DistanceMorphology        # Add Kernel Value  take Minimum
+    # Second-level Morphology methods
+    OpenMorphology           # Dilate then Erode
+    CloseMorphology          # Erode then Dilate
+    OpenIntensityMorphology  # Pixel Pick using GreyScale Open
+    CloseIntensityMorphology # Pixel Pick using GreyScale Close
+    SmoothMorphology         # Open then Close
+    # Difference Morphology methods
+    EdgeInMorphology    # Dilate difference from Original
+    EdgeOutMorphology   # Erode difference from Original
+    EdgeMorphology      # Dilate difference with Erode
+    TopHatMorphology    # Close difference from Original
+    BottomHatMorphology # Open difference from Original
+    # Recursive Morphology methods
+    HitAndMissMorphology # Foreground/Background pattern matching
+    ThinningMorphology   # Remove matching pixels from image
+    ThickenMorphology    # Add matching pixels from image
+    # Experimental Morphology methods
+    VoronoiMorphology           # distance matte channel copy nearest color
+    IterativeDistanceMorphology # Add Kernel Value, take Minimum
   end
 
   enum NoiseType
@@ -758,20 +758,20 @@ lib LibMagick
 
   enum PathOperation
     PathDefaultOperation
-    PathCloseOperation                         # Z|z (none)
-    PathCurveToOperation                       # C|c (x1 y1 x2 y2 x y)+
-    PathCurveToQuadraticBezierOperation        # Q|q (x1 y1 x y)+
-    PathCurveToQuadraticBezierSmoothOperation  # T|t (x y)+
-    PathCurveToSmoothOperation                 # S|s (x2 y2 x y)+
-    PathEllipticArcOperation                   # A|a (rx ry x-axis-rotation large-arc-flag sweep-flag x y)+
-    PathLineToHorizontalOperation              # H|h x+
-    PathLineToOperation                        # L|l (x y)+
-    PathLineToVerticalOperation                # V|v y+
-    PathMoveToOperation                        # M|m (x y)+
+    PathCloseOperation                        # Z|z (none)
+    PathCurveToOperation                      # C|c (x1 y1 x2 y2 x y)+
+    PathCurveToQuadraticBezierOperation       # Q|q (x1 y1 x y)+
+    PathCurveToQuadraticBezierSmoothOperation # T|t (x y)+
+    PathCurveToSmoothOperation                # S|s (x2 y2 x y)+
+    PathEllipticArcOperation                  # A|a (rx ry x-axis-rotation large-arc-flag sweep-flag x y)+
+    PathLineToHorizontalOperation             # H|h x+
+    PathLineToOperation                       # L|l (x y)+
+    PathLineToVerticalOperation               # V|v y+
+    PathMoveToOperation                       # M|m (x y)+
   end
 
   enum PixelIntensityMethod
-    UndefinedPixelIntensityMethod = 0
+    UndefinedPixelIntensityMethod       = 0
     AveragePixelIntensityMethod
     BrightnessPixelIntensityMethod
     LightnessPixelIntensityMethod
@@ -801,15 +801,15 @@ lib LibMagick
 
   enum PixelMask
     UndefinedPixelMask = 0x000000
-    ReadPixelMask = 0x000001
-    WritePixelMask = 0x000002
+    ReadPixelMask      = 0x000001
+    WritePixelMask     = 0x000002
   end
 
   enum PixelTrait
     UndefinedPixelTrait = 0x000000
-    CopyPixelTrait = 0x000001
-    UpdatePixelTrait = 0x000002
-    BlendPixelTrait = 0x000004
+    CopyPixelTrait      = 0x000001
+    UpdatePixelTrait    = 0x000002
+    BlendPixelTrait     = 0x000004
   end
 
   enum PreviewType
@@ -898,13 +898,13 @@ lib LibMagick
   end
 
   enum SparseColorMethod
-    UndefinedColorInterpolate = DistortImageMethod::UndefinedDistortion
+    UndefinedColorInterpolate   = DistortImageMethod::UndefinedDistortion
     BarycentricColorInterpolate = DistortImageMethod::AffineDistortion
-    BilinearColorInterpolate = DistortImageMethod::BilinearReverseDistortion
-    PolynomialColorInterpolate = DistortImageMethod::PolynomialDistortion
-    ShepardsColorInterpolate = DistortImageMethod::ShepardsDistortion
+    BilinearColorInterpolate    = DistortImageMethod::BilinearReverseDistortion
+    PolynomialColorInterpolate  = DistortImageMethod::PolynomialDistortion
+    ShepardsColorInterpolate    = DistortImageMethod::ShepardsDistortion
     # Methods unique to SparseColor()
-    VoronoiColorInterpolate = DistortImageMethod::SentinelDistortion
+    VoronoiColorInterpolate   = DistortImageMethod::SentinelDistortion
     InverseColorInterpolate
     ManhattanColorInterpolate
   end
@@ -971,7 +971,7 @@ lib LibMagick
   enum VirtualPixelMethod
     UndefinedVirtualPixelMethod
     BackgroundVirtualPixelMethod
-    ConstantVirtualPixelMethod  # deprecated
+    ConstantVirtualPixelMethod # deprecated
     DitherVirtualPixelMethod
     EdgeVirtualPixelMethod
     MirrorVirtualPixelMethod

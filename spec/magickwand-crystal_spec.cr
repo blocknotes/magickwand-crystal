@@ -1,10 +1,10 @@
 require "./spec_helper"
 
 describe Magickwand do
-  test_png  = "spec/test1.png" # PNG: 640x480 - zip comp
-  test_jpg  = "spec/test2.jpg" # PNG
+  test_png = "spec/test1.png"  # PNG: 640x480 - zip comp
+  test_jpg = "spec/test2.jpg"  # PNG
   test_png2 = "spec/test3.png" # PNG
-  tmp_img   = "spec/tmp"
+  tmp_img = "spec/tmp"
   wand = nil
 
   Spec.before_each do
@@ -18,18 +18,18 @@ describe Magickwand do
   end
 
   it "should be ready" do
-    LibMagick.isMagickWand( wand ).should be_true  # check the return value: true
+    LibMagick.isMagickWand(wand).should be_true # check the return value: true
     # LibMagick.isMagickWandInstantiated.should be_true # NOTE: Travis says: "undefined IsMagickWandInstantiated" - check Magick version
   end
 
   it "should read an image and get basic info" do
-    LibMagick.magickReadImage( wand, test_png ).should be_true  # check the return value: true
-    String.new( LibMagick.magickGetImageFormat( wand ) ).should eq "PNG"  # check the format
+    LibMagick.magickReadImage(wand, test_png).should be_true         # check the return value: true
+    String.new(LibMagick.magickGetImageFormat(wand)).should eq "PNG" # check the format
     # ( LibMagick.magickGetImageWidth(  wand ) > 0 ).should be_true
-    LibMagick.magickGetImageWidth(  wand ).should eq 640  # check the width
-    LibMagick.magickGetImageHeight( wand ).should eq 480  # check the height
-    LibMagick.magickGetImageCompression( wand ).should eq LibMagick::CompressionType::ZipCompression  # check the compression type
-    LibMagick.magickGetImageChannelStatistics( wand ).value.class.should eq LibMagick::ChannelStatistics  # check the class type
+    LibMagick.magickGetImageWidth(wand).should eq 640                                                  # check the width
+    LibMagick.magickGetImageHeight(wand).should eq 480                                                 # check the height
+    LibMagick.magickGetImageCompression(wand).should eq LibMagick::CompressionType::ZipCompression     # check the compression type
+    LibMagick.magickGetImageChannelStatistics(wand).value.class.should eq LibMagick::ChannelStatistics # check the class type
   end
 
   it "should scale an image" do
@@ -39,13 +39,13 @@ describe Magickwand do
     w = LibMagick.magickGetImageWidth wand
     h = LibMagick.magickGetImageHeight wand
     LibMagick.magickScaleImage wand, w / 2, h / 2
-    LibMagick.magickWriteImage( wand, tmp ).should be_true  # check the return value: true
+    LibMagick.magickWriteImage(wand, tmp).should be_true # check the return value: true
     # Read the new image
     wand2 = LibMagick.newMagickWand
-    LibMagick.magickReadImage( wand2, tmp ).should be_true  # check the return value: true
-    String.new( LibMagick.magickGetImageFormat( wand2 ) ).should eq "JPEG"  # check the format
-    LibMagick.magickGetImageWidth(  wand2 ).should eq 320  # check the width
-    LibMagick.magickGetImageHeight( wand2 ).should eq 240  # check the height
+    LibMagick.magickReadImage(wand2, tmp).should be_true               # check the return value: true
+    String.new(LibMagick.magickGetImageFormat(wand2)).should eq "JPEG" # check the format
+    LibMagick.magickGetImageWidth(wand2).should eq 320                 # check the width
+    LibMagick.magickGetImageHeight(wand2).should eq 240                # check the height
     LibMagick.destroyMagickWand wand2
   end
 
@@ -56,13 +56,13 @@ describe Magickwand do
     w = LibMagick.magickGetImageWidth wand
     h = LibMagick.magickGetImageHeight wand
     LibMagick.magickResizeImage wand, w / 2, h / 2, LibMagick::FilterTypes::LanczosFilter, 1
-    LibMagick.magickWriteImage( wand, tmp ).should be_true  # check the return value: true
+    LibMagick.magickWriteImage(wand, tmp).should be_true # check the return value: true
     # Read the new image
     wand2 = LibMagick.newMagickWand
-    LibMagick.magickReadImage( wand2, tmp ).should be_true  # check the return value: true
-    String.new( LibMagick.magickGetImageFormat( wand2 ) ).should eq "JPEG"  # check the format
-    LibMagick.magickGetImageWidth(  wand2 ).should eq ( w / 2 )  # check the width
-    LibMagick.magickGetImageHeight( wand2 ).should eq ( h / 2 )  # check the height
+    LibMagick.magickReadImage(wand2, tmp).should be_true               # check the return value: true
+    String.new(LibMagick.magickGetImageFormat(wand2)).should eq "JPEG" # check the format
+    LibMagick.magickGetImageWidth(wand2).should eq (w / 2).to_i        # check the width
+    LibMagick.magickGetImageHeight(wand2).should eq (h / 2).to_i       # check the height
     LibMagick.destroyMagickWand wand2
   end
 
@@ -80,10 +80,10 @@ describe Magickwand do
     LibMagick.destroyPixelWand p_wand
     # Read the new image
     wand2 = LibMagick.newMagickWand
-    LibMagick.magickReadImage( wand2, tmp ).should be_true  # check the return value: true
-    String.new( LibMagick.magickGetImageFormat( wand2 ) ).should eq "JPEG"  # check the format
-    LibMagick.magickGetImageWidth(  wand2 ).should eq ( w + 100 )  # check the width
-    LibMagick.magickGetImageHeight( wand2 ).should eq ( h + 100 )  # check the height
+    LibMagick.magickReadImage(wand2, tmp).should be_true               # check the return value: true
+    String.new(LibMagick.magickGetImageFormat(wand2)).should eq "JPEG" # check the format
+    LibMagick.magickGetImageWidth(wand2).should eq (w + 100)           # check the width
+    LibMagick.magickGetImageHeight(wand2).should eq (h + 100)          # check the height
     LibMagick.destroyMagickWand wand2
   end
 
@@ -98,21 +98,21 @@ describe Magickwand do
     LibMagick.pixelSetColor fc_wand, "none"
     LibMagick.pixelSetColor bc_wand, "red"
     channel = LibMagick.parseChannelOption "rgba"
-    LibMagick.magickFloodfillPaintImage( wand, LibMagick::ChannelType.new( channel.to_i ), fc_wand, 20, bc_wand, 150, 150, false ).should be_true  # check the return value: true
+    LibMagick.magickFloodfillPaintImage(wand, LibMagick::ChannelType.new(channel.to_i), fc_wand, 20, bc_wand, 150, 150, false).should be_true # check the return value: true
     LibMagick.magickWriteImage wand, tmp
     LibMagick.destroyPixelWand bc_wand
     LibMagick.destroyPixelWand fc_wand
     # Read the new image
     wand2 = LibMagick.newMagickWand
-    LibMagick.magickReadImage( wand2, tmp ).should be_true   # check the return value: true
-    String.new( LibMagick.magickGetImageFormat( wand2 ) ).should eq "PNG"  # check the format
-    LibMagick.magickGetImageWidth(  wand2 ).should eq ( w )  # check the width
-    LibMagick.magickGetImageHeight( wand2 ).should eq ( h )  # check the height
+    LibMagick.magickReadImage(wand2, tmp).should be_true              # check the return value: true
+    String.new(LibMagick.magickGetImageFormat(wand2)).should eq "PNG" # check the format
+    LibMagick.magickGetImageWidth(wand2).should eq (w)                # check the width
+    LibMagick.magickGetImageHeight(wand2).should eq (h)               # check the height
     p_wand = LibMagick.newPixelWand
-    LibMagick.magickGetImagePixelColor( wand2, 10, 10, p_wand )
-    String.new( LibMagick.pixelGetColorAsNormalizedString( p_wand ) ).should eq "0,0,1"    # check the pixel in the center: blue
-    LibMagick.magickGetImagePixelColor( wand2, w / 2, h / 2, p_wand )
-    String.new( LibMagick.pixelGetColorAsNormalizedString( p_wand ) ).should eq "0,0,0,1"  # check the pixel in the center: transparent
+    LibMagick.magickGetImagePixelColor(wand2, 10, 10, p_wand)
+    String.new(LibMagick.pixelGetColorAsNormalizedString(p_wand)).should eq "0,0,1" # check the pixel in the center: blue
+    LibMagick.magickGetImagePixelColor(wand2, w / 2, h / 2, p_wand)
+    String.new(LibMagick.pixelGetColorAsNormalizedString(p_wand)).should eq "0,0,0,1" # check the pixel in the center: transparent
     LibMagick.destroyPixelWand p_wand
     LibMagick.destroyMagickWand wand2
   end
@@ -127,13 +127,13 @@ describe Magickwand do
     h = LibMagick.magickGetImageHeight wand
     LibMagick.magickCompositeImage wand, wand2, LibMagick::CompositeOperator::OverCompositeOp, 100, 100
     LibMagick.magickWriteImage wand, tmp
-    LibMagick.destroyMagickWand( wand2 )
+    LibMagick.destroyMagickWand(wand2)
     # Read the new image
     wand3 = LibMagick.newMagickWand
-    LibMagick.magickReadImage( wand3, tmp ).should be_true   # check the return value: true
-    String.new( LibMagick.magickGetImageFormat( wand3 ) ).should eq "JPEG"  # check the format
-    LibMagick.magickGetImageWidth(  wand3 ).should eq ( w )  # check the width
-    LibMagick.magickGetImageHeight( wand3 ).should eq ( h )  # check the height
+    LibMagick.magickReadImage(wand3, tmp).should be_true               # check the return value: true
+    String.new(LibMagick.magickGetImageFormat(wand3)).should eq "JPEG" # check the format
+    LibMagick.magickGetImageWidth(wand3).should eq (w)                 # check the width
+    LibMagick.magickGetImageHeight(wand3).should eq (h)                # check the height
     LibMagick.destroyMagickWand wand3
   end
 
@@ -141,10 +141,10 @@ describe Magickwand do
     tmp = tmp_img + ".jpg"
     File.delete tmp rescue nil
     LibMagick.magickReadImage wand, test_jpg
-    LibMagick.magickGetImageColorspace( wand ).should_not eq( LibMagick::ColorspaceType::GRAYColorspace )  # check the colorspace
-    LibMagick.magickTransformImageColorspace( wand, LibMagick::ColorspaceType::GRAYColorspace ).should be_true   # check the return value: true
-    LibMagick.magickWriteImage( wand, tmp ).should be_true   # check the return value: true
-    LibMagick.magickGetImageColorspace( wand ).should eq( LibMagick::ColorspaceType::GRAYColorspace )  # check the colorspace
+    LibMagick.magickGetImageColorspace(wand).should_not eq(LibMagick::ColorspaceType::GRAYColorspace)        # check the colorspace
+    LibMagick.magickTransformImageColorspace(wand, LibMagick::ColorspaceType::GRAYColorspace).should be_true # check the return value: true
+    LibMagick.magickWriteImage(wand, tmp).should be_true                                                     # check the return value: true
+    LibMagick.magickGetImageColorspace(wand).should eq(LibMagick::ColorspaceType::GRAYColorspace)            # check the colorspace
   end
 
   it "should draw a yellow rectangle on the center of an image" do
@@ -154,8 +154,8 @@ describe Magickwand do
     p_wand = LibMagick.newPixelWand
     d_wand = LibMagick.newDrawingWand
     LibMagick.magickReadImage wand, test_png2
-    px = LibMagick.magickGetImageWidth( wand ) / 2
-    py = LibMagick.magickGetImageHeight( wand ) / 2
+    px = LibMagick.magickGetImageWidth(wand) / 2
+    py = LibMagick.magickGetImageHeight(wand) / 2
     LibMagick.pixelSetColor p_wand, "yellow"
     LibMagick.drawSetStrokeOpacity d_wand, 1
     LibMagick.drawSetStrokeColor d_wand, p_wand
@@ -163,12 +163,12 @@ describe Magickwand do
     LibMagick.drawSetStrokeAntialias d_wand, true
     LibMagick.drawSetFillColor d_wand, p_wand
     LibMagick.drawRectangle d_wand, px - 50, py - 50, px + 50, py + 50
-    LibMagick.magickGetImagePixelColor( wand, px, py, p_wand )
-    String.new( LibMagick.pixelGetColorAsNormalizedString( p_wand ) ).should eq "1,0,0"  # check the pixel in the center: red
-    LibMagick.magickDrawImage( wand, d_wand ).should be_true   # check the return value: true
-    LibMagick.magickGetImagePixelColor( wand, px, py, p_wand )
-    String.new( LibMagick.pixelGetColorAsNormalizedString( p_wand ) ).should eq "1,1,0"  # check the pixel in the center: yellow
-    LibMagick.magickWriteImage( wand, tmp ).should be_true   # check the return value: true
+    LibMagick.magickGetImagePixelColor(wand, px, py, p_wand)
+    String.new(LibMagick.pixelGetColorAsNormalizedString(p_wand)).should eq "1,0,0" # check the pixel in the center: red
+    LibMagick.magickDrawImage(wand, d_wand).should be_true                          # check the return value: true
+    LibMagick.magickGetImagePixelColor(wand, px, py, p_wand)
+    String.new(LibMagick.pixelGetColorAsNormalizedString(p_wand)).should eq "1,1,0" # check the pixel in the center: yellow
+    LibMagick.magickWriteImage(wand, tmp).should be_true                            # check the return value: true
     LibMagick.destroyDrawingWand d_wand
     LibMagick.destroyPixelWand p_wand
   end

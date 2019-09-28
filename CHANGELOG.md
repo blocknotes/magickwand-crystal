@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.2.5
+- Code formatting and minor improvements to the project structure
+
 ## 0.2.4
 - Added more lib bindings
 

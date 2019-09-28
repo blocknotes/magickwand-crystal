@@ -3,3 +3,8 @@ language: crystal
 before_install:
   - sudo apt-get install libmagickwand-dev -y
   - sudo ldconfig
+
+# Uncomment the following if you'd like Travis to run specs and check code formatting
+# script:
+#   - crystal spec
+#   - crystal tool format --check
