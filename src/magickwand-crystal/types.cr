@@ -7,9 +7,10 @@ lib LibMagick
   QuantumRange     = 65535.0 # 255.0
 
   type CacheView = Void # TODO
+  type MagickDoubleType = LibC::Double
   type MagickMutexType = LibC::SizeT
   type MagickOffsetType = LibC::SSizeT
-  type MagickRealType = LibC::Float
+  type MagickRealType = MagickDoubleType
   type MagickSizeType = LibC::SizeT
   type MagickStatusType = LibC::UInt
   type MagickThreadType = LibC::PidT
@@ -45,6 +46,15 @@ lib LibMagick
     signature : LibC::ULong
   end
 
+  struct CCObjectInfo
+    id : LibC::SSizeT
+    bounding_box : RectangleInfo
+    color : PixelInfo
+    centroid : PointInfo
+    area : LibC::Double
+    census : LibC::Double
+  end
+
   struct ChannelFeatures
     angular_second_moment : LibC::Double[4]
     contrast : LibC::Double[4]
@@ -64,6 +74,7 @@ lib LibMagick
 
   struct ChannelStatistics
     depth : LibC::SizeT
+    area : LibC::Double
     minima : LibC::Double
     maxima : LibC::Double
     sum : LibC::Double
@@ -108,14 +119,14 @@ lib LibMagick
     geometry : LibC::Char*
     viewbox : RectangleInfo
     affine : AffineMatrix
-    gravity : GravityType
-    fill : PixelPacket
-    stroke : PixelPacket
+    fill : PixelInfo
+    stroke : PixelInfo
+    undercolor : PixelInfo
+    border_color : PixelInfo
+    fill_pattern : Image*
+    stroke_pattern : Image*
     stroke_width : LibC::Double
     gradient : GradientInfo
-    fill_pattern : Image*
-    tile : Image*
-    stroke_pattern : Image*
     stroke_antialias : Bool
     text_antialias : Bool
     fill_rule : FillRule
@@ -126,10 +137,10 @@ lib LibMagick
     decorate : DecorationType
     compose : CompositeOperator
     text : LibC::Char*
-    face : LibC::SizeT
     font : LibC::Char*
     metrics : LibC::Char*
     family : LibC::Char*
+    face : LibC::SizeT
     style : StyleType
     stretch : StretchType
     weight : LibC::SizeT
@@ -137,24 +148,27 @@ lib LibMagick
     pointsize : LibC::Double
     density : LibC::Char*
     align : AlignType
-    undercolor : PixelPacket
-    border_color : PixelPacket
+    gravity : GravityType
     server_name : LibC::Char*
     dash_pattern : LibC::Double*
     clip_mask : LibC::Char*
     bounds : SegmentInfo
     clip_units : ClipPathUnits
-    opacity : Quantum
+    alpha : Quantum
     render : Bool
     element_reference : ElementReference
-    debug : Bool
-    signature : LibC::SizeT
     kerning : LibC::Double
     interword_spacing : LibC::Double
     interline_spacing : LibC::Double
     direction : DirectionType
-    fill_opacity : LibC::Double
-    stroke_opacity : LibC::Double
+    debug : Bool
+    signature : LibC::SizeT
+    fill_alpha : LibC::Double
+    stroke_alpha : LibC::Double
+    clip_path : Bool
+    clipping_mask : Image*
+    compliance : ComplianceType
+    composite_mask : Image*
   end
 
   struct DrawingWand
@@ -238,11 +252,11 @@ lib LibMagick
     number_stops : LibC::SizeT
     spread : SpreadMethod
     debug : Bool
-    signature : LibC::SizeT
     center : PointInfo
-    radius : MagickRealType
-    angle : MagickRealType
     radii : PointInfo
+    radius : LibC::Double
+    angle : LibC::Double
+    signature : LibC::SizeT
   end
 
   struct Image
@@ -398,7 +412,7 @@ lib LibMagick
     height : LibC::SizeT
     x : LibC::SSizeT
     y : LibC::SSizeT
-    values : LibC::Double*
+    values : MagickRealType*
     minimum : LibC::Double
     maximum : LibC::Double
     negative_range : LibC::Double
@@ -424,26 +438,18 @@ lib LibMagick
     name : LibC::Char*
     description : LibC::Char*
     version : LibC::Char*
+    mime_type : LibC::Char*
     note : LibC::Char*
-    module : LibC::Char*
-    image_info : ImageInfo*
+    magick_module : LibC::Char*
     decoder : DecodeImageHandler*
     encoder : EncodeImageHandler*
+    image_info : ImageInfo*
     magick : IsImageFormatHandler*
-    client_data : Void*
-    adjoin : Bool
-    raw : Bool
-    endian_support : Bool
-    blob_support : Bool
-    seekable_stream : Bool
     format_type : MagickFormatType
-    thread_support : MagickStatusType
-    stealth : Bool
-    previous : MagickInfo*
-    next : MagickInfo*
-    signature : LibC::SizeT
-    mime_type : LibC::Char*
+    flags : MagickStatusType
     semaphore : SemaphoreInfo*
+    signature : LibC::SizeT
+    client_data : Void*
   end
 
   struct MagickWand
@@ -481,14 +487,15 @@ lib LibMagick
     pointsize : LibC::Double
     border_width : LibC::SizeT
     shadow : Bool
-    fill : PixelPacket
-    stroke : PixelPacket
-    background_color : PixelPacket
-    border_color : PixelPacket
-    matte_color : PixelPacket
+    alpha_color : PixelInfo
+    background_color : PixelInfo
+    border_color : PixelInfo
+    fill : PixelInfo
+    stroke : PixelInfo
     gravity : GravityType
     debug : LibC::Char
     signature : LibC::SizeT
+    matte_color : PixelInfo
   end
 
   struct OffsetInfo
@@ -565,6 +572,7 @@ lib LibMagick
     primitive : PrimitiveType
     method : PaintMethod
     text : LibC::Char*
+    closed_subpath : Bool
   end
 
   struct ProfileInfo
@@ -577,11 +585,10 @@ lib LibMagick
   struct QuantizeInfo
     number_colors : LibC::SizeT
     tree_depth : LibC::SizeT
-    dither : Bool
     colorspace : ColorspaceType
+    dither_method : DitherMethod
     measure_error : Bool
     signature : LibC::SizeT
-    dither_method : DitherMethod
   end
 
   struct QuantumPixelPacket
@@ -663,9 +670,8 @@ lib LibMagick
   end
 
   struct StopInfo
-    color : MagickPixelPacket
-    offset : MagickRealType
-    # offset : MagickPixelPacket
+    color : PixelInfo
+    offset : LibC::Double
   end
 
   struct ThresholdMap

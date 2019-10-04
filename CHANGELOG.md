@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.8
+- Support for ImageMagick-7.0.8-66
+- Tidy up lib_magick spec
+
 ## 0.2.5
 - Code formatting and minor improvements to the project structure
 

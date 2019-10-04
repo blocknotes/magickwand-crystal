@@ -33,10 +33,9 @@ lib LibMagick
   fun acquireDrawingWand = AcquireDrawingWand(drawInfo : DrawInfo*, image : Image*) : DrawingWand*
   fun cloneDrawingWand = CloneDrawingWand(wand : DrawingWand*) : DrawingWand*
   fun destroyDrawingWand = DestroyDrawingWand(wand : DrawingWand*) : DrawingWand*
-  fun newDrawingWand = NewDrawingWand : DrawingWand*
+  fun newDrawingWand = NewDrawingWand() : DrawingWand*
 
-  # fun drawCloneExceptionInfo  # REMOVED
-  #   = DrawCloneExceptionInfo( wand : DrawingWand* ): ExceptionInfo*
+  fun drawCloneExceptionInfo = DrawCloneExceptionInfo(drawingWand : DrawingWand*) : ExceptionInfo*
 
   fun drawGetExceptionType = DrawGetExceptionType(wand : DrawingWand*) : ExceptionType
 
@@ -54,6 +53,7 @@ lib LibMagick
   fun drawGetFontResolution = DrawGetFontResolution(wand : DrawingWand*, dp1 : LibC::Double*, dp2 : LibC::Double*) : Bool
   fun drawGetStrokeAntialias = DrawGetStrokeAntialias(wand : DrawingWand*) : Bool
   fun drawGetTextAntialias = DrawGetTextAntialias(wand : DrawingWand*) : Bool
+  fun drawGetTypeMetrics = DrawGetTypeMetrics(drawingWand : DrawingWand*, char : LibC::Char*, bool : Bool, typeMetric : TypeMetric*) : Bool
   fun drawPopPattern = DrawPopPattern(wand : DrawingWand*) : Bool
   fun drawPushPattern = DrawPushPattern(wand : DrawingWand*, pc : LibC::Char*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double) : Bool
   fun drawRender = DrawRender(wand : DrawingWand*) : Bool
@@ -96,7 +96,6 @@ lib LibMagick
   fun drawSetTextInterwordSpacing = DrawSetTextInterwordSpacing(wand : DrawingWand*, d : LibC::Double) : Void
   fun drawGetTextUnderColor = DrawGetTextUnderColor(wand1 : DrawingWand*, wand2 : PixelWand*) : Void
   fun drawLine = DrawLine(wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double) : Void
-  fun drawMatte = DrawMatte(wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, paintMethod : PaintMethod) : Void
   fun drawPathClose = DrawPathClose(wand : DrawingWand*) : Void
   fun drawPathCurveToAbsolute = DrawPathCurveToAbsolute(wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double, d5 : LibC::Double, d6 : LibC::Double) : Void
   fun drawPathCurveToRelative = DrawPathCurveToRelative(wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double, d5 : LibC::Double, d6 : LibC::Double) : Void
@@ -106,10 +105,6 @@ lib LibMagick
   fun drawPathCurveToQuadraticBezierSmoothRelative = DrawPathCurveToQuadraticBezierSmoothRelative(wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double) : Void
   fun drawPathCurveToSmoothAbsolute = DrawPathCurveToSmoothAbsolute(wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double) : Void
   fun drawPathCurveToSmoothRelative = DrawPathCurveToSmoothRelative(wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, d4 : LibC::Double) : Void
-  # fun drawPathEllipticArcAbsolute  # REMOVED
-  #   = DrawPathEllipticArcAbsolute( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, b1 : Bool, b2 : Bool, d4 : LibC::Double, d5 : LibC::Double ): Void
-  # fun drawPathEllipticArcRelative  # REMOVED
-  #   = DrawPathEllipticArcRelative( wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double, d3 : LibC::Double, b1 : Bool, b2 : Bool, d4 : LibC::Double, d5 : LibC::Double ): Void
   fun drawPathFinish = DrawPathFinish(wand : DrawingWand*) : Void
   fun drawPathLineToAbsolute = DrawPathLineToAbsolute(wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double) : Void
   fun drawPathLineToRelative = DrawPathLineToRelative(wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double) : Void
@@ -158,7 +153,7 @@ lib LibMagick
   fun drawSetTextDirection = DrawSetTextDirection(wand : DrawingWand*, directionType : DirectionType) : Void
   fun drawSetTextEncoding = DrawSetTextEncoding(wand : DrawingWand*, pc : LibC::Char*) : Void
   fun drawSetTextUnderColor = DrawSetTextUnderColor(wand1 : DrawingWand*, wand2 : PixelWand*) : Void
-  fun drawSetViewbox = DrawSetViewbox(wand : DrawingWand*, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT, ss3 : LibC::SSizeT, ss4 : LibC::SSizeT) : Void
+  fun drawSetViewbox = DrawSetViewbox(drawingWand : DrawingWand*, double1 : LibC::Double, double2 : LibC::Double, double3 : LibC::Double, double4 : LibC::Double) : Void
   fun drawSkewX = DrawSkewX(wand : DrawingWand*, d : LibC::Double) : Void
   fun drawSkewY = DrawSkewY(wand : DrawingWand*, d : LibC::Double) : Void
   fun drawTranslate = DrawTranslate(wand : DrawingWand*, d1 : LibC::Double, d2 : LibC::Double) : Void

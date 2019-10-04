@@ -4,7 +4,7 @@ lib LibMagick
   fun magickGetFilename = MagickGetFilename(wand : MagickWand*) : LibC::Char*
   fun magickGetFormat = MagickGetFormat(wand : MagickWand*) : LibC::Char*
   fun magickGetFont = MagickGetFont(wand : MagickWand*) : LibC::Char*
-  fun magickGetHomeURL = MagickGetHomeURL : LibC::Char*
+  fun magickGetHomeURL = MagickGetHomeURL() : LibC::Char*
   fun magickGetImageArtifact = MagickGetImageArtifact(wand : MagickWand*, cp : LibC::Char*) : LibC::Char*
   fun magickGetImageArtifacts = MagickGetImageArtifacts(wand : MagickWand*, cp : LibC::Char*, sp : LibC::SizeT*) : LibC::Char**
   fun magickGetImageProfiles = MagickGetImageProfiles(wand : MagickWand*, cp : LibC::Char*, sp : LibC::SizeT*) : LibC::Char**
@@ -21,11 +21,11 @@ lib LibMagick
 
   fun magickGetCompression = MagickGetCompression(wand : MagickWand*) : CompressionType
 
-  fun magickGetCopyright = MagickGetCopyright : LibC::Char*
-  fun magickGetPackageName = MagickGetPackageName : LibC::Char*
+  fun magickGetCopyright = MagickGetCopyright() : LibC::Char*
+  fun magickGetPackageName = MagickGetPackageName() : LibC::Char*
   fun magickGetQuantumDepth = MagickGetQuantumDepth(sp : LibC::SizeT*) : LibC::Char*
   fun magickGetQuantumRange = MagickGetQuantumRange(sp : LibC::SizeT*) : LibC::Char*
-  fun magickGetReleaseDate = MagickGetReleaseDate : LibC::Char*
+  fun magickGetReleaseDate = MagickGetReleaseDate() : LibC::Char*
   fun magickGetVersion = MagickGetVersion(sp : LibC::SizeT*) : LibC::Char*
 
   fun magickGetPointsize = MagickGetPointsize(wand : MagickWand*) : LibC::Double
@@ -39,7 +39,7 @@ lib LibMagick
 
   fun magickGetInterlaceScheme = MagickGetInterlaceScheme(wand : MagickWand*) : InterlaceType
 
-  fun magickGetInterpolateMethod = MagickGetInterpolateMethod(wand : MagickWand*) : InterpolatePixelMethod
+  fun magickGetInterpolateMethod = MagickGetInterpolateMethod(magickWand : MagickWand*) : PixelInterpolateMethod
 
   fun magickGetOrientation = MagickGetOrientation(wand : MagickWand*) : OrientationType
 
@@ -67,7 +67,7 @@ lib LibMagick
   fun magickSetImageProfile = MagickSetImageProfile(wand : MagickWand*, cp : LibC::Char*, ptr : Void*, s : LibC::SizeT) : Bool
   fun magickSetImageProperty = MagickSetImageProperty(wand : MagickWand*, cp1 : LibC::Char*, cp2 : LibC::Char*) : Bool
   fun magickSetInterlaceScheme = MagickSetInterlaceScheme(wand : MagickWand*, interlaceType : InterlaceType) : Bool
-  fun magickSetInterpolateMethod = MagickSetInterpolateMethod(wand : MagickWand*, interpolatePixelMethod : InterpolatePixelMethod) : Bool
+  fun magickSetInterpolateMethod = MagickSetInterpolateMethod(magickWand : MagickWand*, pixelInterpolateMethod : PixelInterpolateMethod) : Bool
   fun magickSetOption = MagickSetOption(wand : MagickWand*, cp1 : LibC::Char*, cp2 : LibC::Char*) : Bool
   fun magickSetOrientation = MagickSetOrientation(wand : MagickWand*, orientationType : OrientationType) : Bool
   fun magickSetPage = MagickSetPage(wand : MagickWand*, s1 : LibC::SizeT, s2 : LibC::SizeT, ss1 : LibC::SSizeT, ss2 : LibC::SSizeT) : Bool
@@ -76,6 +76,7 @@ lib LibMagick
   fun magickSetResolution = MagickSetResolution(wand : MagickWand*, d1 : LibC::Double, d2 : LibC::Double) : Bool
   fun magickSetResourceLimit = MagickSetResourceLimit(type : ResourceType, limit : MagickSizeType) : Bool
   fun magickSetSamplingFactors = MagickSetSamplingFactors(wand : MagickWand*, s : LibC::SizeT, dp : LibC::Double*) : Bool
+  fun magickSetSecurityPolicy = MagickSetSecurityPolicy(magickWand : MagickWand*, char : LibC::Char*) : Bool
   fun magickSetSize = MagickSetSize(wand : MagickWand*, s1 : LibC::SizeT, s2 : LibC::SizeT) : Bool
   fun magickSetSizeOffset = MagickSetSizeOffset(wand : MagickWand*, s1 : LibC::SizeT, s2 : LibC::SizeT, ss1 : LibC::SSizeT) : Bool
   fun magickSetType = MagickSetType(wand : MagickWand*, imageType : ImageType) : Bool
@@ -93,4 +94,6 @@ lib LibMagick
 
   fun magickGetImageProfile = MagickGetImageProfile(wand : MagickWand*, cp : LibC::Char*, sp : LibC::SizeT*) : LibC::UChar*
   fun magickRemoveImageProfile = MagickRemoveImageProfile(wand : MagickWand*, cp : LibC::Char*, sp : LibC::SizeT*) : LibC::UChar*
+
+  fun magickSetSeed = MagickSetSeed(uLong : LibC::ULong) : Void
 end

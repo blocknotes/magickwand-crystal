@@ -6,6 +6,25 @@ lib LibMagick
     RightAlign
   end
 
+  enum AlphaChannelOption
+    UndefinedAlphaChannel
+    ActivateAlphaChannel
+    AssociateAlphaChannel
+    BackgroundAlphaChannel
+    CopyAlphaChannel
+    DeactivateAlphaChannel
+    DiscreteAlphaChannel
+    DisassociateAlphaChannel
+    ExtractAlphaChannel
+    OffAlphaChannel
+    OnAlphaChannel
+    OpaqueAlphaChannel
+    RemoveAlphaChannel
+    SetAlphaChannel
+    ShapeAlphaChannel
+    TransparentAlphaChannel
+  end
+
   enum AlphaChannelType
     UndefinedAlphaChannel
     ActivateAlphaChannel
@@ -24,27 +43,42 @@ lib LibMagick
     DisassociateAlphaChannel
   end
 
+  enum AutoThresholdMethod
+    UndefinedThresholdMethod
+    KapurThresholdMethod
+    OTSUThresholdMethod
+    TriangleThresholdMethod
+  end
+
   enum ChannelType
-    UndefinedChannel
-    RedChannel        =    0x0001
-    GrayChannel       =    0x0001
-    CyanChannel       =    0x0001
-    GreenChannel      =    0x0002
-    MagentaChannel    =    0x0002
-    BlueChannel       =    0x0004
-    YellowChannel     =    0x0004
-    AlphaChannel      =    0x0008
-    OpacityChannel    =    0x0008
-    MatteChannel      =    0x0008
-    BlackChannel      =    0x0020
-    IndexChannel      =    0x0020
-    CompositeChannels =    0x002F
-    AllChannels       = 0x7ffffff
-    TrueAlphaChannel  =    0x0040
-    RGBChannels       =    0x0080
-    GrayChannels      =    0x0080
-    SyncChannels      =    0x0100
-    DefaultChannels   = ((AllChannels | SyncChannels) & ~OpacityChannel)
+    UndefinedChannel = 0x0000
+    RedChannel = 0x0001
+    GrayChannel = 0x0001
+    CyanChannel = 0x0001
+    GreenChannel = 0x0002
+    MagentaChannel = 0x0002
+    BlueChannel = 0x0004
+    YellowChannel = 0x0004
+    BlackChannel = 0x0008
+    AlphaChannel = 0x0010
+    OpacityChannel = 0x0010
+    IndexChannel = 0x0020             # Color Index Table?
+    ReadMaskChannel = 0x0040          # Pixel is Not Readable?
+    WriteMaskChannel = 0x0080         # Pixel is Write Protected?
+    MetaChannel = 0x0100              # not used
+    CompositeMaskChannel = 0x0200     # SVG mask
+    CompositeChannels = 0x001F
+    AllChannels = 0x7ffffff
+      # Special purpose channel types.
+      # FUTURE: are these needed any more - they are more like hacks
+      # SyncChannels for example is NOT a real channel but a 'flag'
+      # It really says -- "User has not defined channels"
+      # Though it does have extra meaning in the "-auto-level" operator
+    TrueAlphaChannel = 0x0100 # extract actual alpha channel from opacity
+    RGBChannels = 0x0200      # set alpha from grayscale mask in RGB
+    GrayChannels = 0x0400
+    SyncChannels = 0x20000    # channels modified as a single unit
+    DefaultChannels = AllChannels
   end
 
   enum ClassType
@@ -98,9 +132,9 @@ lib LibMagick
   end
 
   enum CommandOption
-    MagickUndefinedOptions      = -1
-    MagickAlignOptions          =  0
-    MagickAlphaOptions
+    MagickUndefinedOptions = -1
+    MagickAlignOptions = 0
+    MagickAlphaChannelOptions
     MagickBooleanOptions
     MagickCacheOptions
     MagickChannelOptions
@@ -110,6 +144,8 @@ lib LibMagick
     MagickColorOptions
     MagickColorspaceOptions
     MagickCommandOptions
+    MagickComplexOptions
+    MagickComplianceOptions
     MagickComposeOptions
     MagickCompressOptions
     MagickConfigureOptions
@@ -129,7 +165,9 @@ lib LibMagick
     MagickFontsOptions
     MagickFormatOptions
     MagickFunctionOptions
+    MagickGradientOptions
     MagickGravityOptions
+    MagickIntensityOptions
     MagickIntentOptions
     MagickInterlaceOptions
     MagickInterpolateOptions
@@ -150,7 +188,10 @@ lib LibMagick
     MagickMorphologyOptions
     MagickNoiseOptions
     MagickOrientationOptions
+    MagickPixelChannelOptions
     MagickPixelIntensityOptions
+    MagickPixelMaskOptions
+    MagickPixelTraitOptions
     MagickPolicyOptions
     MagickPolicyDomainOptions
     MagickPolicyRightsOptions
@@ -168,19 +209,40 @@ lib LibMagick
     MagickTypeOptions
     MagickValidateOptions
     MagickVirtualPixelOptions
-    MagickComplexOptions
-    MagickIntensityOptions
-    MagickGradientOptions
     MagickWeightOptions
-    MagickComplianceOptions
+    MagickAutoThresholdOptions
+    MagickToolOptions
+    MagickCLIOptions
+  end
+
+  enum ComplexOperator
+    UndefinedComplexOperator
+    AddComplexOperator
+    ConjugateComplexOperator
+    DivideComplexOperator
+    MagnitudePhaseComplexOperator
+    MultiplyComplexOperator
+    RealImaginaryComplexOperator
+    SubtractComplexOperator
+  end
+
+  enum ComplianceType
+    UndefinedCompliance
+    NoCompliance = 0x0000
+    CSSCompliance = 0x0001
+    SVGCompliance = 0x0001
+    X11Compliance = 0x0002
+    XPMCompliance = 0x0004
+    MVGCompliance = 0x0008
+    AllCompliance = 0x7fffffff
   end
 
   enum CompositeOperator
     UndefinedCompositeOp
-    NoCompositeOp
-    ModulusAddCompositeOp
+    AlphaCompositeOp
     AtopCompositeOp
     BlendCompositeOp
+    BlurCompositeOp
     BumpmapCompositeOp
     ChangeMaskCompositeOp
     ClearCompositeOp
@@ -193,31 +255,47 @@ lib LibMagick
     CopyCyanCompositeOp
     CopyGreenCompositeOp
     CopyMagentaCompositeOp
-    CopyOpacityCompositeOp
+    CopyAlphaCompositeOp
     CopyRedCompositeOp
     CopyYellowCompositeOp
     DarkenCompositeOp
+    DarkenIntensityCompositeOp
+    DifferenceCompositeOp
+    DisplaceCompositeOp
+    DissolveCompositeOp
+    DistortCompositeOp
+    DivideDstCompositeOp
+    DivideSrcCompositeOp
     DstAtopCompositeOp
     DstCompositeOp
     DstInCompositeOp
     DstOutCompositeOp
     DstOverCompositeOp
-    DifferenceCompositeOp
-    DisplaceCompositeOp
-    DissolveCompositeOp
     ExclusionCompositeOp
     HardLightCompositeOp
+    HardMixCompositeOp
     HueCompositeOp
     InCompositeOp
+    IntensityCompositeOp
     LightenCompositeOp
+    LightenIntensityCompositeOp
+    LinearBurnCompositeOp
+    LinearDodgeCompositeOp
     LinearLightCompositeOp
     LuminizeCompositeOp
+    MathematicsCompositeOp
     MinusDstCompositeOp
+    MinusSrcCompositeOp
     ModulateCompositeOp
+    ModulusAddCompositeOp
+    ModulusSubtractCompositeOp
     MultiplyCompositeOp
+    NoCompositeOp
     OutCompositeOp
     OverCompositeOp
     OverlayCompositeOp
+    PegtopLightCompositeOp
+    PinLightCompositeOp
     PlusCompositeOp
     ReplaceCompositeOp
     SaturateCompositeOp
@@ -228,49 +306,39 @@ lib LibMagick
     SrcInCompositeOp
     SrcOutCompositeOp
     SrcOverCompositeOp
-    ModulusSubtractCompositeOp
     ThresholdCompositeOp
-    XorCompositeOp
-    # These are new operators, added after the above was last sorted. The list should be re-sorted only when a new library version is created.
-    DivideDstCompositeOp
-    DistortCompositeOp
-    BlurCompositeOp
-    PegtopLightCompositeOp
     VividLightCompositeOp
-    PinLightCompositeOp
-    LinearDodgeCompositeOp
-    LinearBurnCompositeOp
-    MathematicsCompositeOp
-    DivideSrcCompositeOp
-    MinusSrcCompositeOp
-    DarkenIntensityCompositeOp
-    LightenIntensityCompositeOp
-    HardMixCompositeOp
+    XorCompositeOp
+    StereoCompositeOp
   end
 
   enum CompressionType
     UndefinedCompression
-    NoCompression
+    B44ACompression
+    B44Compression
     BZipCompression
     DXT1Compression
     DXT3Compression
     DXT5Compression
     FaxCompression
     Group4Compression
+    JBIG1Compression
+    JBIG2Compression
+    JPEG2000Compression
     JPEGCompression
-    JPEG2000Compression # ISO/IEC std 15444-1
     LosslessJPEGCompression
+    LZMACompression
     LZWCompression
+    NoCompression
+    PizCompression
+    Pxr24Compression
     RLECompression
     ZipCompression
     ZipSCompression
-    PizCompression
-    Pxr24Compression
-    B44Compression
-    B44ACompression
-    LZMACompression  # Lempel-Ziv-Markov chain algorithm
-    JBIG1Compression # ISO/IEC std 11544 / ITU-T rec T.82
-    JBIG2Compression # ISO/IEC std 14492 / ITU-T rec T.88
+    ZstdCompression
+    WebPCompression
+    DWAACompression
+    DWABCompression
   end
 
   enum DecorationType
@@ -289,10 +357,10 @@ lib LibMagick
 
   enum DisposeType
     UnrecognizedDispose
-    UndefinedDispose    = 0
-    NoneDispose         = 1
-    BackgroundDispose   = 2
-    PreviousDispose     = 3
+    UndefinedDispose = 0
+    NoneDispose = 1
+    BackgroundDispose = 2
+    PreviousDispose = 3
   end
 
   enum DistortImageMethod
@@ -304,6 +372,29 @@ lib LibMagick
     PerspectiveProjectionDistortion
     BilinearForwardDistortion
     BilinearDistortion              = BilinearForwardDistortion
+    BilinearReverseDistortion
+    PolynomialDistortion
+    ArcDistortion
+    PolarDistortion
+    DePolarDistortion
+    Cylinder2PlaneDistortion
+    Plane2CylinderDistortion
+    BarrelDistortion
+    BarrelInverseDistortion
+    ShepardsDistortion
+    ResizeDistortion
+    SentinelDistortion
+  end
+
+  enum DistortMethod
+    UndefinedDistortion
+    AffineDistortion
+    AffineProjectionDistortion
+    ScaleRotateTranslateDistortion
+    PerspectiveDistortion
+    PerspectiveProjectionDistortion
+    BilinearForwardDistortion
+    BilinearDistortion = BilinearForwardDistortion
     BilinearReverseDistortion
     PolynomialDistortion
     ArcDistortion
@@ -409,6 +500,42 @@ lib LibMagick
     # undef EvenOddRule
     EvenOddRule
     NonZeroRule
+  end
+
+  enum FilterType
+    UndefinedFilter
+    PointFilter
+    BoxFilter
+    TriangleFilter
+    HermiteFilter
+    HannFilter
+    HammingFilter
+    BlackmanFilter
+    GaussianFilter
+    QuadraticFilter
+    CubicFilter
+    CatromFilter
+    MitchellFilter
+    JincFilter
+    SincFilter
+    SincFastFilter
+    KaiserFilter
+    WelchFilter
+    ParzenFilter
+    BohmanFilter
+    BartlettFilter
+    LagrangeFilter
+    LanczosFilter
+    LanczosSharpFilter
+    Lanczos2Filter
+    Lanczos2SharpFilter
+    RobidouxFilter
+    RobidouxSharpFilter
+    CosineFilter
+    SplineFilter
+    LanczosRadiusFilter
+    CubicSplineFilter
+    SentinelFilter # a count of all the filters, not a real filter
   end
 
   enum FilterTypes
@@ -560,21 +687,22 @@ lib LibMagick
   end
 
   enum KernelInfoType
-    UndefinedKernel # equivalent to UnityKernel
-    UnityKernel     # The no-op or 'original image' kernel
-    GaussianKernel  # Convolution Kernels, Gaussian Based
+    UndefinedKernel
+    UnityKernel
+    GaussianKernel
     DoGKernel
     LoGKernel
     BlurKernel
     CometKernel
-    LaplacianKernel # Convolution Kernels, by Name
+    BinomialKernel
+    LaplacianKernel
     SobelKernel
     FreiChenKernel
     RobertsKernel
     PrewittKernel
     CompassKernel
     KirschKernel
-    DiamondKernel # Shape Kernels
+    DiamondKernel
     SquareKernel
     RectangleKernel
     OctagonKernel
@@ -582,7 +710,7 @@ lib LibMagick
     PlusKernel
     CrossKernel
     RingKernel
-    PeaksKernel # Hit And Miss Kernels
+    PeaksKernel
     EdgesKernel
     CornersKernel
     DiagonalsKernel
@@ -592,12 +720,31 @@ lib LibMagick
     ConvexHullKernel
     ThinSEKernel
     SkeletonKernel
-    ChebyshevKernel # Distance Measuring Kernels
+    ChebyshevKernel
     ManhattanKernel
     OctagonalKernel
     EuclideanKernel
-    UserDefinedKernel # User Specified Kernel Array
-    BinomialKernel
+    UserDefinedKernel
+  end
+
+  enum LayerMethod
+    UndefinedLayer
+    CoalesceLayer
+    CompareAnyLayer
+    CompareClearLayer
+    CompareOverlayLayer
+    DisposeLayer
+    OptimizeLayer
+    OptimizeImageLayer
+    OptimizePlusLayer
+    OptimizeTransLayer
+    RemoveDupsLayer
+    RemoveZeroLayer
+    CompositeLayer
+    MergeLayer
+    FlattenLayer
+    MosaicLayer
+    TrimBoundsLayer
   end
 
   enum LineCap
@@ -616,38 +763,38 @@ lib LibMagick
 
   enum MagickEvaluateOperator
     UndefinedEvaluateOperator
+    AbsEvaluateOperator
     AddEvaluateOperator
+    AddModulusEvaluateOperator
     AndEvaluateOperator
+    CosineEvaluateOperator
     DivideEvaluateOperator
-    LeftShiftEvaluateOperator
-    MaxEvaluateOperator
-    MinEvaluateOperator
-    MultiplyEvaluateOperator
-    OrEvaluateOperator
-    RightShiftEvaluateOperator
-    SetEvaluateOperator
-    SubtractEvaluateOperator
-    XorEvaluateOperator
-    PowEvaluateOperator
-    LogEvaluateOperator
-    ThresholdEvaluateOperator
-    ThresholdBlackEvaluateOperator
-    ThresholdWhiteEvaluateOperator
+    ExponentialEvaluateOperator
     GaussianNoiseEvaluateOperator
     ImpulseNoiseEvaluateOperator
     LaplacianNoiseEvaluateOperator
-    MultiplicativeNoiseEvaluateOperator
-    PoissonNoiseEvaluateOperator
-    UniformNoiseEvaluateOperator
-    CosineEvaluateOperator
-    SineEvaluateOperator
-    AddModulusEvaluateOperator
+    LeftShiftEvaluateOperator
+    LogEvaluateOperator
+    MaxEvaluateOperator
     MeanEvaluateOperator
-    AbsEvaluateOperator
-    ExponentialEvaluateOperator
     MedianEvaluateOperator
-    SumEvaluateOperator
+    MinEvaluateOperator
+    MultiplicativeNoiseEvaluateOperator
+    MultiplyEvaluateOperator
+    OrEvaluateOperator
+    PoissonNoiseEvaluateOperator
+    PowEvaluateOperator
+    RightShiftEvaluateOperator
     RootMeanSquareEvaluateOperator
+    SetEvaluateOperator
+    SineEvaluateOperator
+    SubtractEvaluateOperator
+    SumEvaluateOperator
+    ThresholdBlackEvaluateOperator
+    ThresholdEvaluateOperator
+    ThresholdWhiteEvaluateOperator
+    UniformNoiseEvaluateOperator
+    XorEvaluateOperator
   end
 
   enum MagickFormatType
@@ -658,25 +805,26 @@ lib LibMagick
 
   enum MagickFunction
     UndefinedFunction
-    PolynomialFunction
-    SinusoidFunction
     ArcsinFunction
     ArctanFunction
+    PolynomialFunction
+    SinusoidFunction
   end
 
   enum MetricType
-    UndefinedMetric
+    UndefinedErrorMetric
     AbsoluteErrorMetric
-    MeanAbsoluteErrorMetric
-    MeanErrorPerPixelMetric
-    MeanSquaredErrorMetric
-    PeakAbsoluteErrorMetric
-    PeakSignalToNoiseRatioMetric
-    RootMeanSquaredErrorMetric
-    NormalizedCrossCorrelationErrorMetric
     FuzzErrorMetric
-    UndefinedErrorMetric                  =    0
-    PerceptualHashErrorMetric             = 0xff
+    MeanAbsoluteErrorMetric
+    MeanErrorPerPixelErrorMetric
+    MeanSquaredErrorMetric
+    NormalizedCrossCorrelationErrorMetric
+    PeakAbsoluteErrorMetric
+    PeakSignalToNoiseRatioErrorMetric
+    PerceptualHashErrorMetric
+    RootMeanSquaredErrorMetric
+    StructuralSimilarityErrorMetric
+    StructuralDissimilarityErrorMetric
   end
 
   enum MontageMode
@@ -688,34 +836,28 @@ lib LibMagick
 
   enum MorphologyMethod
     UndefinedMorphology
-    # Convolve / Correlate weighted sums
-    ConvolveMorphology  # Weighted Sum with reflected kernel
-    CorrelateMorphology # Weighted Sum using a sliding window
-    # Low-level Morphology methods
-    ErodeMorphology           # Minimum Value in Neighbourhood
-    DilateMorphology          # Maximum Value in Neighbourhood
-    ErodeIntensityMorphology  # Pixel Pick using GreyScale Erode
-    DilateIntensityMorphology # Pixel Pick using GreyScale Dialate
-    DistanceMorphology        # Add Kernel Value  take Minimum
-    # Second-level Morphology methods
-    OpenMorphology           # Dilate then Erode
-    CloseMorphology          # Erode then Dilate
-    OpenIntensityMorphology  # Pixel Pick using GreyScale Open
-    CloseIntensityMorphology # Pixel Pick using GreyScale Close
-    SmoothMorphology         # Open then Close
-    # Difference Morphology methods
-    EdgeInMorphology    # Dilate difference from Original
-    EdgeOutMorphology   # Erode difference from Original
-    EdgeMorphology      # Dilate difference with Erode
-    TopHatMorphology    # Close difference from Original
-    BottomHatMorphology # Open difference from Original
-    # Recursive Morphology methods
-    HitAndMissMorphology # Foreground/Background pattern matching
-    ThinningMorphology   # Remove matching pixels from image
-    ThickenMorphology    # Add matching pixels from image
-    # Experimental Morphology methods
-    VoronoiMorphology           # distance matte channel copy nearest color
-    IterativeDistanceMorphology # Add Kernel Value, take Minimum
+    ConvolveMorphology
+    CorrelateMorphology
+    ErodeMorphology
+    DilateMorphology
+    ErodeIntensityMorphology
+    DilateIntensityMorphology
+    IterativeDistanceMorphology
+    OpenMorphology
+    CloseMorphology
+    OpenIntensityMorphology
+    CloseIntensityMorphology
+    SmoothMorphology
+    EdgeInMorphology
+    EdgeOutMorphology
+    EdgeMorphology
+    TopHatMorphology
+    BottomHatMorphology
+    HitAndMissMorphology
+    ThinningMorphology
+    ThickenMorphology
+    DistanceMorphology
+    VoronoiMorphology
   end
 
   enum NoiseType
@@ -771,45 +913,45 @@ lib LibMagick
   end
 
   enum PixelIntensityMethod
-    UndefinedPixelIntensityMethod       = 0
+    UndefinedPixelIntensityMethod = 0
     AveragePixelIntensityMethod
     BrightnessPixelIntensityMethod
     LightnessPixelIntensityMethod
+    MSPixelIntensityMethod
     Rec601LumaPixelIntensityMethod
     Rec601LuminancePixelIntensityMethod
     Rec709LumaPixelIntensityMethod
     Rec709LuminancePixelIntensityMethod
     RMSPixelIntensityMethod
-    MSPixelIntensityMethod
   end
 
-  # enum PixelInterpolateMethod  # REMOVED
-  #   UndefinedInterpolatePixel
-  #   AverageInterpolatePixel     # Average 4 nearest neighbours
-  #   Average9InterpolatePixel    # Average 9 nearest neighbours
-  #   Average16InterpolatePixel   # Average 16 nearest neighbours
-  #   BackgroundInterpolatePixel  # Just return background color
-  #   BilinearInterpolatePixel    # Triangular filter interpolation
-  #   BlendInterpolatePixel       # blend of nearest 1, 2 or 4 pixels
-  #   CatromInterpolatePixel      # Catmull-Rom interpolation
-  #   IntegerInterpolatePixel     # Integer (floor) interpolation
-  #   MeshInterpolatePixel        # Triangular Mesh interpolation
-  #   NearestInterpolatePixel     # Nearest Neighbour Only
-  #   SplineInterpolatePixel      # Cubic Spline (blurred) interpolation
-  #   # FilterInterpolatePixel   ** Use resize filter - (very slow)
-  # end
+  enum PixelInterpolateMethod
+    UndefinedInterpolatePixel
+    AverageInterpolatePixel    # Average 4 nearest neighbours
+    Average9InterpolatePixel   # Average 9 nearest neighbours
+    Average16InterpolatePixel  # Average 16 nearest neighbours
+    BackgroundInterpolatePixel # Just return background color
+    BilinearInterpolatePixel   # Triangular filter interpolation
+    BlendInterpolatePixel      # blend of nearest 1, 2 or 4 pixels
+    CatromInterpolatePixel     # Catmull-Rom interpolation
+    IntegerInterpolatePixel    # Integer (floor) interpolation
+    MeshInterpolatePixel       # Triangular Mesh interpolation
+    NearestInterpolatePixel    # Nearest Neighbour Only
+    SplineInterpolatePixel     # Cubic Spline (blurred) interpolation
+  end
 
   enum PixelMask
     UndefinedPixelMask = 0x000000
-    ReadPixelMask      = 0x000001
-    WritePixelMask     = 0x000002
+    ReadPixelMask = 0x000001
+    WritePixelMask = 0x000002
+    CompositePixelMask = 0x000004
   end
 
   enum PixelTrait
     UndefinedPixelTrait = 0x000000
-    CopyPixelTrait      = 0x000001
-    UpdatePixelTrait    = 0x000002
-    BlendPixelTrait     = 0x000004
+    CopyPixelTrait = 0x000001
+    UpdatePixelTrait = 0x000002
+    BlendPixelTrait = 0x000004
   end
 
   enum PreviewType
@@ -925,8 +1067,8 @@ lib LibMagick
     MinimumStatistic
     ModeStatistic
     NonpeakStatistic
-    StandardDeviationStatistic
     RootMeanSquareStatistic
+    StandardDeviationStatistic
   end
 
   enum StorageType
@@ -934,8 +1076,8 @@ lib LibMagick
     CharPixel
     DoublePixel
     FloatPixel
-    IntegerPixel
     LongPixel
+    LongLongPixel
     QuantumPixel
     ShortPixel
   end
@@ -960,6 +1102,7 @@ lib LibMagick
     ItalicStyle
     ObliqueStyle
     AnyStyle
+    BoldStyle
   end
 
   enum TimerState
@@ -971,7 +1114,6 @@ lib LibMagick
   enum VirtualPixelMethod
     UndefinedVirtualPixelMethod
     BackgroundVirtualPixelMethod
-    ConstantVirtualPixelMethod # deprecated
     DitherVirtualPixelMethod
     EdgeVirtualPixelMethod
     MirrorVirtualPixelMethod
