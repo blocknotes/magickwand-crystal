@@ -1,7 +1,12 @@
 language: crystal
 
 before_install:
-  - sudo apt-get install libmagickwand-dev -y
+  - wget 'https://github.com/ImageMagick/ImageMagick/archive/7.0.8-66.tar.gz'
+  - tar xvfz 7.0.8-66.tar.gz
+  - cd ImageMagick-7.0.8-66
+  - ./configure
+  - make
+  - sudo make install
   - sudo ldconfig
 
 # Uncomment the following if you'd like Travis to run specs and check code formatting
