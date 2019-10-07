@@ -21,9 +21,11 @@ describe "LibMagick" do
 
   it { LibMagick.isMagickWandInstantiated.should be_true } # NOTE: Travis says: "undefined IsMagickWandInstantiated" - check Magick version
 
-  it "creates a wand" do
+  it "creates a wand and read an image" do
     (wand = LibMagick.newMagickWand).should_not be_nil
     LibMagick.isMagickWand(wand).should be_true
+    wand = init_wand(with_image = TEST1_PNG)
+    LibMagick.magickGetImageCompression(wand).should eq LibMagick::CompressionType::ZipCompression
     LibMagick.destroyMagickWand wand
     LibMagick.isMagickWand(wand).should be_false
   end

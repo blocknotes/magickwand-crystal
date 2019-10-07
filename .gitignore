@@ -11,5 +11,6 @@
 # Examples extra files
 /examples/*.html
 /examples/lib
+/examples/output.*
 
 /_misc/

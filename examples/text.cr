@@ -3,6 +3,7 @@
 # Author:      Mat
 # Description: Text image
 # ---------------------------------------------------------------------------- #
+
 require "../src/magickwand-crystal"
 
 LibMagick.magickWandGenesis
@@ -18,7 +19,7 @@ if LibMagick.magickReadImage(m_wand, "../spec/test1.png")
   LibMagick.drawAnnotation d_wand, 25, 65, "It's Magick"
   LibMagick.magickDrawImage m_wand, d_wand
   LibMagick.magickTrimImage m_wand, 0
-  LibMagick.magickWriteImage m_wand, "text.png"
+  LibMagick.magickWriteImage m_wand, "output.png"
 end
 LibMagick.destroyPixelWand p_wand
 LibMagick.destroyDrawingWand d_wand

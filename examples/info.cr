@@ -3,6 +3,7 @@
 # Author:      Mat
 # Description: Get info from an image
 # ---------------------------------------------------------------------------- #
+
 require "../src/magickwand-crystal"
 
 LibMagick.magickWandGenesis
@@ -19,7 +20,6 @@ if LibMagick.magickReadImage(wand, "../spec/test1.png")
   STDOUT << "- GetImageColors: " << LibMagick.magickGetImageColors(wand) << "\n"
   STDOUT << "- GetImageCompressionQuality: " << LibMagick.magickGetImageCompressionQuality(wand) << "\n"
   STDOUT << "- GetImageDelay: " << LibMagick.magickGetImageDelay(wand) << "\n"
-  STDOUT << "- GetImageChannelDepth: " << LibMagick.magickGetImageChannelDepth(wand, LibMagick::ChannelType::DefaultChannels) << "\n"
   STDOUT << "- GetImageDepth: " << LibMagick.magickGetImageDepth(wand) << "\n"
   STDOUT << "- GetImageIterations: " << LibMagick.magickGetImageIterations(wand) << "\n"
   STDOUT << "- GetImageScene: " << LibMagick.magickGetImageScene(wand) << "\n"
@@ -30,8 +30,6 @@ if LibMagick.magickReadImage(wand, "../spec/test1.png")
   STDOUT << "- GetImageCompression: " << LibMagick.magickGetImageCompression(wand) << "\n"
   STDOUT << "- GetImageType: " << LibMagick.magickGetImageType(wand) << "\n"
   STDOUT << "\n"
-  # misc functions
-  STDOUT << "- GetImageChannelStatistics: " << LibMagick.magickGetImageChannelStatistics(wand).value << "\n"
 end
 LibMagick.destroyMagickWand wand
 LibMagick.magickWandTerminus

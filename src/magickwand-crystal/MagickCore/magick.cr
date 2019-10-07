@@ -1,0 +1,31 @@
+lib LibMagick
+  fun acquireMagickInfo = AcquireMagickInfo(magick_module : LibC::Char*, name : LibC::Char*, description : LibC::Char*) : MagickInfo*
+  fun getImageDecoder = GetImageDecoder(magick_info : MagickInfo*) : DecodeImageHandler*
+  fun getImageEncoder = GetImageEncoder(magick_info : MagickInfo*) : EncodeImageHandler*
+  fun getImageMagick = GetImageMagick(magick : LibC::UChar*, length : LibC::SizeT, format : LibC::Char*) : Bool
+  fun getMagickAdjoin = GetMagickAdjoin(magick_info : MagickInfo*) : Bool
+  fun getMagickBlobSupport = GetMagickBlobSupport(magick_info : MagickInfo*) : Bool
+  fun getMagickDecoderSeekableStream = GetMagickDecoderSeekableStream(magick_info : MagickInfo*) : Bool
+  fun getMagickDecoderThreadSupport = GetMagickDecoderThreadSupport(magick_info : MagickInfo*) : Bool
+  fun getMagickDescription = GetMagickDescription(magick_info : MagickInfo*) : LibC::Char*
+  fun getMagickEncoderSeekableStream = GetMagickEncoderSeekableStream(magick_info : MagickInfo*) : Bool
+  fun getMagickEncoderThreadSupport = GetMagickEncoderThreadSupport(magick_info : MagickInfo*) : Bool
+  fun getMagickEndianSupport = GetMagickEndianSupport(magick_info : MagickInfo*) : Bool
+  fun getMagickInfo = GetMagickInfo(name : LibC::Char*, exception : ExceptionInfo*) : MagickInfo*
+  fun getMagickInfoList = GetMagickInfoList(pattern : LibC::Char*, number_formats : LibC::SizeT*, exception : ExceptionInfo*) : MagickInfo**
+  fun getMagickList = GetMagickList(pattern : LibC::Char*, number_formats : LibC::SizeT*, exception : ExceptionInfo*) : LibC::Char**
+  fun getMagickMimeType = GetMagickMimeType(magick_info : MagickInfo*) : LibC::Char*
+  fun getMagickModuleName = GetMagickModuleName(magick_info : MagickInfo*) : LibC::Char*
+  fun getMagickName = GetMagickName(magick_info : MagickInfo*) : LibC::Char*
+  fun getMagickPrecision = GetMagickPrecision : LibC::Int
+  fun getMagickRawSupport = GetMagickRawSupport(magick_info : MagickInfo*) : Bool
+  fun getMagickStealth = GetMagickStealth(magick_info : MagickInfo*) : Bool
+  fun getMagickUseExtension = GetMagickUseExtension(magick_info : MagickInfo*) : Bool
+  fun listMagickInfo = ListMagickInfo(file : LibStd::File*, exception : ExceptionInfo*) : Bool
+  fun isMagickCoreInstantiated = IsMagickCoreInstantiated : Bool
+  fun magickCoreGenesis = MagickCoreGenesis(path : LibC::Char*, establish_signal_handlers : Bool) : Void
+  fun magickCoreTerminus = MagickCoreTerminus : Void
+  fun registerMagickInfo = RegisterMagickInfo(magick_info : MagickInfo*) : Bool
+  fun setMagickPrecision = SetMagickPrecision(precision : LibC::Int) : LibC::Int
+  fun unregisterMagickInfo = UnregisterMagickInfo(name : LibC::Char*) : Bool
+end

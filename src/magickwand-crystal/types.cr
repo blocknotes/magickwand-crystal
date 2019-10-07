@@ -18,8 +18,6 @@ lib LibMagick
   type IndexPacket = Quantum
   type ResizeFilter = Void # TODO
 
-  type MagickProgressMonitor = LibC::Char*, MagickOffsetType, MagickSizeType, Void* -> Bool
-
   struct AffineMatrix
     sx : LibC::Double
     rx : LibC::Double
@@ -112,6 +110,15 @@ lib LibMagick
     pixel : PixelPacket
     index : IndexPacket
     count : MagickSizeType
+  end
+
+  struct CustomStreamInfo
+    reader : CustomStreamHandler
+    writer : CustomStreamHandler
+    seeker : CustomStreamSeeker
+    teller : CustomStreamTeller
+    data : Void*
+    signature : LibC::SizeT
   end
 
   struct DrawInfo
@@ -348,8 +355,6 @@ lib LibMagick
     tietz_offset : LibC::Long
   end
 
-  type StreamHandler = Image*, Void*, LibC::SizeT -> LibC::UInt
-
   struct ImageInfo
     compression : CompressionType # compression method when reading/saving image
     orientation : OrientationType # orientation setting
@@ -430,9 +435,17 @@ lib LibMagick
     index : LibC::UInt
   end
 
-  type DecodeImageHandler = ImageInfo*, ExceptionInfo* -> Image*
-  type EncodeImageHandler = ImageInfo*, Image* -> Bool
-  type IsImageFormatHandler = LibC::UChar*, LibC::SizeT -> Bool
+  struct MagicInfo
+    path : LibC::Char*
+    name : LibC::Char*
+    target : LibC::Char*
+    magic : LibC::UChar*
+    length : LibC::SizeT
+    offset : MagickOffsetType
+    exempt : Bool
+    stealth : Bool
+    signature : LibC::SizeT
+  end
 
   struct MagickInfo
     name : LibC::Char*
@@ -669,6 +682,14 @@ lib LibMagick
     signature : LibC::SizeT
   end
 
+  struct StringInfo
+    path : LibC::Char*
+    datum : LibC::UChar*
+    length : LibC::SizeT
+    signature : LibC::SizeT
+    name : LibC::Char*
+  end
+
   struct StopInfo
     color : PixelInfo
     offset : LibC::Double
@@ -708,4 +729,16 @@ lib LibMagick
     bounds : SegmentInfo
     origin : PointInfo
   end
+
+  type CustomStreamHandler = LibC::UChar*, LibC::SizeT, Void* -> LibC::SSizeT*
+  type CustomStreamSeeker = MagickOffsetType, LibC::Int, Void* -> MagickOffsetType*
+  type CustomStreamTeller = Void* -> MagickOffsetType*
+  type DecodeImageHandler = ImageInfo*, ExceptionInfo* -> Image*
+  type EncodeImageHandler = ImageInfo*, Image* -> Bool
+  type ErrorHandler = ExceptionType, LibC::Char*, LibC::Char* -> Void*
+  type FatalErrorHandler = ExceptionType, LibC::Char*, LibC::Char* -> Void*
+  type IsImageFormatHandler = LibC::UChar*, LibC::SizeT -> Bool
+  type MagickProgressMonitor = LibC::Char*, MagickOffsetType, MagickSizeType, Void* -> Bool
+  type StreamHandler = Image*, Void*, LibC::SizeT -> LibC::UInt
+  type WarningHandler = ExceptionType, LibC::Char*, LibC::Char* -> Void*
 end

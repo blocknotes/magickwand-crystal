@@ -1,0 +1,30 @@
+lib LibMagick
+  fun appendImageToList = AppendImageToList(images : Image**, append : Image*) : Void
+  fun cloneImageList = CloneImageList(images : Image*, exception : ExceptionInfo*) : Image*
+  fun cloneImages = CloneImages(images : Image*, scenes : LibC::Char*, exception : ExceptionInfo*) : Image*
+  fun deleteImageFromList = DeleteImageFromList(images : Image**) : Void
+  fun deleteImages = DeleteImages(images : Image**, scenes : LibC::Char*, exception : ExceptionInfo*) : Void
+  fun destroyImageList = DestroyImageList(images : Image*) : Image*
+  fun duplicateImages = DuplicateImages(images : Image*, number_duplicates : LibC::SizeT, scenes : LibC::Char*, exception : ExceptionInfo*) : Image*
+  fun getFirstImageInList = GetFirstImageInList(images : Image*) : Image*
+  fun getImageFromList = GetImageFromList(images : Image*, index : LibC::SSizeT) : Image*
+  fun getImageIndexInList = GetImageIndexInList(images : Image*) : LibC::SSizeT
+  fun getImageListLength = GetImageListLength(images : Image*) : LibC::SizeT
+  fun getLastImageInList = GetLastImageInList(images : Image*) : Image*
+  fun getNextImageInList = GetNextImageInList(images : Image*) : Image*
+  fun getPreviousImageInList = GetPreviousImageInList(images : Image*) : Image*
+  fun imageListToArray = ImageListToArray(images : Image*, exception : ExceptionInfo*) : Image**
+  fun insertImageInList = InsertImageInList(images : Image**, insert : Image*) : Void
+  fun newImageList = NewImageList : Image*
+  fun prependImageToList = PrependImageToList(images : Image**, prepend : Image*) : Void
+  fun removeImageFromList = RemoveImageFromList(images : Image**) : Image*
+  fun removeFirstImageFromList = RemoveFirstImageFromList(images : Image**) : Image*
+  fun removeLastImageFromList = RemoveLastImageFromList(images : Image**) : Image*
+  fun replaceImageInList = ReplaceImageInList(images : Image**, replace : Image*) : Void
+  fun replaceImageInListReturnLast = ReplaceImageInListReturnLast(images : Image**, replace : Image*) : Void
+  fun reverseImageList = ReverseImageList(images : Image**) : Void
+  fun spliceImageIntoList = SpliceImageIntoList(images : Image**, length : LibC::SizeT, splice : Image*) : Image*
+  fun splitImageList = SplitImageList(images : Image*) : Image*
+  fun syncImageList = SyncImageList(images : Image*) : Void
+  fun syncNextImageInList = SyncNextImageInList(images : Image*) : Image*
+end

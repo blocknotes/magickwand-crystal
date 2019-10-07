@@ -3,6 +3,7 @@
 # Author:      Mat
 # Description: Generate an image on the fly in Kemal
 # ---------------------------------------------------------------------------- #
+
 require "kemal"
 require "../src/magickwand-crystal"
 

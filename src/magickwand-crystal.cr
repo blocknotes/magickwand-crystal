@@ -1,4 +1,3 @@
 require "./magickwand-crystal/*"
-
-module Magickwand
-end
+require "./magickwand-crystal/MagickCore/*"
+require "./magickwand-crystal/MagickWand/*"

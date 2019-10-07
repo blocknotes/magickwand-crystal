@@ -1,0 +1,9 @@
+name: examples
+version: 0.1.0
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+    version: "~> 0.26.0"
+
+license: MIT

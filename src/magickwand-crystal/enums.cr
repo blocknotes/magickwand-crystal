@@ -51,34 +51,34 @@ lib LibMagick
   end
 
   enum ChannelType
-    UndefinedChannel = 0x0000
-    RedChannel = 0x0001
-    GrayChannel = 0x0001
-    CyanChannel = 0x0001
-    GreenChannel = 0x0002
-    MagentaChannel = 0x0002
-    BlueChannel = 0x0004
-    YellowChannel = 0x0004
-    BlackChannel = 0x0008
-    AlphaChannel = 0x0010
-    OpacityChannel = 0x0010
-    IndexChannel = 0x0020             # Color Index Table?
-    ReadMaskChannel = 0x0040          # Pixel is Not Readable?
-    WriteMaskChannel = 0x0080         # Pixel is Write Protected?
-    MetaChannel = 0x0100              # not used
-    CompositeMaskChannel = 0x0200     # SVG mask
-    CompositeChannels = 0x001F
-    AllChannels = 0x7ffffff
-      # Special purpose channel types.
-      # FUTURE: are these needed any more - they are more like hacks
-      # SyncChannels for example is NOT a real channel but a 'flag'
-      # It really says -- "User has not defined channels"
-      # Though it does have extra meaning in the "-auto-level" operator
-    TrueAlphaChannel = 0x0100 # extract actual alpha channel from opacity
-    RGBChannels = 0x0200      # set alpha from grayscale mask in RGB
-    GrayChannels = 0x0400
-    SyncChannels = 0x20000    # channels modified as a single unit
-    DefaultChannels = AllChannels
+    UndefinedChannel     =    0x0000
+    RedChannel           =    0x0001
+    GrayChannel          =    0x0001
+    CyanChannel          =    0x0001
+    GreenChannel         =    0x0002
+    MagentaChannel       =    0x0002
+    BlueChannel          =    0x0004
+    YellowChannel        =    0x0004
+    BlackChannel         =    0x0008
+    AlphaChannel         =    0x0010
+    OpacityChannel       =    0x0010
+    IndexChannel         =    0x0020 # Color Index Table?
+    ReadMaskChannel      =    0x0040 # Pixel is Not Readable?
+    WriteMaskChannel     =    0x0080 # Pixel is Write Protected?
+    MetaChannel          =    0x0100 # not used
+    CompositeMaskChannel =    0x0200 # SVG mask
+    CompositeChannels    =    0x001F
+    AllChannels          = 0x7ffffff
+    # Special purpose channel types.
+    # FUTURE: are these needed any more - they are more like hacks
+    # SyncChannels for example is NOT a real channel but a 'flag'
+    # It really says -- "User has not defined channels"
+    # Though it does have extra meaning in the "-auto-level" operator
+    TrueAlphaChannel =  0x0100 # extract actual alpha channel from opacity
+    RGBChannels      =  0x0200 # set alpha from grayscale mask in RGB
+    GrayChannels     =  0x0400
+    SyncChannels     = 0x20000 # channels modified as a single unit
+    DefaultChannels  = AllChannels
   end
 
   enum ClassType
@@ -132,8 +132,8 @@ lib LibMagick
   end
 
   enum CommandOption
-    MagickUndefinedOptions = -1
-    MagickAlignOptions = 0
+    MagickUndefinedOptions      = -1
+    MagickAlignOptions          =  0
     MagickAlphaChannelOptions
     MagickBooleanOptions
     MagickCacheOptions
@@ -228,13 +228,13 @@ lib LibMagick
 
   enum ComplianceType
     UndefinedCompliance
-    NoCompliance = 0x0000
-    CSSCompliance = 0x0001
-    SVGCompliance = 0x0001
-    X11Compliance = 0x0002
-    XPMCompliance = 0x0004
-    MVGCompliance = 0x0008
-    AllCompliance = 0x7fffffff
+    NoCompliance        =     0x0000
+    CSSCompliance       =     0x0001
+    SVGCompliance       =     0x0001
+    X11Compliance       =     0x0002
+    XPMCompliance       =     0x0004
+    MVGCompliance       =     0x0008
+    AllCompliance       = 0x7fffffff
   end
 
   enum CompositeOperator
@@ -357,10 +357,10 @@ lib LibMagick
 
   enum DisposeType
     UnrecognizedDispose
-    UndefinedDispose = 0
-    NoneDispose = 1
-    BackgroundDispose = 2
-    PreviousDispose = 3
+    UndefinedDispose    = 0
+    NoneDispose         = 1
+    BackgroundDispose   = 2
+    PreviousDispose     = 3
   end
 
   enum DistortImageMethod
@@ -394,7 +394,7 @@ lib LibMagick
     PerspectiveDistortion
     PerspectiveProjectionDistortion
     BilinearForwardDistortion
-    BilinearDistortion = BilinearForwardDistortion
+    BilinearDistortion              = BilinearForwardDistortion
     BilinearReverseDistortion
     PolynomialDistortion
     ArcDistortion
@@ -913,7 +913,7 @@ lib LibMagick
   end
 
   enum PixelIntensityMethod
-    UndefinedPixelIntensityMethod = 0
+    UndefinedPixelIntensityMethod       = 0
     AveragePixelIntensityMethod
     BrightnessPixelIntensityMethod
     LightnessPixelIntensityMethod
@@ -942,16 +942,16 @@ lib LibMagick
 
   enum PixelMask
     UndefinedPixelMask = 0x000000
-    ReadPixelMask = 0x000001
-    WritePixelMask = 0x000002
+    ReadPixelMask      = 0x000001
+    WritePixelMask     = 0x000002
     CompositePixelMask = 0x000004
   end
 
   enum PixelTrait
     UndefinedPixelTrait = 0x000000
-    CopyPixelTrait = 0x000001
-    UpdatePixelTrait = 0x000002
-    BlendPixelTrait = 0x000004
+    CopyPixelTrait      = 0x000001
+    UpdatePixelTrait    = 0x000002
+    BlendPixelTrait     = 0x000004
   end
 
   enum PreviewType
